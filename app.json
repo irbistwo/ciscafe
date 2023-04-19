@@ -1,0 +1,11 @@
+{
+  "expo": {
+    "name": "CisCafe",
+    "slug": "CisCafe",
+    "version": "1.0.0",
+    "assetBundlePatterns": [
+      "**/*"
+    ]
+  },
+  "name": "CisCafe"
+}
