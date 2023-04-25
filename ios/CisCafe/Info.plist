@@ -12,6 +12,11 @@
 	<string>6.0</string>
 	<key>UIAppFonts</key>
 	<array>
+		<string>Hermes-Thin.otf</string>
+		<string>HermesThin.ttf</string>
+		<string>Hermes-Regular.ttf</string>
+		<string>Hermes-Regular.otf</string>
+		<string>Hermes-Bold.otf</string>
 		<string>BornReady-Regular.otf</string>
 		<string>BornReady-Regular.ttf</string>
 	</array>

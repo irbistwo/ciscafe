@@ -3,6 +3,7 @@ import {Dimensions, RegisteredStyle, SafeAreaView, SectionList, StyleSheet,Text,
     SectionListData, View, ViewStyle} from "react-native";
 import {StatusBar} from 'react-native';
 import MenuHeaderControl from "./MenuHeaderControl";
+import MenuItemContentsControl from "./MenuItemContentsControl";
 
 
 interface IProps {
@@ -25,9 +26,8 @@ const MenuListController:React.FC<IProps>=({data,renderTab}:IProps)=>{
     const renderMenu=({item}) => {
         //  console.log("item menulist 27 ",item)
         return (
-            <View style={styles.item}>
-                <Text style={styles.title}>{item.name}</Text>
-            </View>)
+           <MenuItemContentsControl menuItem={item}/>
+            )
     }
 
     return (

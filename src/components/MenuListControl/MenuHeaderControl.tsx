@@ -10,6 +10,7 @@ import {BLUE_GREEN} from "../../utils/colorsConstant";
 interface IMenuHeader {
     name:string;
     start:number;
+    isAvailable:boolean;
 }
 interface IProps {
     // data:any[],
@@ -17,7 +18,7 @@ interface IProps {
 
 }
 const MenuHeaderControl:React.FC<IProps>=({sectionItem}:IProps)=>{
-    const [isAvailable,setIsavailable]=useState(true);
+    const [isAvailable,setIsavailable]=useState(sectionItem.isAvailable);
   const menuheaderstyle=  {...styles.lg_bornready_regular,
 
             opacity: isAvailable ? 1 : 0.5
@@ -76,18 +77,7 @@ const styles = StyleSheet.create({
        // backgroundColor: '#fff',
     },
 
-    item: {
-        backgroundColor: '#eae3d2',
-        padding: 20,
-        marginVertical: 4,
-    },
-    header: {
-       // fontSize: 32,
-        backgroundColor: '#fff',
-    },
-    title: {
-        fontSize: 24,
-    },
+
 });
 
 
