@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import {Dimensions, RegisteredStyle, SafeAreaView, SectionList, StyleSheet,Text,
     SectionListData, View, ViewStyle} from "react-native";
 import {StatusBar} from 'react-native';
+import MenuHeaderControl from "./MenuHeaderControl";
 
 
 interface IProps {
@@ -16,9 +17,9 @@ const WindowWidth = Dimensions.get('window').width;
 const MenuListController:React.FC<IProps>=({data,renderTab}:IProps)=>{
     console.log("datalenght ",data.length);
     const renderSection=({section}) => {
-        console.log("sect",section);
-       return(<Text style={styles.header}>{section.name} {section.start}</Text>
-    )
+        //console.log("sect",section);
+       //return(<Text style={styles.header}>{section.name} {section.start}</Text>
+        return (<MenuHeaderControl sectionItem={section} />);
     }
 
     const renderMenu=({item}) => {
@@ -31,7 +32,7 @@ const MenuListController:React.FC<IProps>=({data,renderTab}:IProps)=>{
 
     return (
     <SafeAreaView style={styles.container}>
-        <View><Text>hhh</Text></View>
+        <View><Text>header</Text></View>
     <SectionList
         sections={data}
         keyExtractor={(item, index) => {

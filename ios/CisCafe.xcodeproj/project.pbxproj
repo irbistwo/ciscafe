@@ -11,6 +11,13 @@
 		13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB51A68108700A75B9A /* Images.xcassets */; };
 		13B07FC11A68108700A75B9A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB71A68108700A75B9A /* main.m */; };
 		3E461D99554A48A4959DE609 /* SplashScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AA286B85B6C04FC6940260E9 /* SplashScreen.storyboard */; };
+		52B6E1CF29F7C3A700E3BEA4 /* BornReady-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 52B6E1C829F7C3A400E3BEA4 /* BornReady-Regular.ttf */; };
+		52B6E1D029F7C3A700E3BEA4 /* Hermes-Bold.otf in Resources */ = {isa = PBXBuildFile; fileRef = 52B6E1C929F7C3A500E3BEA4 /* Hermes-Bold.otf */; };
+		52B6E1D129F7C3A700E3BEA4 /* HermesThin.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 52B6E1CA29F7C3A500E3BEA4 /* HermesThin.ttf */; };
+		52B6E1D229F7C3A700E3BEA4 /* BornReady-Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = 52B6E1CB29F7C3A500E3BEA4 /* BornReady-Regular.otf */; };
+		52B6E1D329F7C3A700E3BEA4 /* Hermes-Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = 52B6E1CC29F7C3A600E3BEA4 /* Hermes-Regular.otf */; };
+		52B6E1D429F7C3A700E3BEA4 /* Hermes-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 52B6E1CD29F7C3A600E3BEA4 /* Hermes-Regular.ttf */; };
+		52B6E1D529F7C3A700E3BEA4 /* Hermes-Thin.otf in Resources */ = {isa = PBXBuildFile; fileRef = 52B6E1CE29F7C3A700E3BEA4 /* Hermes-Thin.otf */; };
 		96905EF65AED1B983A6B3ABC /* libPods-CisCafe.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 58EEBF8E8E6FB1BC6CAF49B5 /* libPods-CisCafe.a */; };
 		B18059E884C0ABDD17F3DC3D /* ExpoModulesProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAC715A2D49A985799AEE119 /* ExpoModulesProvider.swift */; };
 		BB2F792D24A3F905000567C9 /* Expo.plist in Resources */ = {isa = PBXBuildFile; fileRef = BB2F792C24A3F905000567C9 /* Expo.plist */; };
@@ -24,6 +31,13 @@
 		13B07FB51A68108700A75B9A /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Images.xcassets; path = CisCafe/Images.xcassets; sourceTree = "<group>"; };
 		13B07FB61A68108700A75B9A /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = CisCafe/Info.plist; sourceTree = "<group>"; };
 		13B07FB71A68108700A75B9A /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = main.m; path = CisCafe/main.m; sourceTree = "<group>"; };
+		52B6E1C829F7C3A400E3BEA4 /* BornReady-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "BornReady-Regular.ttf"; path = "../../src/assets/fonts/BornReady-Regular.ttf"; sourceTree = "<group>"; };
+		52B6E1C929F7C3A500E3BEA4 /* Hermes-Bold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Hermes-Bold.otf"; path = "../../src/assets/fonts/Hermes-Bold.otf"; sourceTree = "<group>"; };
+		52B6E1CA29F7C3A500E3BEA4 /* HermesThin.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = HermesThin.ttf; path = ../../src/assets/fonts/HermesThin.ttf; sourceTree = "<group>"; };
+		52B6E1CB29F7C3A500E3BEA4 /* BornReady-Regular.otf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "BornReady-Regular.otf"; path = "../../src/assets/fonts/BornReady-Regular.otf"; sourceTree = "<group>"; };
+		52B6E1CC29F7C3A600E3BEA4 /* Hermes-Regular.otf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Hermes-Regular.otf"; path = "../../src/assets/fonts/Hermes-Regular.otf"; sourceTree = "<group>"; };
+		52B6E1CD29F7C3A600E3BEA4 /* Hermes-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Hermes-Regular.ttf"; path = "../../src/assets/fonts/Hermes-Regular.ttf"; sourceTree = "<group>"; };
+		52B6E1CE29F7C3A700E3BEA4 /* Hermes-Thin.otf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Hermes-Thin.otf"; path = "../../src/assets/fonts/Hermes-Thin.otf"; sourceTree = "<group>"; };
 		58EEBF8E8E6FB1BC6CAF49B5 /* libPods-CisCafe.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-CisCafe.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		6C2E3173556A471DD304B334 /* Pods-CisCafe.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CisCafe.debug.xcconfig"; path = "Target Support Files/Pods-CisCafe/Pods-CisCafe.debug.xcconfig"; sourceTree = "<group>"; };
 		7A4D352CD337FB3A3BF06240 /* Pods-CisCafe.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CisCafe.release.xcconfig"; path = "Target Support Files/Pods-CisCafe/Pods-CisCafe.release.xcconfig"; sourceTree = "<group>"; };
@@ -48,6 +62,7 @@
 		13B07FAE1A68108700A75B9A /* CisCafe */ = {
 			isa = PBXGroup;
 			children = (
+				52B6E1C729F7C36900E3BEA4 /* Resources */,
 				BB2F792B24A3F905000567C9 /* Supporting */,
 				008F07F21AC5B25A0029DE68 /* main.jsbundle */,
 				13B07FAF1A68108700A75B9A /* AppDelegate.h */,
@@ -67,6 +82,20 @@
 				58EEBF8E8E6FB1BC6CAF49B5 /* libPods-CisCafe.a */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		52B6E1C729F7C36900E3BEA4 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				52B6E1CB29F7C3A500E3BEA4 /* BornReady-Regular.otf */,
+				52B6E1C829F7C3A400E3BEA4 /* BornReady-Regular.ttf */,
+				52B6E1C929F7C3A500E3BEA4 /* Hermes-Bold.otf */,
+				52B6E1CC29F7C3A600E3BEA4 /* Hermes-Regular.otf */,
+				52B6E1CD29F7C3A600E3BEA4 /* Hermes-Regular.ttf */,
+				52B6E1CE29F7C3A700E3BEA4 /* Hermes-Thin.otf */,
+				52B6E1CA29F7C3A500E3BEA4 /* HermesThin.ttf */,
+			);
+			path = Resources;
 			sourceTree = "<group>";
 		};
 		832341AE1AAA6A7D00B99B32 /* Libraries */ = {
@@ -194,6 +223,13 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				52B6E1D229F7C3A700E3BEA4 /* BornReady-Regular.otf in Resources */,
+				52B6E1CF29F7C3A700E3BEA4 /* BornReady-Regular.ttf in Resources */,
+				52B6E1D029F7C3A700E3BEA4 /* Hermes-Bold.otf in Resources */,
+				52B6E1D329F7C3A700E3BEA4 /* Hermes-Regular.otf in Resources */,
+				52B6E1D429F7C3A700E3BEA4 /* Hermes-Regular.ttf in Resources */,
+				52B6E1D529F7C3A700E3BEA4 /* Hermes-Thin.otf in Resources */,
+				52B6E1D129F7C3A700E3BEA4 /* HermesThin.ttf in Resources */,
 				BB2F792D24A3F905000567C9 /* Expo.plist in Resources */,
 				13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */,
 				3E461D99554A48A4959DE609 /* SplashScreen.storyboard in Resources */,
