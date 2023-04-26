@@ -23,6 +23,7 @@ const MenuListController:React.FC<IProps>=({data,renderTab}:IProps)=>{
    const[currentIndex,setCurrentIndex]=useState(0);
    const[currentIndexonTab,setCurrentIndexOnTab]=useState(0);
     const sectionlistRef = useRef<SectionList>();
+    const [isScrolling, setIsScrolling] = useState(false);
     let blockUpdateIndex=false;
     const renderSection=({section}) => {
         //console.log("sect",section);
@@ -42,8 +43,8 @@ const MenuListController:React.FC<IProps>=({data,renderTab}:IProps)=>{
     const onTabPress=(index:number)=>{
         console.log("menulistcontrol30",index);
         //blockUpdateIndex=true;
-      //  setCurrentIndex(index);
-
+        setCurrentIndex(index);
+        setIsScrolling(true);
         setTimeout(()=>{
         sectionlistRef.current.scrollToLocation({viewOffset: -20,animated:true,itemIndex: 1, sectionIndex:index});
            // setCurrentIndex(index);
@@ -72,6 +73,7 @@ const MenuListController:React.FC<IProps>=({data,renderTab}:IProps)=>{
     <SectionList
         ref={sectionlistRef}
         onMomentumScrollEnd={() => (blockUpdateIndex = false)}
+        onScrollEndDrag={()=>{if (isScrolling) setIsScrolling(false);}}
        // onMomentumScrollBegin={() => (blockUpdateIndex = true)}
 onScrollToIndexFailed={()=>{}}
         stickySectionHeadersEnabled={true}
@@ -95,6 +97,7 @@ onScrollToIndexFailed={()=>{}}
           //  return;
             if(!(viewableItems[0])) return;
             if(blockUpdateIndex) return;
+            if (isScrolling) return;
             console.log("menulist onview",viewableItems[0].section.index);
             const currentIndex0 = viewableItems[0].section.index;
             if(currentIndex0 !==currentIndex) setCurrentIndex(currentIndex0);
