@@ -25,7 +25,8 @@ const Home = () => {
 
       //  const result = await response.json();
         const data0=JSON.parse(result);
-        const data1= data0.map(item => ({...item, data: item.menus}));
+        const data1= data0.map((item,index) => ({...item, data: item.menus,index}));
+       //const datatemp= data0.map((item,index) => ({...item, index}));
         console.log(data1);
         setData(data1);
     }

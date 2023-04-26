@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import {
     Dimensions, RegisteredStyle, SafeAreaView, SectionList, StyleSheet, Text,
-    SectionListData, View, ViewStyle, Image
+    SectionListData, View, ViewStyle, Image, TouchableOpacity
 } from "react-native";
 import {StatusBar} from 'react-native';
 import {scale} from "../../utils/scale";
@@ -24,6 +24,7 @@ const MenuItemContentsControl:React.FC<IProps>=({menuItem}:IProps)=>{
     const[orderQty]=useState(0);
     const[is_available]=useState(true);
     return (
+        <TouchableOpacity>
         <View style={styles.item}>
             <View style={styles.row}>
                 {orderQty > 0 && ( <Text style={styles.sm_hermes_regular}>{`${orderQty}x `}</Text>)}
@@ -50,7 +51,9 @@ const MenuItemContentsControl:React.FC<IProps>=({menuItem}:IProps)=>{
                     {`${menuItem.price},-`}
                 </Text>
             </View>
-        </View>)
+        </View>
+        </TouchableOpacity>
+)
 }
 
 const styles = StyleSheet.create({

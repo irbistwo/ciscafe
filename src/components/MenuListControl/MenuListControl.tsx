@@ -16,7 +16,7 @@ interface IProps {
 }
 const WindowWidth = Dimensions.get('window').width;
 const MenuListController:React.FC<IProps>=({data,renderTab}:IProps)=>{
-    console.log("datalenght ",data.length);
+   const[currentIndex,setCurrentIndex]=useState(0);
     const renderSection=({section}) => {
         //console.log("sect",section);
        //return(<Text style={styles.header}>{section.name} {section.start}</Text>
