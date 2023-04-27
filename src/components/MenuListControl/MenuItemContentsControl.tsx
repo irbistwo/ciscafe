@@ -6,6 +6,7 @@ import {
 import {StatusBar} from 'react-native';
 import {scale} from "../../utils/scale";
 import {BLUE_GREEN, WHITE} from "../../utils/colorsConstant";
+import {is_between} from "../../utils/utilsdate";
 
 interface IMenuContentsItem {
     _id:string,
@@ -13,6 +14,8 @@ interface IMenuContentsItem {
     price:number;
     isAvailable:boolean;
     description:string;
+    start:string;
+    end:string;
 }
 interface IProps {
     // data:any[],
@@ -22,7 +25,8 @@ interface IProps {
 
 const MenuItemContentsControl:React.FC<IProps>=({menuItem}:IProps)=>{
     const[orderQty]=useState(0);
-    const[is_available]=useState(true);
+    const is_aval=is_between(menuItem.start,menuItem.end);
+    const[is_available]=useState(is_aval);
     return (
         <TouchableOpacity>
         <View style={styles.item}>

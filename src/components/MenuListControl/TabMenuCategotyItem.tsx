@@ -33,7 +33,7 @@ const TabMenuCategotyItem:React.FC<IProps>=({tabItem,isSelected,onPress}:IProps)
                 ]}>
                 {tabItem.name}
             </Text>
-            {tabItem.isPromo && (
+            {!tabItem.isPromo && (
                 <Text
                     style={[
                         styles.promo,
@@ -67,7 +67,7 @@ const styles = StyleSheet.create({
         color: WHITE,
     },
     promo: {
-        backgroundColor: BLUE_GREEN,
+        backgroundColor: ORANGE,
         position: 'absolute',
         top: 0,
         right: 20,
