@@ -1,6 +1,7 @@
 import React from 'react';
 import { createStackNavigator } from '@react-navigation/stack';
 import Home from '../screens/Home';
+import {ToastProvider} from "../components/Toast/Toast";
 /*
 import Boseman from "../screens/Home/Boseman";
 import Search from '../screens/Home/Search';
@@ -14,7 +15,12 @@ import Osaka from '../screens/Home/Osaka';
 */
 
 const Stack = createStackNavigator();
+const HomePr=()=>{
+    return (
+        <ToastProvider><Home/></ToastProvider>
 
+    )
+}
 const HomeStack = () => {
 
     return (
@@ -22,7 +28,7 @@ const HomeStack = () => {
             initialRouteName='HomePage'
             screenOptions={{ headerShown: false }}
         >
-             <Stack.Screen name='HomePage' component={Home} />
+             <Stack.Screen name='HomePage' component={HomePr} />
          {/*  <Stack.Screen name='Boseman' component={Boseman} />
             <Stack.Screen name='SearchPage' component={Search} />
             <Stack.Screen name='Map' component={HomeMap} />

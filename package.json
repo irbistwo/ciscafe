@@ -26,8 +26,16 @@
     "react-native-screens": "^3.20.0",
     "react-native-shadow": "^1.2.2",
     "react-native-svg": "^12.1.1",
-    "react-native-vector-icons": "^9.2.0"
+    "react-native-vector-icons": "^9.2.0",
+    "rn-placeholder": "^3.0.3"
   },
+  "overrides":{
+    "rn-placeholder":{
+      "react": "18.2.0",
+      "react-native": "0.71.6"
+    }
+  },
+
   "devDependencies": {
     "@babel/core": "^7.20.0",
     "@babel/runtime": "^7.20.0",

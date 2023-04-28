@@ -4,6 +4,9 @@ import { useNavigation } from '@react-navigation/native';
 import { AuthContext } from '../auth/AuthProvider';
 import {sendGetData} from "../service/service";
 import MenuListControl from "../components/MenuListControl/MenuListControl";
+import LoadingWait from "../components/Loading/LoadinngWait";
+import Toast, {ToastContext, ToastProvider} from "../components/Toast/Toast";
+//import Toast from "../components/Toast/Toast";
 
 const SCREENHEIGHT = Dimensions.get('window').height;
 const SCREENWIDTH  = Dimensions.get('window').width;
@@ -13,32 +16,67 @@ const Home = () => {
     const { user } = useContext(AuthContext);
     const [data,setData]=useState([]);
     const [is_Loaded,setisLoaded]=useState(false);
+    const {setToastMessage}=useContext<any>(ToastContext);
     useEffect(()=>{
         if(is_Loaded) return;
-       get_data();
-       setisLoaded(true);
+            get_data();
+       //setisLoaded(true);
     },[is_Loaded])
 
     const get_data=async()=>{
         const url:string="v2/menu/category/fetch?restaurant=618d1fdcf8d838050546f221&mode=dinein";
-        const result=await sendGetData(url);
+       try {
+           const result = await sendGetData(url);
 
-      //  const result = await response.json();
-        const data0=JSON.parse(result);
-        const data1= data0.map((item,index) => ({...item, data: item.menus,index}));
-        /*data1.forEach((item,index)=>{
-            item.data=item.data.map((item2,index2)=>({...item2,index:index2}));
-        })
-        */
-       //const datatemp= data0.map((item,index) => ({...item, index}));
-        console.log(data1);
-        setData(data1);
+           //  const result = await response.json();
+           const data0 = JSON.parse(result);
+           const data1 = data0.map((item, index) => ({...item, data: item.menus, index}));
+           /*data1.forEach((item,index)=>{
+               item.data=item.data.map((item2,index2)=>({...item2,index:index2}));
+           })
+           */
+           //const datatemp= data0.map((item,index) => ({...item, index}));
+           console.log(data1);
+           setData(data1);
+           setisLoaded(true);
+       }catch(e){
+       console.log("Hone39 catch");
+// @ts-ignore
+           setToastMessage("error"+e);
+          // setisLoaded(true);
+/*
+           setTimeout(()=> {
+               setToastMessage("error")
+           console.log("Home 47 messagetimer");
+           },2000);
+
+           setTimeout(()=> {
+               setToastMessage("error")
+               console.log("Home 47 messagetimer");
+           },6000);
+
+           setTimeout(()=> {
+               setToastMessage("error")
+               console.log("Home 47 messagetimer");
+           },10000);
+           */
+
+
+       }
     }
 
+
+
     return (
+<>
+    {
+    (is_Loaded)?
+            <MenuListControl data={data} currentIndex={null} onPress={null} tabBarStyle={null} renderTab={null}/> :
+            <LoadingWait/>
 
-<MenuListControl data={data} currentIndex={null} onPress={null} tabBarStyle={null}  renderTab={null}/>
-
+    }
+    <Toast/>
+</>
     )
 }
 
