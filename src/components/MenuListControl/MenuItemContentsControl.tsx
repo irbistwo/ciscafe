@@ -27,6 +27,7 @@ const MenuItemContentsControl:React.FC<IProps>=({menuItem}:IProps)=>{
     const[orderQty]=useState(0);
     const is_aval=is_between(menuItem.start,menuItem.end);
     const[is_available]=useState(is_aval);
+    //console.log("menuitemcontents39",menuItem.name,menuItem.start,menuItem.end,is_available);
     return (
         <TouchableOpacity>
         <View style={styles.item}>

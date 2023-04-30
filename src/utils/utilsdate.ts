@@ -36,7 +36,7 @@ export const is_between=(start:string,end:string):boolean=>{
         const datestart:Date=new Date(sdateStart);
         // @ts-ignore
         const dateend:Date=new Date(sdateEnd);
-        //console.log("utilsdate39",datestart,dateend);
+       // console.log("utilsdate39",datestart,dateend,(date<datestart),(date>dateend));
 if(date<datestart) return false;
 if(date>dateend) return false;
     }catch (e) {

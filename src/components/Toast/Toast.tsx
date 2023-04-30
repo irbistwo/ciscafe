@@ -7,14 +7,21 @@ import {
 export const ToastContext:React.Context<any> = createContext({});
 export const ToastProvider= ( {children}) => {
     const [smessage, setMessage] = useState<string>(null);
+    const [textStyle,setTextstyle]=useState({});
     return (
-        <ToastContext.Provider value={{smessage,setMessage,
+        <ToastContext.Provider value={{smessage,setMessage,textStyle,
             is_visible:(smessage!==null&& smessage!==undefined),
             setToastMessage:(message:string)=>{
+                setTextstyle({});
             setMessage(message);setTimeout(()=>setMessage(null),3000);
+            },
+            setToastErrorMessage:(message:string)=>{
+                setTextstyle({ backgroundColor: '#ef8686'})
+                setMessage(message);setTimeout(()=>setMessage(null),5000);
             }
         }}>
             {children}
+            <Toast/>
         </ToastContext.Provider>
     )
 };
@@ -28,22 +35,7 @@ const ToastWrapper=({message})=> {
 }
 */
 const Toast=()=>{
-    const {smessage,setMessage,is_visible} = useContext<any>(ToastContext);
-//const [is_visible,setIsvisible]=useState(false);
-    /*
- useEffect(()=>{
-//if(message===null) return;
-     console.log("Toast 26", smessage,message,is_visible);
-//if(blockupdate) return;
-     //blockupdate=true;
-   if(message && (smessage===null))  setMessage(message);
-   if(smessage) setTimeout(()=>{setMessage(null)},3000);
-
-    })
-    */
-
-    //if(message!==smessage) setMessage(message);
-  // const visible:boolean=(message!==null)
+    const {smessage,setMessage,is_visible,textStyle} = useContext<any>(ToastContext);
 
 
     let toastStyle = { bottom :10};
@@ -51,7 +43,7 @@ const Toast=()=>{
         (is_visible) ? <View style = {[styles.toast, {...toastStyle}]}
                         pointerEvents = 'box-none'>
             <Animated.View style = {[styles.textView,/* {...style, opacity: opacity}*/]}>
-                <Text style = {[styles.text/*, {...textStyle}*/]}>
+                <Text style = {[styles.text, {...textStyle}]}>
                     {smessage}
                 </Text>
             </Animated.View>
@@ -68,12 +60,13 @@ const styles = StyleSheet.create({
         position: 'absolute',
         alignItems: 'center',
         justifyContent: 'center',
+        opacity:0.5
     },
     textView: {
         padding: 10,
         backgroundColor: '#000',
         borderRadius: 5,
-        opacity:0.5
+
     },
     text: {
         color: 'white',

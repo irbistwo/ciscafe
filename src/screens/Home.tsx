@@ -16,7 +16,7 @@ const Home = () => {
     const { user } = useContext(AuthContext);
     const [data,setData]=useState([]);
     const [is_Loaded,setisLoaded]=useState(false);
-    const {setToastMessage}=useContext<any>(ToastContext);
+    const {setToastMessage,setToastErrorMessage}=useContext<any>(ToastContext);
     useEffect(()=>{
         if(is_Loaded) return;
             get_data();
@@ -41,25 +41,10 @@ const Home = () => {
            setisLoaded(true);
        }catch(e){
        console.log("Hone39 catch");
-// @ts-ignore
-           setToastMessage("error"+e);
+
+           setToastErrorMessage("error:"+e);
+
           // setisLoaded(true);
-/*
-           setTimeout(()=> {
-               setToastMessage("error")
-           console.log("Home 47 messagetimer");
-           },2000);
-
-           setTimeout(()=> {
-               setToastMessage("error")
-               console.log("Home 47 messagetimer");
-           },6000);
-
-           setTimeout(()=> {
-               setToastMessage("error")
-               console.log("Home 47 messagetimer");
-           },10000);
-           */
 
 
        }
@@ -75,7 +60,7 @@ const Home = () => {
             <LoadingWait/>
 
     }
-    <Toast/>
+
 </>
     )
 }
