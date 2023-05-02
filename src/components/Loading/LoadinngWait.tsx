@@ -1,8 +1,8 @@
 import React, {useEffect, useRef, useState} from 'react';
 import {
-    Animated,
+    Animated, Image,
     SectionList,
-    SectionListScrollParams, StyleSheet,
+    SectionListScrollParams, StyleSheet, View,
     ViewToken,
 } from 'react-native';
 import {Placeholder, PlaceholderLine, Fade} from 'rn-placeholder';
@@ -11,6 +11,7 @@ import {BROWN, LIGHT_BROWN} from "../../utils/colorsConstant";
 const LoadingWait = () => {
     return (
         <>
+
             <Placeholder
                 style={{padding: 20}}
                 Animation={(props) => (
@@ -29,7 +30,15 @@ const LoadingWait = () => {
                 <PlaceholderLine
                     style={styles.placeholder}
                 />
+
             </Placeholder>
+            <View style={styles.container}>
+                <Image
+                    resizeMode="contain"
+                    style={styles.logo}
+                    source={require('../../assets/images/loading.png')}
+                />
+            </View>
         </>
     );
 };
@@ -40,6 +49,13 @@ const styles = StyleSheet.create({
         height: 70,
         borderRadius: 15,
         marginTop: 10,
+    },
+    container: {
+        alignSelf: 'center',
+    },
+    logo: {
+        width: 100,
+        height: 67,
     }
 });
 export default LoadingWait;

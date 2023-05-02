@@ -8,6 +8,7 @@ import MenuHeaderControl from "./MenuHeaderControl";
 import MenuItemContentsControl from "./MenuItemContentsControl";
 import TabMenuControl from "./TabMenuControl";
 import {scale} from "../../utils/scale";
+import Header from "../Container/Header";
 
 
 interface IProps {
@@ -89,7 +90,7 @@ const MenuListController:React.FC<IProps>=({data,renderTab}:IProps)=>{
 
     return (
     <SafeAreaView style={styles.container}>
-        <View><Text>header</Text></View>
+        <Header /*logoStyle={logoStyle}   style={headerStyle} */  />
         <TabMenuControl data={data} currentIndex={currentIndex} onTabPress={onTabPress} />
     <SectionList
         ref={sectionlistRef}
@@ -123,7 +124,7 @@ onScrollToIndexFailed={ScrollFailed}
             if(!(viewableItems[0])) return;
             if(blockUpdateIndex) return;
             if (isScrolling) return;
-            console.log("menulist onview",viewableItems[0].section.index);
+            //console.log("menulist onview",viewableItems[0].section.index);
             const currentIndex0 = viewableItems[0].section.index;
             if(currentIndex0 !==currentIndex) setCurrentIndex(currentIndex0);
         }}

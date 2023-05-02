@@ -60,16 +60,16 @@ const styles = StyleSheet.create({
         position: 'absolute',
         alignItems: 'center',
         justifyContent: 'center',
-        opacity:0.5
+        opacity:0.8
     },
     textView: {
         padding: 10,
-        backgroundColor: '#000',
+      //  backgroundColor: '#000',
         borderRadius: 5,
 
     },
     text: {
         color: 'white',
-        fontSize: 14,
+        fontSize: 18,
     },
 });
