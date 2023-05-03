@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 import {StyleSheet, Text, View} from 'react-native';
 import {BLUE_GREEN, SUPER_LIGHT_BROWN} from "../../utils/colorsConstant";
 import {scale} from "../../utils/scale";
@@ -14,13 +14,23 @@ interface ExtraItemProps {
     extra: MenuExtra;
 };
 
-const ExtraItem = ({extra}: ExtraItemProps) => {
-
+const ExtraItem:React.FC<ExtraItemProps> = ({extra}: ExtraItemProps) => {
+const [qtty,setQtty]=useState(0);
+   console.log("ExtraItem 19",extra);
     const onDecrease = () => {
        // dispatch(modifyExtra({extraId: extra._id, isIncrement: false}));
+
+       // extra.qty=  extra?.qty-1;
+        if(!extra.qty) extra.qty=0;
+        extra.qty=  extra.qty-1;
+        if(extra.qty<0) extra.qty=0;
+        setQtty(extra.qty);
     };
     const onIncrease = () => {
        // dispatch(modifyExtra({extraId: extra._id, isIncrement: false}));
+        if(!extra.qty) extra.qty=0;
+        extra.qty= extra.qty+1;
+        setQtty(extra.qty);
     };
 
     return (

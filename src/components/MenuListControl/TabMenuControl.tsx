@@ -117,4 +117,4 @@ resizeMode: 'contain',
         // backgroundColor: LIGHT_BROWN,
     }
 });
-export default TabMenuControl;
+export default React.memo(TabMenuControl);

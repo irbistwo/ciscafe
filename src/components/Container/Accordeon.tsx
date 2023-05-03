@@ -81,8 +81,9 @@ export const Accordion: React.FC<AccordionProps> = ({children, title}) => {
     }, [accordionState]);
 
     return (
+        <TouchableWithoutFeedback onPress={toggle}>
         <View style={styles.container}>
-            <TouchableWithoutFeedback onPress={toggle}>
+
                 <View style={styles.titleContainer}>
                     <Text style={[styles.title, styles.sm_hermes_regular]}>
                         {title}
@@ -101,11 +102,12 @@ export const Accordion: React.FC<AccordionProps> = ({children, title}) => {
                         source={require('../../assets/images/down-arrow.png')}
                     />
                 </View>
-            </TouchableWithoutFeedback>
+
             <Animated.View style={{maxHeight: animationHeight, opacity: fadeAnim}}>
                 <View style={{paddingTop: 5, marginBottom: 20}}>{children}</View>
             </Animated.View>
         </View>
+        </TouchableWithoutFeedback>
     );
 };
 const styles = StyleSheet.create({

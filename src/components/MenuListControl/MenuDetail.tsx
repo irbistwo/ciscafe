@@ -6,6 +6,7 @@ import {scale} from "../../utils/scale";
 import Container from "../Container/Container";
 import Accordion from "../Container/Accordeon";
 import ExtraItem from "../Container/ExtraItem";
+import ModificatorControl from "../Container/ModificatorContainter";
 
 const footerHeight = Dimensions.get('screen').height * 0.1;
 // @ts-ignore
@@ -14,8 +15,6 @@ const MenuDetail:React.FC=({route,navigation})=>{
   const {menuItem,isNew}=route.params;
   console.log("MenuDetail9",menuItem,isNew);
 
-  // @ts-ignore
-  // @ts-ignore
   return(
       // @ts-ignore
         <Container >
@@ -51,6 +50,13 @@ const MenuDetail:React.FC=({route,navigation})=>{
                   return <ExtraItem key={extra._id} extra={extra} />;
                 })}
               </Accordion>
+          )}
+
+          {/* MODIFICATORs */}
+          {!!menuItem.attributes  && menuItem.attributes.length > 0 && (
+
+              <ModificatorControl modificators={menuItem.attributes}/>
+
           )}
           </ScrollView>
         </Container>

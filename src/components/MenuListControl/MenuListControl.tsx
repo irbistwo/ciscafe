@@ -31,16 +31,7 @@ const MenuListController:React.FC<IProps>=({data,renderTab}:IProps)=>{
        //return(<Text style={styles.header}>{section.name} {section.start}</Text>
         return (<MenuHeaderControl sectionItem={section} />);
     }
-/*
-   useEffect(()=>{
 
-        if(data.length===0) return;
-       // console.log("menulistcontrol30",currentIndex,currentIndexonTab)
-       blockUpdateIndex=true;
-        sectionlistRef.current.scrollToLocation({viewOffset: scale(-30),animated: true, itemIndex: 1, sectionIndex: currentIndex})
-       blockUpdateIndex=false;
-   },[currentIndex])
-*/
     const onTabPress=(index:number)=>{
        // console.log("menulistcontrol30",index);
        // blockUpdateIndex=true;
