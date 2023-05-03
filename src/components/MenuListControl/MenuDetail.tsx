@@ -1,21 +1,36 @@
 import React, {useContext, useEffect, useState} from 'react';
 import {useNavigation, useRoute} from "@react-navigation/native";
 import {Dimensions, ScrollView, StyleSheet, View,Text} from "react-native";
-import {BLUE_GREEN, LINE_COLOR} from "../../utils/colorsConstant";
+import {BLUE_GREEN, LIGHT_BROWN, LINE_COLOR, WHITE} from "../../utils/colorsConstant";
 import {scale} from "../../utils/scale";
 import Container from "../Container/Container";
 import Accordion from "../Container/Accordeon";
 import ExtraItem from "../Container/ExtraItem";
 import ModificatorControl from "../Container/ModificatorContainter";
+import Stepper from "../Container/Stepper";
+import Button from "../ButtonControl/Button";
 
 const footerHeight = Dimensions.get('screen').height * 0.1;
 // @ts-ignore
 const MenuDetail:React.FC=({route,navigation})=>{
    //const navigation=useNavigation();
   const {menuItem,isNew}=route.params;
+  const[qty,setQty]=useState(0);
   console.log("MenuDetail9",menuItem,isNew);
 
-  return(
+ const addToOrder=()=>{
+
+ }
+
+    const onIncrease=()=>{
+        setQty(qty+1)
+    }
+
+    const onDecrease=()=>{
+        setQty(qty-1)
+    }
+    // @ts-ignore
+    return(
       // @ts-ignore
         <Container >
         <ScrollView contentContainerStyle={styles.scrollView}>
@@ -59,6 +74,35 @@ const MenuDetail:React.FC=({route,navigation})=>{
 
           )}
           </ScrollView>
+          {/* FOOTER */}
+          <View style={[styles.row, styles.footerContainer]}>
+            {/* ADD TO CART BUTTON */}
+
+            <Stepper
+                qty={qty ?? 1}
+                onDecrease={onDecrease}
+                onIncrease={onIncrease}
+                style={{
+                  qtyStyle: {marginHorizontal: 10, fontSize: 16},
+                  containerStyle: {height: scale(42)},
+                }}
+            />
+              {// @ts-ignore
+
+               <Button
+                style={styles.button}
+                buttonSize="regular"
+                onPress={addToOrder}>
+              <Text
+                  style={[
+                    styles.xs_hermes_regular
+                  ]}>
+               {'add_to_order'}
+              </Text>
+            </Button>
+              }
+
+          </View>
         </Container>
     )
 }
@@ -66,6 +110,11 @@ const styles = StyleSheet.create({
   scrollView: {
     paddingBottom: footerHeight,
   },
+    button:{
+        width: '45%',
+        marginLeft: 12,
+        backgroundColor: BLUE_GREEN,
+    },
   content: {
     display: 'flex',
     paddingTop: 20,
@@ -91,6 +140,28 @@ const styles = StyleSheet.create({
     fontSize: scale(15),
     color: BLUE_GREEN,
   },
+    footerContainer: {
+        backgroundColor: LIGHT_BROWN,
+        position: 'absolute',
+        bottom: 0,
+        left: 10,
+        right: 10,
+        height: footerHeight,
+        justifyContent: 'center',
+        paddingTop: 15,
+        paddingBottom: 15,
+        paddingHorizontal: 10,
+        // shadowColor: '#000',
+        // shadowOffset: {width: 1, height: 1},
+        // shadowOpacity: 0.4,
+        // shadowRadius: 3,
+        // elevation: 1,
+    },
+    xs_hermes_regular: {
+        fontFamily: 'Hermes-Regular',
+        fontSize: scale(12),
+        color: WHITE,
+    },
 
 })
 export default MenuDetail;
