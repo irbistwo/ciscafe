@@ -116,6 +116,7 @@ const styles = StyleSheet.create({
         overflow: 'hidden',
         borderBottomWidth: 1,
         borderBottomColor: LINE_COLOR,
+        paddingLeft:15
         // width: width - 40,
     },
     titleContainer: {

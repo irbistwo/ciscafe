@@ -4,7 +4,7 @@ import ExtraItem from "./ExtraItem";
 import Accordion from "./Accordeon";
 import ModificatorList from "./ModificatorList";
 
-export interface IModificatorItem {
+interface IModificatorItem {
     _id:string;
     id:number;
     is_selected:boolean;
@@ -14,7 +14,7 @@ export interface IModificatorItem {
     limit?: number;
     qty: number;
 }
-export interface IModificatorArray{
+interface IModificatorArray{
     _id: string;
     id:number;
     name: string;
@@ -44,12 +44,6 @@ const ModificatorControl = ({modificators}:IProps) => {
     modificators.map((item)=>(
         // @ts-ignore
         <Accordion title={/*locale.t*/(item.name)} key={item._id}>
-            {/*
-            {item.options.map((mofificator) => {
-                return <ExtraItem key={mofificator._id} extra={mofificator}/>;
-            })
-            }
-            */}
           <ModificatorList modificator={item}/>
         </Accordion>
     ))

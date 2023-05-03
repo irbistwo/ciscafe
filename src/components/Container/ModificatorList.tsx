@@ -1,8 +1,27 @@
 import React, {useState} from 'react';
 import {StyleSheet, Text, TouchableWithoutFeedback, View,Image} from 'react-native';
-import {IModificatorArray, IModificatorItem} from "./ModificatorContainter";
+//import {IModificatorArray, IModificatorItem} from "./ModificatorContainter";
 import {BLUE_GREEN, SUPER_LIGHT_BROWN} from "../../utils/colorsConstant";
 import {scale} from "../../utils/scale";
+interface IModificatorItem {
+    _id:string;
+    id:number;
+    is_selected:boolean;
+    name:string;
+    additionalPrice: number;
+    isDefault: boolean;
+    limit?: number;
+    qty: number;
+}
+interface IModificatorArray{
+    _id: string;
+    id:number;
+    name: string;
+    isMultiple: boolean;
+    belongsto?: string;
+    options:IModificatorItem[]
+
+}
 interface IProps {
     modificator: IModificatorArray;
 };
@@ -11,19 +30,23 @@ interface IProps {
     attributeId: string;
      id: number;
     isMultiple: boolean;
+    selectecindex:number;
+     onSelect:(IModificatorItem,number)=>void;
 };
 
 const ModificatorItemOption = ({
                                  option,
                                  attributeId,
                                  isMultiple,
+    selectecindex,onSelect
                              }: IAttributeItemOptionProp) => {
 
     const [qtty,setQtty]=useState(0);
     const onPress = () => {
        // dispatch(modifyAttrbute({attributeId, attributeOptionId: option._id}));
         option.is_selected=!option.is_selected;
-    setQtty(qtty+1)
+    setQtty(qtty+1);
+    if(!isMultiple) if(option.is_selected) onSelect(option,selectecindex)
     };
 
     return (
@@ -55,15 +78,21 @@ const ModificatorItemOption = ({
 };
 
 const ModificatorList:React.FC<IProps>=({modificator}:IProps)=>{
+    const [selectIndex,setSelectedIbdex]=useState(-1);
+    const onSelect=(item:IModificatorItem,index:number)=>{
+        /*set select on notMultiselected*/
+        modificator.options.forEach((item0)=>item0.is_selected=(item._id===item0._id))
+        setSelectedIbdex(index);
+    }
     return (
         <View style={[styles.attributeItemContainer]}>
-            {modificator.options.map((opt) => (
+            {modificator.options.map((opt,index) => (
                 <ModificatorItemOption
                     isMultiple={modificator.isMultiple}
                     attributeId={modificator._id}
                     key={opt._id}
                     option={opt}
-                 id={opt.id}/>
+                 id={opt.id} onSelect={onSelect} selectecindex={index}/>
             ))}
         </View>)
 }
@@ -94,6 +123,7 @@ const styles = StyleSheet.create({
         paddingHorizontal: 10,
         paddingVertical: 3,
         borderRadius: 15,
+        paddingLeft:15
     },
     selectorContainer: {
         width: 14,
