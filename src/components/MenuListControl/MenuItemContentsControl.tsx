@@ -116,4 +116,5 @@ const styles = StyleSheet.create({
         padding: 3,
     },
 })
-export default MenuItemContentsControl;
+const MenuItemContentsControlMemo= React.memo(MenuItemContentsControl)
+export default MenuItemContentsControlMemo;

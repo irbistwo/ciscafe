@@ -82,4 +82,4 @@ const styles = StyleSheet.create({
 
 
 
-export default MenuHeaderControl;
+export default React.memo(MenuHeaderControl);
