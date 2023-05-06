@@ -14,11 +14,23 @@ const footerHeight = Dimensions.get('screen').height * 0.1;
 // @ts-ignore
 const MenuDetail:React.FC=({route,navigation})=>{
    //const navigation=useNavigation();
-  const {menuItem,isNew}=route.params;
+  const {menuItem,isNew,onOrderCallBack}=route.params;
   const[qty,setQty]=useState(0);
+  const [caption,setCaption]=useState("add_to_order");
   console.log("MenuDetail9",menuItem,isNew);
+  useEffect(()=>{
+      if(!isNew) setCaption("update_opred");
+  },[isNew])
 
  const addToOrder=()=>{
+     if(qty===0) return; if(qty<0) return;
+     if(!menuItem.qty) menuItem.qty=0;
+     menuItem.qty=menuItem.qty+qty;
+let message:string=`${menuItem.name} + ${menuItem.qty} added to order`;
+if(!isNew) message=`${menuItem.name} = ${menuItem.qty} updated to order`;
+
+     navigation.goBack();
+     onOrderCallBack?.(message);
 
  }
 
@@ -27,6 +39,7 @@ const MenuDetail:React.FC=({route,navigation})=>{
     }
 
     const onDecrease=()=>{
+      if(qty-1<0) return;
         setQty(qty-1)
     }
     // @ts-ignore
@@ -97,7 +110,7 @@ const MenuDetail:React.FC=({route,navigation})=>{
                   style={[
                     styles.xs_hermes_regular
                   ]}>
-               {'add_to_order'}
+               {caption}
               </Text>
             </Button>
               }

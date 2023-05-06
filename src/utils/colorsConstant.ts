@@ -5,6 +5,7 @@ export const WARNING_COLOR = '#e9ca94';
 
 export const BLUE_GREEN = '#3a5560';
 export const ORANGE = '#ffcd43';
+export const YELLOW = '#ecce83';
 export const WHITE = '#FEF9EE';
 export const TEXT_WHITE = '#FEF9EE';
 

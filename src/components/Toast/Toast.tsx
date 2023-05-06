@@ -12,7 +12,7 @@ export const ToastProvider= ( {children}) => {
         <ToastContext.Provider value={{smessage,setMessage,textStyle,
             is_visible:(smessage!==null&& smessage!==undefined),
             setToastMessage:(message:string)=>{
-                setTextstyle({});
+                setTextstyle({ backgroundColor: '#12a2a2'});
             setMessage(message);setTimeout(()=>setMessage(null),3000);
             },
             setToastErrorMessage:(message:string)=>{
