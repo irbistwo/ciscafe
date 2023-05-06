@@ -1,12 +1,11 @@
 import React from 'react';
-import { AuthProvider } from '../auth/AuthProvider';
+import { CafeDataMainProvider } from '../ContentsProvider/CafeDataMainProvider';
 import Routes from './Routes';
 
 export default function Providers() {
-    console.log("index");
     return (
-        <AuthProvider>
+        <CafeDataMainProvider>
             <Routes />
-        </AuthProvider>
+        </CafeDataMainProvider>
     );
 }

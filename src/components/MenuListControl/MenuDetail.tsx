@@ -9,11 +9,12 @@ import ExtraItem from "../Container/ExtraItem";
 import ModificatorControl from "../Container/ModificatorContainter";
 import Stepper from "../Container/Stepper";
 import Button from "../ButtonControl/Button";
+import { CafeDataMainProviderContext} from "../../ContentsProvider/CafeDataMainProvider";
 
 const footerHeight = Dimensions.get('screen').height * 0.1;
 // @ts-ignore
 const MenuDetail:React.FC=({route,navigation})=>{
-   //const navigation=useNavigation();
+  const {order,setOrder}=useContext<any>(CafeDataMainProviderContext);
   const {menuItem,isNew,onOrderCallBack}=route.params;
   const[qty,setQty]=useState(0);
   const [caption,setCaption]=useState("add_to_order");
@@ -28,7 +29,9 @@ const MenuDetail:React.FC=({route,navigation})=>{
      menuItem.qty=menuItem.qty+qty;
 let message:string=`${menuItem.name} + ${menuItem.qty} added to order`;
 if(!isNew) message=`${menuItem.name} = ${menuItem.qty} updated to order`;
-
+const neworder=[...order];
+neworder.push(menuItem);
+setOrder(neworder);
      navigation.goBack();
      onOrderCallBack?.(message);
 

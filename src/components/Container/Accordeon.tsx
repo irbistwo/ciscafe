@@ -1,4 +1,4 @@
-import React, {useContext, useEffect, useState} from 'react';
+import React, {useContext, useEffect, useRef, useState} from 'react';
 import {scale} from "../../utils/scale";
 import {Animated, Easing, StyleSheet, TouchableWithoutFeedback, View,Text} from "react-native";
 import {BLUE_GREEN, LINE_COLOR} from "../../utils/colorsConstant";
@@ -13,13 +13,15 @@ type accordionState = 'open' | 'closed' | 'untouched';
 export const Accordion: React.FC<AccordionProps> = ({children, title}) => {
     const [accordionState, setAccordionState] =
         useState<accordionState>('closed');
-    //const animationHeight = useRef(new Animated.Value(5)).current;
-   // const fadeAnim = useRef(new Animated.Value(0)).current;
-  //  const rotateAnimation = useRef(new Animated.Value(0)).current;
-    //   const an
+    const animationHeight = useRef(new Animated.Value(5)).current;
+    const fadeAnim = useRef(new Animated.Value(0)).current;
+    const rotateAnimation = useRef(new Animated.Value(0)).current;
+
+    /*
     const fadeAnim=new Animated.Value(0);
     const rotateAnimation = new Animated.Value(0);
     const animationHeight =new Animated.Value(5);
+    */
     const collapseView = () => {
         Animated.parallel([
             Animated.timing(fadeAnim, {

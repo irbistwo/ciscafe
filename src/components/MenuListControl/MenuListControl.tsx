@@ -1,4 +1,4 @@
-import React, {useEffect, useRef, useState} from 'react';
+import React, {useContext, useEffect, useRef, useState} from 'react';
 import {
     Dimensions, RegisteredStyle, SafeAreaView, SectionList, StyleSheet, Text,
     SectionListData, View, ViewStyle, FlatList, SectionListScrollParams
@@ -9,6 +9,8 @@ import MenuItemContentsControl from "./MenuItemContentsControl";
 import TabMenuControl from "./TabMenuControl";
 import {scale} from "../../utils/scale";
 import Header from "../Container/Header";
+import CartButton from "../Container/CartButton";
+import {CafeDataMainProviderContext} from "../../ContentsProvider/CafeDataMainProvider";
 
 
 interface IProps {
@@ -82,6 +84,7 @@ const MenuListController:React.FC<IProps>=({data,renderTab}:IProps)=>{
     return (
     <SafeAreaView style={styles.container}>
         <Header /*logoStyle={logoStyle}   style={headerStyle} */  />
+        <CartButton  />
         <TabMenuControl data={data} currentIndex={currentIndex} onTabPress={onTabPress} />
     <SectionList
         ref={sectionlistRef}

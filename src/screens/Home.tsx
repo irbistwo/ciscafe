@@ -1,7 +1,7 @@
 import { StyleSheet, Text, View, Dimensions, TouchableOpacity, ScrollView } from 'react-native';
 import React, {useContext, useEffect, useState} from 'react';
 import { useNavigation } from '@react-navigation/native';
-import { AuthContext } from '../auth/AuthProvider';
+import { CafeDataMainProviderContext } from '../ContentsProvider/CafeDataMainProvider';
 import {sendGetData} from "../service/service";
 import MenuListControl from "../components/MenuListControl/MenuListControl";
 import LoadingWait from "../components/Loading/LoadinngWait";
@@ -13,10 +13,11 @@ const SCREENWIDTH  = Dimensions.get('window').width;
 
 const Home = () => {
     const navigation = useNavigation();
-    const { user } = useContext(AuthContext);
+    const { user } = useContext(CafeDataMainProviderContext);
     const [data,setData]=useState([]);
     const [is_Loaded,setisLoaded]=useState(false);
     const {setToastMessage,setToastErrorMessage}=useContext<any>(ToastContext);
+
     useEffect(()=>{
         if(is_Loaded) return;
             get_data();

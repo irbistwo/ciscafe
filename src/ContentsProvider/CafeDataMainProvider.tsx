@@ -1,20 +1,25 @@
 import React, { createContext, useState } from 'react';
-import {ReactNode} from "react";
 //import { GoogleSignin } from '@react-native-google-signin/google-signin';
-//import auth from '@react-native-firebase/auth';
+//import ContentsProvider from '@react-native-firebase/ContentsProvider';
+
 import eventEmitAuth from "./EventEmitAuth";
-export const AuthContext:React.Context<any> = createContext({});
-export const AuthProvider = ( {children}) => {
+/* in This contenxt saved main items-values such as
+* choosen restoran ,order, auth user paycontents and speading this values on all app
+*  */
+
+export const CafeDataMainProviderContext:React.Context<any> = createContext({});
+export const CafeDataMainProvider = ({children}) => {
     const [user, setUser] = useState<string>(null);
+    const [order, setOrder] = useState<any>([]);
     console.log("auth6");
     return (
-        <AuthContext.Provider value={{user,setUser,
+        <CafeDataMainProviderContext.Provider value={{user,setUser,order,setOrder,
             googleLogin: async () => {
                 try {
                    // const { idToken } = await GoogleSignin.signIn();
                     //console.log(idToken);
-                    //const googleCredential = auth.GoogleAuthProvider.credential(idToken);
-                    //const usercred=  await auth().signInWithCredential(googleCredential);
+                    //const googleCredential = ContentsProvider.GoogleAuthProvider.credential(idToken);
+                    //const usercred=  await ContentsProvider().signInWithCredential(googleCredential);
                     //console.log("google",usercred.user.displayName);
                     //setUser(usercred.user.displayName);
                     //eventEmitAuth.emit("user",usercred.user.displayName);
@@ -24,7 +29,7 @@ export const AuthProvider = ( {children}) => {
             },
             login: async (email, password) => {
                 try {
-                  //  const userbase=    await auth().signInWithEmailAndPassword(email, password);
+                  //  const userbase=    await ContentsProvider().signInWithEmailAndPassword(email, password);
                     // console.log("userlogin",userbase);
                     console.log("userlogin",email);
                     setUser(email) ;
@@ -36,7 +41,7 @@ export const AuthProvider = ( {children}) => {
             },
             signup: async (email, password) => {
                 try {
-                    //await auth().createUserWithEmailAndPassword(email, password);
+                    //await ContentsProvider().createUserWithEmailAndPassword(email, password);
                     eventEmitAuth.emit("user",email);
                 } catch (e) {
                     alert(e);
@@ -45,7 +50,7 @@ export const AuthProvider = ( {children}) => {
 
             logout: async () => {
                 try {
-                   // await auth().signOut()
+                   // await ContentsProvider().signOut()
                     eventEmitAuth.emit("user",null);
                 } catch (e) {
                     console.error(e);
@@ -56,6 +61,6 @@ export const AuthProvider = ( {children}) => {
 
         }}>
             {children}
-        </AuthContext.Provider>
+        </CafeDataMainProviderContext.Provider>
     );
 }
