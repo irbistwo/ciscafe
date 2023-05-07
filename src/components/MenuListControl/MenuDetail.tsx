@@ -1,4 +1,4 @@
-import React, {useContext, useEffect, useState} from 'react';
+import React, {useCallback, useContext, useEffect, useState} from 'react';
 import {useNavigation, useRoute} from "@react-navigation/native";
 import {Dimensions, ScrollView, StyleSheet, View,Text} from "react-native";
 import {BLUE_GREEN, LIGHT_BROWN, LINE_COLOR, WHITE} from "../../utils/colorsConstant";
@@ -9,7 +9,8 @@ import ExtraItem from "../Container/ExtraItem";
 import ModificatorControl from "../Container/ModificatorContainter";
 import Stepper from "../Container/Stepper";
 import Button from "../ButtonControl/Button";
-import { CafeDataMainProviderContext} from "../../ContentsProvider/CafeDataMainProvider";
+import { CafeDataMainProviderContext} from "../../ContentsProvider/CafeDataMainProvider"
+import structuredClone from '@ungap/structured-clone';
 
 const footerHeight = Dimensions.get('screen').height * 0.1;
 // @ts-ignore
@@ -23,14 +24,20 @@ const MenuDetail:React.FC=({route,navigation})=>{
       if(!isNew) setCaption("update_opred");
   },[isNew])
 
- const addToOrder=()=>{
+ const addToOrder=() =>{
      if(qty===0) return; if(qty<0) return;
      if(!menuItem.qty) menuItem.qty=0;
      menuItem.qty=menuItem.qty+qty;
 let message:string=`${menuItem.name} + ${menuItem.qty} added to order`;
 if(!isNew) message=`${menuItem.name} = ${menuItem.qty} updated to order`;
-const neworder=[...order];
-neworder.push(menuItem);
+//const neworder=structuredClone(order);
+     const neworder=order.map(item=>({...item}));
+
+     let pushedmenu=structuredClone(menuItem);
+     pushedmenu.qty=qty;
+    // console.log("Menudetail37",pushedmenu,pushedmenu.options)
+   //if(pushedmenu.attributes.options)  pushedmenu.attributes.options=[...pushedmenu.attributes.options];
+neworder.push(pushedmenu);
 setOrder(neworder);
      navigation.goBack();
      onOrderCallBack?.(message);

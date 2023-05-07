@@ -4,6 +4,8 @@ import {useNavigation} from "@react-navigation/native";
 import {BLUE_GREEN, LIGHT_BROWN, LINE_COLOR} from "../../utils/colorsConstant";
 import Button from "../ButtonControl/Button";
 import {scale} from "../../utils/scale";
+import ExtraItemForOrder from "./ExtraItemForOrder";
+import {ModificatorListForOrder} from "./ModificatorListForOrder";
 
 interface IModificatorItem {
     _id:string;
@@ -152,7 +154,6 @@ const OrderItem: React.FC<OrderItemProps> = ({item}) => {
         let attributesTotal = calculateAttributeTotal(qty, attributes);
         // extra total
         let extrasTotal = calculateExtraTotal(qty, extras);
-
         return menuTotal + attributesTotal + extrasTotal;
     }, [attributes, extras, item.qty]);
 
@@ -181,19 +182,14 @@ const OrderItem: React.FC<OrderItemProps> = ({item}) => {
                 )}
                 */}
                 <Text style={styles.sm_hermes_regular}>
-                    {`${total.toLocaleString()}, -`}
+                    {/*`${total.toLocaleString()}, -` */}
+                        {item.price*item.qty}
                 </Text>
             </View>
 
-            {/* ATTRIBUTES */}
-            {/*
-            {attributes.length > 0 &&
-                attributes.map((attr) => (
-                    <OrderItemAttribute key={attr._id} attribute={attr}/>
-                ))}
-*/}
+
             {/* EXTRAS */}
-            {/*
+
             {extras.length > 0 && (
                 <View
                     style={[
@@ -205,16 +201,35 @@ const OrderItem: React.FC<OrderItemProps> = ({item}) => {
                     </Text>
                     <View style={{flex: 5}}>
                         {extras.map((xtra) => (
-                            <OrderItemExtra key={xtra._id} extra={xtra}/>
+                            <ExtraItemForOrder key={xtra._id} extra={xtra}/>
                         ))}
                     </View>
                 </View>
             )}
-            */}
+
+            {/* ATTRIBUTES */}
+
+            {attributes.length > 0 &&
+                attributes.map((attr) => (
+                    <ModificatorListForOrder key={attr._id} modificator={attr}/>
+                ))}
+
             {/* NOTES */}
 
 
             {/* EDIT BUTTON */}
+
+                {(item.price*item.qty)!==total&&(
+                    <View style={[styles.row,styles.totalitemfooter]}>
+                        <Text style={[styles.sm_hermes_regular, {flex: 1}]}>
+                            {`${item.name}`}
+                        </Text>
+                        <Text style={[styles.sm_hermes_regular]}>
+                            {`${total} -`}
+                        </Text>
+                    </View>
+                )}
+
             {// @ts-ignore
             <Button
                 style={styles.button}
@@ -225,6 +240,7 @@ const OrderItem: React.FC<OrderItemProps> = ({item}) => {
                 </Text>
             </Button>
             }
+
         </Animated.View>
     );
 
@@ -238,10 +254,18 @@ const OrderItem: React.FC<OrderItemProps> = ({item}) => {
             textAlignVertical: 'center',
             lineHeight: 12,
 },
+        totalitemfooter:
+            {
+                width: '100%',
+                borderColor: LINE_COLOR,
+                borderWidth: 2,
+                padding: 5,
+                //marginTop: 15,
+            },
         orderItemContainer: {
             width: '100%',
             borderBottomColor: LINE_COLOR,
-            borderBottomWidth: 1,
+            borderBottomWidth: 2,
             paddingBottom: 0,
             marginTop: scale(20),
         },
@@ -252,6 +276,7 @@ const OrderItem: React.FC<OrderItemProps> = ({item}) => {
             paddingVertical: 5,
             marginLeft: 'auto',
             backgroundColor: LIGHT_BROWN,
+
         },
 
         row: {
