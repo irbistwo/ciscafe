@@ -16,7 +16,7 @@ const footerHeight = Dimensions.get('screen').height * 0.1;
 const MenuDetail:React.FC=({route,navigation})=>{
   const {order,setOrder}=useContext<any>(CafeDataMainProviderContext);
   const {menuItem,isNew,onOrderCallBack}=route.params;
-  const[qty,setQty]=useState(0);
+  const[qty,setQty]=useState(1);
   const [caption,setCaption]=useState("add_to_order");
   console.log("MenuDetail9",menuItem,isNew);
   useEffect(()=>{

@@ -27,7 +27,8 @@ const CartButton: React.FC<CartButtonProps> = ({style}) => {
     }
 
     const onPress = () => {
-       // navigation.navigate('OrderConfirm');
+        // @ts-ignore
+        navigation.navigate('OrderContents');
     };
 
     return (
