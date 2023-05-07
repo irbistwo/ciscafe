@@ -273,6 +273,7 @@ const OrderItem: React.FC<OrderItemProps> = ({item}) => {
             fontFamily: 'Hermes-Regular',
             fontSize: scale(22),
             color: BLUE_GREEN,
+            flex:1
            // alignItems:'stretch'
         },
         removeButton: {

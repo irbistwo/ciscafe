@@ -33,9 +33,7 @@ const OrderContents:React.FC=()=>{
 }
 
 const styles = StyleSheet.create({
-    container: {
-        // paddingBottom: 170,
-    },
+
     content: {
         paddingHorizontal: 20,
         // width: '100%',
@@ -60,21 +58,7 @@ const styles = StyleSheet.create({
         bottom: 50,
     },
     */
-    // USE POINT
-    pointContainer: {
-        alignItems: 'flex-start',
-        borderBottomWidth: 1,
-        borderColor: LINE_COLOR,
-        paddingVertical: scale(30),
-    },
-    toggleContainer: {
-        display: 'flex',
-        alignItems: 'center',
-    },
-    toggleText: {textTransform: 'uppercase', marginTop: scale(6)},
-    redeemText: {
-        flex: 1,
-    },
+
     // LIST
     list: {
         width: '100%',
