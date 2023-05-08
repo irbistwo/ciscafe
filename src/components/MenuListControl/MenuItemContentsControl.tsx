@@ -1,4 +1,4 @@
-import React, {useContext, useEffect, useState} from 'react';
+import React, {useContext, useEffect, useMemo, useState} from 'react';
 import {
     Dimensions, RegisteredStyle, SafeAreaView, SectionList, StyleSheet, Text,
     SectionListData, View, ViewStyle, Image, TouchableOpacity, StyleProp, ImageBackground
@@ -9,6 +9,7 @@ import {BLUE_GREEN, BROWN, ORANGE, WHITE, YELLOW} from "../../utils/colorsConsta
 import {is_between} from "../../utils/utilsdate";
 import {ToastContext} from "../Toast/Toast";
 import {useNavigation} from "@react-navigation/native";
+import {CafeDataMainProviderContext} from "../../ContentsProvider/CafeDataMainProvider";
 
 interface IMenuContentsItem {
     _id:string,
@@ -32,7 +33,16 @@ const MenuItemContentsControl:React.FC<IProps>=({menuItem}:IProps)=>{
     const is_aval=is_between(menuItem.start,menuItem.end);
     const[is_available]=useState(is_aval);
     const {setToastMessage,setToastErrorMessage}=useContext<any>(ToastContext);
-    const orderQty=menuItem.qty||0;
+    const { order } = useContext(CafeDataMainProviderContext);
+    //const orderQty=menuItem.qty||0;
+    const orderQty=useMemo(()=>{
+        const beedmenu=order.filter((item)=>item._id===menuItem._id,[]);
+
+       if(beedmenu.length===0) return 0;
+       const result:number=beedmenu.reduce((total,item)=>total+item.qty,0);
+        console.log("MenuItemContemts43",result,beedmenu.length);
+       return result;
+    },[order,menuItem])
     /* containerBackground: StyleProp<ViewStyle> = React.useMemo(
         () => ({backgroundColor: orderQty > 0 ? ORANGE : BROWN}),
         [orderQty],

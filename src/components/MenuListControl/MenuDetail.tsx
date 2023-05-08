@@ -19,7 +19,6 @@ const MenuDetail:React.FC=({route,navigation})=>{
   const {menuItem,isNew,onOrderCallBack}=route.params;
   const[qty,setQty]=useState(menuItem.qty??1);
   const [caption,setCaption]=useState("add_to_order");
-  console.log("MenuDetail9",menuItem,isNew);
   useEffect(()=>{
       if(!isNew) setCaption("update_opred");
   },[isNew])
