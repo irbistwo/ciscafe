@@ -40,9 +40,9 @@ const MenuItemContentsControl:React.FC<IProps>=({menuItem}:IProps)=>{
 
        if(beedmenu.length===0) return 0;
        const result:number=beedmenu.reduce((total,item)=>total+item.qty,0);
-        console.log("MenuItemContemts43",result,beedmenu.length);
+      //  console.log("MenuItemContemts43",result,beedmenu.length);
        return result;
-    },[order,menuItem])
+    },[order])
     /* containerBackground: StyleProp<ViewStyle> = React.useMemo(
         () => ({backgroundColor: orderQty > 0 ? ORANGE : BROWN}),
         [orderQty],

@@ -17,13 +17,15 @@ const footerHeight = Dimensions.get('screen').height * 0.1;
 const MenuDetail:React.FC=({route,navigation})=>{
   const {order,setOrder}=useContext<any>(CafeDataMainProviderContext);
   const {menuItem,isNew,onOrderCallBack}=route.params;
-  const[qty,setQty]=useState(menuItem.qty??1);
+  const[qty,setQty]=useState(isNew?1:menuItem.qty);
   const [caption,setCaption]=useState("add_to_order");
   useEffect(()=>{
       if(!isNew) setCaption("update_opred");
   },[isNew])
-
+let is_blockingondoubletouch=false;
  const addToOrder=() =>{
+      if(is_blockingondoubletouch) return;
+      is_blockingondoubletouch=true;
      if(qty===0) return; if(qty<0) return;
      if(!menuItem.qty) menuItem.qty=0;
      menuItem.qty=menuItem.qty+qty;

@@ -143,7 +143,7 @@ const extras=  useCallback(() => (item.extras?.filter((x) => !!x.qty) ?? []),[it
         return groomedSelectedAttributes ?? [];
     }
 
-    const total = useMemo(() => {
+    const total =() => {
         const {
             qty,
             price,
@@ -160,7 +160,7 @@ const extras=  useCallback(() => (item.extras?.filter((x) => !!x.qty) ?? []),[it
         // extra total
         let extrasTotal = calculateExtraTotal(qty, extras());
         return menuTotal + attributesTotal + extrasTotal;
-    }, [attributes, extras, item.qty]);
+    };
 
 
     return (
@@ -224,13 +224,13 @@ const extras=  useCallback(() => (item.extras?.filter((x) => !!x.qty) ?? []),[it
 
             {/* EDIT BUTTON */}
 
-                {(item.price*item.qty)!==total&&(
+                {(item.price*item.qty)!==total()&&(
                     <View style={[styles.row,styles.totalitemfooter]}>
                         <Text style={[styles.sm_hermes_regular, {flex: 1}]}>
                             {`${item.name}`}
                         </Text>
                         <Text style={[styles.sm_hermes_regular]}>
-                            {`${total} -`}
+                            {`${total()} -`}
                         </Text>
                     </View>
                 )}
