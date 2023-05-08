@@ -1,4 +1,4 @@
-import React, {useMemo, useRef} from 'react';
+import React, {useCallback, useContext, useMemo, useRef, useState} from 'react';
 import {Text, TouchableOpacity, View, Animated, Dimensions, StyleSheet} from 'react-native';
 import {useNavigation} from "@react-navigation/native";
 import {BLUE_GREEN, LIGHT_BROWN, LINE_COLOR} from "../../utils/colorsConstant";
@@ -6,6 +6,7 @@ import Button from "../ButtonControl/Button";
 import {scale} from "../../utils/scale";
 import ExtraItemForOrder from "./ExtraItemForOrder";
 import {ModificatorListForOrder} from "./ModificatorListForOrder";
+import {CafeDataMainProviderContext} from "../../ContentsProvider/CafeDataMainProvider";
 
 interface IModificatorItem {
     _id:string;
@@ -88,12 +89,13 @@ const calculateAttributeTotal = (
     return extrasTotal;
 };
 const OrderItem: React.FC<OrderItemProps> = ({item}) => {
+    //const {order,setOrder}=useContext<any>(CafeDataMainProviderContext);
     const removeItemAnimation = useRef(new Animated.Value(0)).current;
     const fadeAnim = useRef(new Animated.Value(1)).current;
     const navigation = useNavigation();
     const onEdit = () => {
         // @ts-ignore
-        navigation.navigate('MenuDetail', {menu: item, isNew: false});
+        navigation.navigate('MenuDetail', {menuItem: item, isNew: false});
     };
 
     const onRemove = () => {
@@ -113,12 +115,15 @@ const OrderItem: React.FC<OrderItemProps> = ({item}) => {
         });
     };
 
-    const extras = useMemo(
+    /*const extras = useMemo(
         () => item.extras?.filter((x) => !!x.qty) ?? [],
         [item.extras],
     )
+    */
 
-    const attributes = useMemo(() => {
+const extras=  useCallback(() => (item.extras?.filter((x) => !!x.qty) ?? []),[item.extras]);
+
+   const attributes = () => {
         if (!item.attributes) return [];
 
         const selectedAttributes = item.attributes.filter((x) =>
@@ -136,7 +141,7 @@ const OrderItem: React.FC<OrderItemProps> = ({item}) => {
         });
 
         return groomedSelectedAttributes ?? [];
-    }, [item.attributes]);
+    }
 
     const total = useMemo(() => {
         const {
@@ -151,9 +156,9 @@ const OrderItem: React.FC<OrderItemProps> = ({item}) => {
         let menuTotal = price * qty;
 
         // attribute total
-        let attributesTotal = calculateAttributeTotal(qty, attributes);
+        let attributesTotal = calculateAttributeTotal(qty, attributes());
         // extra total
-        let extrasTotal = calculateExtraTotal(qty, extras);
+        let extrasTotal = calculateExtraTotal(qty, extras());
         return menuTotal + attributesTotal + extrasTotal;
     }, [attributes, extras, item.qty]);
 
@@ -190,7 +195,7 @@ const OrderItem: React.FC<OrderItemProps> = ({item}) => {
 
             {/* EXTRAS */}
 
-            {extras.length > 0 && (
+            {extras().length > 0 && (
                 <View
                     style={[
                         styles.row,
@@ -200,7 +205,7 @@ const OrderItem: React.FC<OrderItemProps> = ({item}) => {
                         {'extras'}
                     </Text>
                     <View style={{flex: 5}}>
-                        {extras.map((xtra) => (
+                        {extras().map((xtra) => (
                             <ExtraItemForOrder key={xtra._id} extra={xtra}/>
                         ))}
                     </View>
@@ -209,8 +214,8 @@ const OrderItem: React.FC<OrderItemProps> = ({item}) => {
 
             {/* ATTRIBUTES */}
 
-            {attributes.length > 0 &&
-                attributes.map((attr) => (
+            {attributes().length > 0 &&
+                attributes().map((attr) => (
                     <ModificatorListForOrder key={attr._id} modificator={attr}/>
                 ))}
 

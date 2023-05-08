@@ -17,7 +17,7 @@ const footerHeight = Dimensions.get('screen').height * 0.1;
 const MenuDetail:React.FC=({route,navigation})=>{
   const {order,setOrder}=useContext<any>(CafeDataMainProviderContext);
   const {menuItem,isNew,onOrderCallBack}=route.params;
-  const[qty,setQty]=useState(1);
+  const[qty,setQty]=useState(menuItem.qty??1);
   const [caption,setCaption]=useState("add_to_order");
   console.log("MenuDetail9",menuItem,isNew);
   useEffect(()=>{
@@ -29,7 +29,16 @@ const MenuDetail:React.FC=({route,navigation})=>{
      if(!menuItem.qty) menuItem.qty=0;
      menuItem.qty=menuItem.qty+qty;
 let message:string=`${menuItem.name} + ${menuItem.qty} added to order`;
-if(!isNew) message=`${menuItem.name} = ${menuItem.qty} updated to order`;
+if(!isNew) {message=`${menuItem.name} = ${menuItem.qty} updated to order`;
+    menuItem.qty=qty;
+   // const neworder=structuredClone(order);
+    const neworder=[...order];
+    setOrder(neworder);
+    navigation.goBack();
+    onOrderCallBack?.();
+return;
+}
+
 //const neworder=structuredClone(order);
      const neworder=order.map(item=>({...item}));
 

@@ -15,13 +15,11 @@ interface ExtraItemProps {
 };
 
 const ExtraItem:React.FC<ExtraItemProps> = ({extra}: ExtraItemProps) => {
-const [qtty,setQtty]=useState(0);
+const [qtty,setQtty]=useState(extra?.qty||0);
    console.log("ExtraItem 19",extra);
     const onDecrease = () => {
        // dispatch(modifyExtra({extraId: extra._id, isIncrement: false}));
-
-       // extra.qty=  extra?.qty-1;
-        if(!extra.qty) extra.qty=0;
+        if(!extra?.qty) extra.qty=0;
         extra.qty=  extra.qty-1;
         if(extra.qty<0) extra.qty=0;
         setQtty(extra.qty);
@@ -46,7 +44,7 @@ const [qtty,setQtty]=useState(0);
                 {`+ ${extra.price.toLocaleString()} DKK`}
             </Text>
             <Stepper
-                qty={extra?.qty ?? 0}
+                qty={qtty ?? 0}
                 onDecrease={onDecrease}
                 onIncrease={onIncrease}
             />
