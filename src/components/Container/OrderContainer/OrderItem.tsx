@@ -1,12 +1,13 @@
 import React, {useCallback, useContext, useMemo, useRef, useState} from 'react';
 import {Text, TouchableOpacity, View, Animated, Dimensions, StyleSheet} from 'react-native';
 import {useNavigation} from "@react-navigation/native";
-import {BLUE_GREEN, LIGHT_BROWN, LINE_COLOR} from "../../utils/colorsConstant";
-import Button from "../ButtonControl/Button";
-import {scale} from "../../utils/scale";
+import {BLUE_GREEN, LIGHT_BROWN, LINE_COLOR} from "../../../utils/colorsConstant";
+import Button from "../../ButtonControl/Button";
+import {scale} from "../../../utils/scale";
 import ExtraItemForOrder from "./ExtraItemForOrder";
-import {ModificatorListForOrder} from "./ModificatorListForOrder";
-import {CafeDataMainProviderContext} from "../../ContentsProvider/CafeDataMainProvider";
+import {ModificatorListForOrder} from "../ModificatorListForOrder";
+import {CafeDataMainProviderContext} from "../../../ContentsProvider/CafeDataMainProvider";
+import ExtraOrderContainer from "./ExtraOrderContainer";
 
 interface IModificatorItem {
     _id:string;
@@ -195,7 +196,7 @@ const extras=  useCallback(() => (item.extras?.filter((x) => !!x.qty) ?? []),[it
 
             {/* EXTRAS */}
 
-            {extras().length > 0 && (
+            {/*extras().length > 0 && (
                 <View
                     style={[
                         styles.row,
@@ -210,7 +211,11 @@ const extras=  useCallback(() => (item.extras?.filter((x) => !!x.qty) ?? []),[it
                         ))}
                     </View>
                 </View>
-            )}
+            )
+            */}
+
+
+            <ExtraOrderContainer extraarray={item.extras} />
 
             {/* ATTRIBUTES */}
 

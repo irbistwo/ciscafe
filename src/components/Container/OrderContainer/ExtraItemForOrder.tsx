@@ -1,7 +1,7 @@
 import React from 'react';
 import {StyleSheet, Text, View} from 'react-native';
-import {BLUE_GREEN, GREEN, LIGHT_BROWN, LINE_COLOR} from "../../utils/colorsConstant";
-import {scale} from "../../utils/scale";
+import {BLUE_GREEN, GREEN, LIGHT_BROWN, LINE_COLOR} from "../../../utils/colorsConstant";
+import {scale} from "../../../utils/scale";
 
 interface MenuExtra{
     _id: string;
@@ -13,6 +13,7 @@ interface ExtraItemProps {
     extra: MenuExtra;
 };
 const ExtraItemForOrder = ({extra}: ExtraItemProps) => {
+  //  if(extra?.qty===0) return  null;
     return (
         <View style={{flexDirection: 'row'}}>
             <Text style={[styles.sm_hermes_regular,{flex:1}]}>{`- x${extra.qty} ${extra.name}`}</Text>

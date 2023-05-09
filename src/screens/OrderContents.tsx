@@ -4,7 +4,9 @@ import Container from "../components/Container/Container";
 import {scale} from "../utils/scale";
 import {LINE_COLOR} from "../utils/colorsConstant";
 import {CafeDataMainProviderContext} from "../ContentsProvider/CafeDataMainProvider";
-import OrderItem from "../components/Container/OrderItem";
+import OrderItem from "../components/Container/OrderContainer/OrderItem";
+import {ListHeader} from "../components/Container/OrderContainer/ListHeader";
+import {ListFooter} from "../components/Container/OrderContainer/ListFooter";
 
 
 
@@ -23,8 +25,8 @@ const OrderContents:React.FC=()=>{
                     data={order}
                     renderItem={({item}) => <OrderItem item={item} />}
                     keyExtractor={(item, index) =>  index.toString()}
-                   // ListFooterComponent={<ListFooter />}
-                    //ListHeaderComponent={<ListHeader />}
+                    ListFooterComponent={<ListFooter />}
+                    ListHeaderComponent={<ListHeader />}
                 />
             </View>
         </Container>
