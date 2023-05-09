@@ -5,9 +5,10 @@ import {BLUE_GREEN, LIGHT_BROWN, LINE_COLOR} from "../../../utils/colorsConstant
 import Button from "../../ButtonControl/Button";
 import {scale} from "../../../utils/scale";
 import ExtraItemForOrder from "./ExtraItemForOrder";
-import {ModificatorListForOrder} from "../ModificatorListForOrder";
+import {ModificatorListForOrder} from "./ModificatorListForOrder";
 import {CafeDataMainProviderContext} from "../../../ContentsProvider/CafeDataMainProvider";
 import ExtraOrderContainer from "./ExtraOrderContainer";
+import ModificatorOrderContainer from "./ModificatorOrderContainer";
 
 interface IModificatorItem {
     _id:string;
@@ -164,6 +165,7 @@ const extras=  useCallback(() => (item.extras?.filter((x) => !!x.qty) ?? []),[it
     };
 
 
+    // @ts-ignore
     return (
         <Animated.View
             style={[
@@ -219,11 +221,13 @@ const extras=  useCallback(() => (item.extras?.filter((x) => !!x.qty) ?? []),[it
 
             {/* ATTRIBUTES */}
 
-            {attributes().length > 0 &&
+            {/*attributes().length > 0 &&
                 attributes().map((attr) => (
                     <ModificatorListForOrder key={attr._id} modificator={attr}/>
-                ))}
-
+                ))*/}
+            {// @ts-ignore
+                <ModificatorOrderContainer modificators={item.attributes} />
+            }
             {/* NOTES */}
 
 

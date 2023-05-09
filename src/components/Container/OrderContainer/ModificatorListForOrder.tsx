@@ -1,7 +1,7 @@
 import React from 'react';
 import {StyleSheet, Text, View} from 'react-native';
-import {BLUE_GREEN, LIGHT_BROWN, LINE_COLOR} from "../../utils/colorsConstant";
-import {scale} from "../../utils/scale";
+import {BLUE_GREEN, LIGHT_BROWN, LINE_COLOR} from "../../../utils/colorsConstant";
+import {scale} from "../../../utils/scale";
 
 interface IModificatorItem {
     _id:string;
@@ -29,7 +29,7 @@ interface IProps {
 export const ModificatorListForOrder:React.FC<IProps> = ({modificator}: IProps) => {
     const selectedOptions = React.useMemo(() => {
         return modificator.options.map((x) => x.name);
-    }, []);
+    }, [modificator]);
 
     return (
         <View style={[styles.row]}>
