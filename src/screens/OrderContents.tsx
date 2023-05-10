@@ -2,18 +2,31 @@ import React, {useContext, useEffect} from 'react';
 import {Dimensions, FlatList, Text, View,StyleSheet} from 'react-native';
 import Container from "../components/Container/Container";
 import {scale} from "../utils/scale";
-import {LINE_COLOR} from "../utils/colorsConstant";
+import {BLUE_GREEN, LINE_COLOR, WHITE} from "../utils/colorsConstant";
 import {CafeDataMainProviderContext} from "../ContentsProvider/CafeDataMainProvider";
 import OrderItem from "../components/Container/OrderContainer/OrderItem";
 import {ListHeader} from "../components/Container/OrderContainer/ListHeader";
 import {ListFooter} from "../components/Container/OrderContainer/ListFooter";
+import Button from "../components/ButtonControl/Button";
+import {useNavigation} from "@react-navigation/native";
 
 
 
 const buttonWidth = Dimensions.get('screen').width * 0.55;
 const OrderContents:React.FC=()=>{
     const {order,setOrder}=useContext<any>(CafeDataMainProviderContext);
-
+    const navigation = useNavigation();
+/*
+    useEffect(() => {
+        if (order.length === 0) {
+            navigation.goBack();
+        }
+    }, [navigation, order.length]);
+    */
+    const gotoPayment = () => {
+        // @ts-ignore
+        navigation.navigate('OrderPayment');
+    };
     return (
         // @ts-ignore
         <Container>
@@ -29,6 +42,19 @@ const OrderContents:React.FC=()=>{
                     ListHeaderComponent={<ListHeader />}
                 />
             </View>
+            {/* PROCEED */}
+            {
+                // @ts-ignore
+            <Button
+               // disabled={!tableNumber && isDineIn}
+                buttonSize="regular"
+                style={styles.buttonProceed}
+                onPress={gotoPayment}>
+                <Text style={[styles.sm_hermes_regular, {color: WHITE}]}>
+                    {/*locale.t('goto_payment')*/'goto_payment'}
+                </Text>
+            </Button>
+            }
         </Container>
     )
 
@@ -43,8 +69,19 @@ const styles = StyleSheet.create({
         // paddingHorizontal: 20,
     },
 
+    sm_hermes_regular: {
+        fontFamily: 'Hermes-Regular',
+        fontSize: scale(15),
+        color: BLUE_GREEN,
+    },
+    buttonProceed: {
+        backgroundColor: BLUE_GREEN,
+        alignSelf: 'center',
+        position: 'absolute',
+        width: buttonWidth,
+        bottom: 50,
 
-
+    },
 
 
 
