@@ -4,6 +4,7 @@ import Home from '../screens/Home';
 import {ToastProvider} from "../components/Toast/Toast";
 import MenuDetail from "../components/MenuListControl/MenuDetail";
 import OrderContents from "../screens/OrderContents";
+import OrderPayment from "../screens/OrderPayment";
 /*
 import Boseman from "../screens/Home/Boseman";
 import Search from '../screens/Home/Search';
@@ -34,8 +35,8 @@ const HomeStack = () => {
              <Stack.Screen name='HomePage' component={HomePr} />
             <Stack.Screen name='MenuDetail' component={MenuDetail} />
               <Stack.Screen name='OrderContents' component={OrderContents} />
-           {/* <Stack.Screen name='Map' component={HomeMap} />
-            <Stack.Screen name='Rajasthan' component={Rajasthan} />
+           <Stack.Screen name='OrderPayment' component={OrderPayment} />
+           {/* <Stack.Screen name='Rajasthan' component={Rajasthan} />
             <Stack.Screen name='TianTan' component={TianTan} />
             <Stack.Screen name='SierraNevada' component={SierraNevada} />
             <Stack.Screen name='Osaka' component={Osaka} />

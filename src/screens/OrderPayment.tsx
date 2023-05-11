@@ -7,6 +7,8 @@ import {inspect} from "util";
 import {TotalBreakdown} from "../components/Container/OrderContainer/TotalBreakdown";
 import {scale} from "../utils/scale";
 import Container from "../components/Container/Container";
+import PaymentOption from '../components/Container/OrderContainer/PaymentOption';
+import LoadingScreen from '../components/Container/OrderContainer/LoadingScreen';
 type PaymentMethod = 'mobilepay' | 'card';
 const buttonWidth = Dimensions.get('screen').width * 0.55;
 const OrderPayment :React.FC= () => {
@@ -22,11 +24,24 @@ const OrderPayment :React.FC= () => {
     const [selectedCard, setSelectedCard] = useState<string>('');
     const [selectedPaymentMethod, setSelectedPaymentMethod] =
         useState<PaymentMethod>('mobilepay');
+    const[isLoading]=useState(false);
 
+    const onSelectPaymentMethod = (paymentMethod: PaymentMethod) => {
+        setSelectedPaymentMethod(paymentMethod);
+    };
+    const addNewCard=()=>{
+
+    }
+
+    const onPay = () => {
+
+    }
+    // @ts-ignore
     return (
         <>
-            <Container showBackButton title={locale.t('payment')}>
-                <>
+            {// @ts-ignore
+            <Container showBackButton title={/*locale.t('payment')*/'payment'}>
+
                     <ScrollView
                         showsVerticalScrollIndicator={false}
                         style={styles.container}
@@ -43,20 +58,20 @@ const OrderPayment :React.FC= () => {
 
                                     },
                                 ]}>
-                                {locale.t('choose_payment_method')}
+                                {/*locale.t('choose_payment_method')*/ 'choose_payment_method'}
                             </Text>
 
                             <PaymentOption
                                 onSelect={onSelectPaymentMethod}
                                 selectedPaymentMethod={selectedPaymentMethod}
-                                title={locale.t('mobilepay')}
+                                title={/*locale.t('mobilepay')*/ 'mobilepay'}
                                 paymentMethod="mobilepay"
                             />
 
                             <PaymentOption
                                 onSelect={onSelectPaymentMethod}
                                 selectedPaymentMethod={selectedPaymentMethod}
-                                title={locale.t('credit_card')}
+                                title={/*locale.t('credit_card')*/'credit_card'}
                                 paymentMethod="card"
                             />
 
@@ -70,28 +85,22 @@ const OrderPayment :React.FC= () => {
                             */}
 
                             {/* ADD NEW CARD */}
+                            { // @ts-ignore
                             <Button
-                                style={{
-                                    width: 100,
-                                    borderRadius: 5,
-                                    marginVertical: 20,
-                                    paddingVertical: 5,
-                                    marginLeft: 'auto',
-                                    backgroundColor: LIGHT_BROWN,
-                                }}
-                                onPress={() => addCardMutation.mutate()}
+                                style={styles.buttonnewcard}
+                                onPress={addNewCard/*() => addCardMutation.mutate()*/}
                                 variant="outlined">
                                 <Text style={[styles.xs_hermes_regular]}>
-                                    {locale.t('add_new_card')}
+                                    {/*locale.t('add_new_card')*/'add_new_card'}
                                 </Text>
                             </Button>
-
+                            }
                             {/* TABLE NUMBER */}
 
                             {/* TOTAL PRICE */}
                             <TotalBreakdown
                                 forPaymentPage={true}
-                                totalLabel={locale.t('amount_to_pay_total')}
+                                totalLabel={/*locale.t('amount_to_pay_total')*/'amount_to_pay_total'}
                             />
 
 
@@ -99,32 +108,43 @@ const OrderPayment :React.FC= () => {
                     </ScrollView>
 
                     {/* PROCEED */}
+                    { // @ts-ignore
                     <Button
                         buttonSize="regular"
                         style={styles.btnProceed}
                         onPress={onPay}>
                         <Text style={[styles.sm_hermes_regular, {color: WHITE}]}>
-                            {locale.t('pay')}
+                            {/*locale.t('pay')*/ 'pay'}
                         </Text>
                     </Button>
-                </>
-            </Container>
+                    }
 
-            {(placeOrderMutation.isLoading || mobilePayMutation.isLoading) && (
+            </Container>
+            }
+
+            {(isLoading) && (
                 <LoadingScreen />
             )}
+
         </>
     );
 }
 
 const styles = StyleSheet.create({
 
-
+buttonnewcard:{
+    width: 100,
+    borderRadius: 5,
+    marginVertical: 20,
+    paddingVertical: 5,
+    marginLeft: 'auto',
+    backgroundColor: LIGHT_BROWN,
+},
     sm_hermes_regular: {
         fontFamily: 'Hermes-Regular',
         fontSize: scale(15),
-        color: BLUE_GREEN,
-        marginBottom: 30,
+       // color: BLUE_GREEN,
+        //marginBottom: 30,
         textAlign: 'center',
     },
 
