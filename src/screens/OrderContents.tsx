@@ -1,4 +1,4 @@
-import React, {useContext, useEffect} from 'react';
+import React, {useCallback, useContext, useEffect} from 'react';
 import {Dimensions, FlatList, Text, View,StyleSheet} from 'react-native';
 import Container from "../components/Container/Container";
 import {scale} from "../utils/scale";
@@ -9,6 +9,7 @@ import {ListHeader} from "../components/Container/OrderContainer/ListHeader";
 import {ListFooter} from "../components/Container/OrderContainer/ListFooter";
 import Button from "../components/ButtonControl/Button";
 import {useNavigation} from "@react-navigation/native";
+//import structuredClone from '@ungap/structured-clone';
 
 
 
@@ -27,6 +28,14 @@ const OrderContents:React.FC=()=>{
         // @ts-ignore
         navigation.navigate('OrderPayment');
     };
+    const removeItem=(item)=>{
+        const index = order.indexOf(item);
+        if (index > -1) {
+            order.splice(index, 1);
+           // let neworder=structuredClone(order);
+            setOrder([...order]);
+        }
+    }
     return (
         // @ts-ignore
         <Container>
@@ -36,8 +45,8 @@ const OrderContents:React.FC=()=>{
                     showsVerticalScrollIndicator={false}
                     contentContainerStyle={styles.listContentContainerStyle}
                     data={order}
-                    renderItem={({item}) => <OrderItem item={item} />}
-                    keyExtractor={(item, index) =>  index.toString()}
+                    renderItem={({item}) => <OrderItem item={item} removeItem={removeItem} />}
+                    keyExtractor={(item, index) =>  item._id+index.toString()}
                     ListFooterComponent={<ListFooter />}
                     ListHeaderComponent={<ListHeader />}
                 />

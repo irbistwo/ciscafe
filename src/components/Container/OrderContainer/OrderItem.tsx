@@ -50,6 +50,7 @@ interface IMenuContentsItem {
 
 type OrderItemProps = {
     item: IMenuContentsItem;
+    removeItem:(item:IMenuContentsItem)=>void;
 };
 
 const calculateAttributeTotal = (
@@ -90,8 +91,8 @@ const calculateAttributeTotal = (
 
     return extrasTotal;
 };
-const OrderItem: React.FC<OrderItemProps> = ({item}) => {
-    //const {order,setOrder}=useContext<any>(CafeDataMainProviderContext);
+const OrderItem: React.FC<OrderItemProps> = ({item,removeItem}) => {
+   // const {order,setOrder}=useContext<any>(CafeDataMainProviderContext);
     const removeItemAnimation = useRef(new Animated.Value(0)).current;
     const fadeAnim = useRef(new Animated.Value(1)).current;
     const navigation = useNavigation();
@@ -114,6 +115,15 @@ const OrderItem: React.FC<OrderItemProps> = ({item}) => {
             }),
         ]).start(() => {
             // dispatch(removeFromCart({cartId: item.cartId}));
+           // order.remove(item);
+            //console.log("OrderItem113",order);
+          /*  var index = order.indexOf(item);
+            if (index > -1) {
+                order.splice(index, 1);
+                setOrder(order);
+            }
+            */
+removeItem(item);
         });
     };
 

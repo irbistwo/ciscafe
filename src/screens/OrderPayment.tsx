@@ -9,6 +9,7 @@ import {scale} from "../utils/scale";
 import Container from "../components/Container/Container";
 import PaymentOption from '../components/Container/OrderContainer/PaymentOption';
 import LoadingScreen from '../components/Container/OrderContainer/LoadingScreen';
+import { CreditCardList } from '../components/Container/OrderContainer/CreditCardList';
 type PaymentMethod = 'mobilepay' | 'card';
 const buttonWidth = Dimensions.get('screen').width * 0.55;
 const OrderPayment :React.FC= () => {
@@ -36,6 +37,12 @@ const OrderPayment :React.FC= () => {
     const onPay = () => {
 
     }
+
+    const cards=[{id:"1111", exp_date: "01.01.2012",
+        masked_card: "444 55567 788777 23344",
+        card_country: "UA"},{id:"111", exp_date: "02.01.2012",
+        masked_card: "9999 55567 788777 23344",
+        card_country: "UA"}];
     // @ts-ignore
     return (
         <>
@@ -76,13 +83,15 @@ const OrderPayment :React.FC= () => {
                             />
 
                             {/* CREDIT CARDS LIST */}
-                            {/*  <CreditCardList
+                            {
+                                <CreditCardList
                                 isOpen={selectedPaymentMethod === 'card'}
-                                creditCards={paymentMethod?.cards ?? []}
+                                    // @ts-ignore
+                                creditCards={cards ?? []}
                                 selectedCard={selectedCard}
                                 setSelectedCard={setSelectedCard}
                             />
-                            */}
+                            }
 
                             {/* ADD NEW CARD */}
                             { // @ts-ignore
