@@ -6,13 +6,15 @@ type TotalBreakdownProps = {
     totalLabel: string;
     forPaymentPage: boolean;
     isPointsCapped?: boolean;
+    totalPrice?:number;
 };
 
 const BreakdownItem = ({
                            label,
                            value,
                            noBorder,
-                           isFontLarge,
+                           isFontLarge
+
                        }: {
     noBorder?: boolean;
     label: string;
@@ -55,13 +57,14 @@ export const TotalBreakdown = ({
                                    totalLabel,
                                    forPaymentPage,
                                    isPointsCapped,
+                                   totalPrice
                                }: TotalBreakdownProps) => {
-    const [totalPrice ]= useState(0);
+    //const [totalPrice ]= useState(0);
     const [appliedPoints] = useState(0);
 
     return (
         <View>
-            {appliedPoints > 0 && (
+            {appliedPoints === 0 && (
                 <>
                     {/* CAPPED POINTS DESCSRIPTION */}
                     {isPointsCapped && (

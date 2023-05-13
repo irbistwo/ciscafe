@@ -72,12 +72,15 @@ const Switch = ({
         </Pressable>
     );
 };
-
-export const ListFooter = () => {
+interface IProp {
+    totalPrice:number
+}
+export const ListFooter = ({totalPrice}:IProp) => {
+    console.log("ListFooter79",totalPrice);
    // const dispatch = useDispatch();
-    const navigation = useNavigation();
+  //  const navigation = useNavigation();
 
-    const totalPrice = 0//useSelector(selectOrderTotalPrice);
+   // const totalPrice = 0//useSelector(selectOrderTotalPrice);
     const userPoint = 0;//useSelector(userPoints);
     const appliedPoints = 0;//useSelector(selectAppliedPoints);
 
@@ -128,6 +131,7 @@ export const ListFooter = () => {
                 isPointsCapped={isPointsCapped}
                 forPaymentPage={false}
                 totalLabel={/*locale.t('total_price')*/'total_price'}
+                totalPrice={totalPrice}
             />
         </>
     );

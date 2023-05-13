@@ -1,4 +1,4 @@
-import React, {useCallback, useContext, useEffect} from 'react';
+import React, {useCallback, useContext, useEffect, useMemo, useState} from 'react';
 import {Dimensions, FlatList, Text, View,StyleSheet} from 'react-native';
 import Container from "../components/Container/Container";
 import {scale} from "../utils/scale";
@@ -17,13 +17,18 @@ const buttonWidth = Dimensions.get('screen').width * 0.55;
 const OrderContents:React.FC=()=>{
     const {order,setOrder}=useContext<any>(CafeDataMainProviderContext);
     const navigation = useNavigation();
-/*
-    useEffect(() => {
+const [totalPrice,setTotalPrice]=useState(0)
+  //  const totalPrice=useMemo(()=>(order.reduce((total:number,item)=>total+item.total||0,0)),[order])
+/*   useEffect(() => {
         if (order.length === 0) {
             navigation.goBack();
         }
     }, [navigation, order.length]);
     */
+    useEffect(()=>{
+        const sum=order.reduce((total:number,item)=>total+item.total||0,0);
+        setTotalPrice(sum);
+    },[order])
     const gotoPayment = () => {
         // @ts-ignore
         navigation.navigate('OrderPayment');
@@ -47,7 +52,7 @@ const OrderContents:React.FC=()=>{
                     data={order}
                     renderItem={({item}) => <OrderItem item={item} removeItem={removeItem} />}
                     keyExtractor={(item, index) =>  item._id+index.toString()}
-                    ListFooterComponent={<ListFooter />}
+                    ListFooterComponent={<ListFooter  totalPrice={totalPrice}/>}
                     ListHeaderComponent={<ListHeader />}
                 />
             </View>

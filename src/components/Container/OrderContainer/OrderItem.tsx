@@ -44,6 +44,7 @@ interface IMenuContentsItem {
     start:string;
     end:string;
     qty?:number
+    total?:number;
     extras: MenuExtra[];
     attributes:  IModificatorArray[];
 }
@@ -171,7 +172,9 @@ const extras=  useCallback(() => (item.extras?.filter((x) => !!x.qty) ?? []),[it
         let attributesTotal = calculateAttributeTotal(qty, attributes());
         // extra total
         let extrasTotal = calculateExtraTotal(qty, extras());
-        return menuTotal + attributesTotal + extrasTotal;
+        item.total= menuTotal + attributesTotal + extrasTotal;
+        //return menuTotal + attributesTotal + extrasTotal;
+        return item.total;
     };
 
 
