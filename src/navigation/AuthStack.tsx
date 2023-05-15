@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { createStackNavigator } from '@react-navigation/stack'
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import Home from "../screens/Home";
+import Login from "../screens/AuthScreens/Login";
 
 const Stack = createStackNavigator();
 
@@ -33,12 +34,12 @@ export const AuthStack = () => {
     console.log("auth34");
 return (
     <Stack.Navigator
-        initialRouteName="Welcome"
+        initialRouteName="Login"
         screenOptions={{
             headerShown: false
         }}
     >
-        <Stack.Screen name="Welcome" component={Home} />
+        <Stack.Screen name="Login" component={Login} />
         {/*   <Stack.Screen name="Login" component={Login} />
         <Stack.Screen name="Signup" component={Signup} />
         <Stack.Screen name="SetPhotoName" component={SetPhotoName} />

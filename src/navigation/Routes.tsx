@@ -11,7 +11,7 @@ export default function Routes() {
     console.log("routers8");
     const onAuthStateChanged = (user:string) => {
         console.log("Router22 mewuser",user);
-        // setUser(user);
+         setUser(user);
         if (initializing) setInitializing(false);
     };
 
@@ -35,7 +35,7 @@ export default function Routes() {
     return (
         <NavigationContainer>
             {
-                (user===null)?<Tabs/>:<AuthStack/>
+                <Tabs/>
             }
 
 
