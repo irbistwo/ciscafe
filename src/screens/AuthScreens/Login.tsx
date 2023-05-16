@@ -4,6 +4,9 @@ import {useNavigation} from "@react-navigation/native";
 import {CafeDataMainProviderContext} from "../../ContentsProvider/CafeDataMainProvider";
 import Icon from "react-native-vector-icons/Feather";
 import SignupInfo from "./SignupInfo";
+import Container from "../../components/Container/Container";
+import {sendPostData} from "../../service/service";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
 const SCREENHEIGHT = Dimensions.get('window').height;
 const SCREENWIDTH = Dimensions.get('window').width;
@@ -14,10 +17,28 @@ const Login = () => {
     const [password, setPassword] = useState<string>('');
     const navigation = useNavigation();
 
-    return (
-        <View>
+    function omit(key, obj) {
+        const { [key]: omitted, ...rest } = obj;
+        return rest;
+    }
+    const doLogin=async ()=>{
+        try {
+            const result = await sendPostData("/user/login", {email: email, password: password});
+           // console.log("Login22", result);
+            const resjson=JSON.parse(result);
+            let omitedres=omit("Message",resjson);
+           // setUser(resjson.name||resjson.email);
+            console.log("Login25", omitedres);
+            AsyncStorage.setItem('user', JSON.stringify(omitedres));
+        } catch (e) {
+            console.log("Login25", e);
+        }
+    }
 
-            <View style={styles.upper}>
+    return (
+        <Container>
+
+            <View>
                 {/*
                 <View style={{ flexDirection: 'row', alignItems: 'center', }}>
                     <TouchableOpacity onPress={() => navigation.goBack()}>
@@ -60,7 +81,8 @@ const Login = () => {
 
             <View style={styles.lower}>
                 <TouchableOpacity style={styles.button} onPress={() => {
-setUser("username");
+                    doLogin();
+                // setUser("username");
                   //  emiterauth.emit("user","username");
                     /*login(email, password)*/}}>
                     <Text style={styles.buttonText}> Log in </Text>
@@ -76,7 +98,7 @@ setUser("username");
                     </TouchableOpacity>
                 </View>
             </View>
-        </View>
+        </Container>
     )
 }
 
@@ -85,21 +107,21 @@ export default Login
 const styles = StyleSheet.create({
     upper: {
         backgroundColor: 'black',
-        height: SCREENHEIGHT / 3.5,
+       // height: SCREENHEIGHT / 3.5,
         width: SCREENWIDTH,
         padding: 20
     },
 
     middle: {
-        backgroundColor: 'black',
-        height: SCREENHEIGHT - (SCREENHEIGHT / 3.5) - (SCREENHEIGHT / 2.5),
+      //  backgroundColor: 'black',
+      //  height: SCREENHEIGHT - (SCREENHEIGHT / 3.5) - (SCREENHEIGHT / 2.5),
         width: SCREENWIDTH,
         padding: 20,
     },
 
     lower: {
-        backgroundColor: 'black',
-        height: SCREENHEIGHT / 2.5,
+      //  backgroundColor: 'black',
+       // height: SCREENHEIGHT / 2.5,
         width: SCREENWIDTH,
         padding: 20,
         alignItems: 'center',
@@ -138,7 +160,7 @@ const styles = StyleSheet.create({
         height: 0.07 * SCREENHEIGHT,
         alignItems: 'center',
         justifyContent: 'center',
-        alignSelf: 'center',
+       // alignSelf: 'center',
         borderRadius: 15,
     },
 

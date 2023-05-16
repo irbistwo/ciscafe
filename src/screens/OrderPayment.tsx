@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react';
+import React, {useContext, useEffect, useState} from 'react';
 import {View, Text, ScrollView, StyleSheet, Dimensions} from 'react-native';
 import {useNavigation} from "@react-navigation/native";
 import {BLUE_GREEN, LIGHT_BROWN, LINE_COLOR, WHITE} from "../utils/colorsConstant";
@@ -10,9 +10,12 @@ import Container from "../components/Container/Container";
 import PaymentOption from '../components/Container/OrderContainer/PaymentOption';
 import LoadingScreen from '../components/Container/OrderContainer/LoadingScreen';
 import { CreditCardList } from '../components/Container/OrderContainer/CreditCardList';
+import {sendGetData} from "../service/service";
+import {CafeDataMainProviderContext} from "../ContentsProvider/CafeDataMainProvider";
 type PaymentMethod = 'mobilepay' | 'card';
 const buttonWidth = Dimensions.get('screen').width * 0.55;
 const OrderPayment :React.FC= () => {
+    const {token} = useContext<any>(CafeDataMainProviderContext);
     const navigation = useNavigation();
     const appliedPoints =0;
     //const orders = useSelector(selectOrders);
@@ -34,8 +37,15 @@ const OrderPayment :React.FC= () => {
 
     }
 
-    const onPay = () => {
-
+    const onPay = async () => {
+const url="orders/v2/pmlists?restaurant=62623eb0f00d46f174763fe4";
+try {
+    console.log("orderpayment43", token);
+    const result = await sendGetData(url, token);
+    console.log("orderpayment45", result);
+} catch (e) {
+    console.log("orderpayment46", e);
+}
     }
 
     const cards=[{id:"1111", exp_date: "01.01.2012",

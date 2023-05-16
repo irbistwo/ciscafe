@@ -1,8 +1,9 @@
-import React, { createContext, useState } from 'react';
+import React, {createContext, useEffect, useState} from 'react';
 //import { GoogleSignin } from '@react-native-google-signin/google-signin';
 //import ContentsProvider from '@react-native-firebase/ContentsProvider';
 
 import eventEmitAuth from "./EventEmitAuth";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 /* in This contenxt saved main items-values such as
 * choosen restoran ,order, auth user paycontents and speading this values on all app
 *  */
@@ -11,9 +12,24 @@ export const CafeDataMainProviderContext:React.Context<any> = createContext({});
 export const CafeDataMainProvider = ({children}) => {
     const [user, setUser] = useState<string>(null);
     const [order, setOrder] = useState<any>([]);
-    console.log("auth6");
+    const [token, setToken] = useState<string>(null);
+
+
+    useEffect(()=>{
+        if(user) return;
+        const profile= AsyncStorage.getItem("user");
+        profile.then((value) => {
+            if (value == null) {
+
+            } else {
+                const  resuser=JSON.parse(value);
+               setUser(resuser.profile.name);
+                setToken(resuser.token);
+            }
+        })
+    },[user])
     return (
-        <CafeDataMainProviderContext.Provider value={{user,setUser,order,setOrder,
+        <CafeDataMainProviderContext.Provider value={{user,setUser,order,setOrder,token,
             googleLogin: async () => {
                 try {
                    // const { idToken } = await GoogleSignin.signIn();

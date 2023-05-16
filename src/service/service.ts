@@ -2,14 +2,20 @@ const api = 'https://vivaldi-backend.azurewebsites.net/api/';
 //const api = 'http://158.101.204.112/api/';
 export const sendPostData=(postname:string,arraytosend:any)=> {
     const url=api+postname;
-    return new Promise((resolve,reject)=> {
+    return new Promise<string>((resolve,reject)=> {
         let data= JSON.stringify(arraytosend);
         let is_error=false;
         let statusup:number;
+        let headers:any={'Content-Type':'application/json'};
+        const token=arraytosend.token;
+        if(arraytosend.token) { headers={'Content-Type':'application/json',
+            'Authorization': `Bearer ${token}`};
+        delete arraytosend.token;
+        }
         console.info("spd", data);
         let result= fetch(url,{
             method: "post",
-            headers: {'Content-Type':'application/json'},
+            headers:headers ,
             body:data
         });
         result.then(function(response) {
@@ -27,22 +33,29 @@ export const sendPostData=(postname:string,arraytosend:any)=> {
 
         }).catch(function(ex) {
             console.log('(service 33)failed', ex);
-             throw new Error('failed send '+ ex)
+            reject(new Error('failed send '+ ex));
+            // throw new Error('failed send '+ ex)
             //reject(ex);
         });
     });
 }
 
-export const sendGetData=(postname:string)=> {
+export const sendGetData=(postname:string,token:string|null)=> {
     const url=api+postname;
     return new Promise<string>((resolve,reject)=> {
 
         let is_error=false;
         let statusup:number;
+        let headers:any={'Content-Type':'application/json'};
+
+        if(token)  headers={'Content-Type':'application/json',
+            Authorization: `Bearer ${token}`};
+
+        
         console.info("spd get url", url);
         let result= fetch(url,{
             method: "GET",
-            headers: {'Content-Type':'application/json'},
+            headers: headers,
 
         });
         result.then(function(response) {
