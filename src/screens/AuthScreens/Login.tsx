@@ -1,4 +1,4 @@
-import { StyleSheet, Text, View, Dimensions, TouchableOpacity } from 'react-native';
+import {StyleSheet, Text, View, Dimensions, TouchableOpacity, ActivityIndicator} from 'react-native';
 import React, { useState, useContext} from 'react';
 import {useNavigation} from "@react-navigation/native";
 import {CafeDataMainProviderContext} from "../../ContentsProvider/CafeDataMainProvider";
@@ -7,6 +7,8 @@ import SignupInfo from "./SignupInfo";
 import Container from "../../components/Container/Container";
 import {sendPostData} from "../../service/service";
 import AsyncStorage from "@react-native-async-storage/async-storage";
+import {BLUE_GREEN} from "../../utils/colorsConstant";
+import {scale} from "../../utils/scale";
 
 const SCREENHEIGHT = Dimensions.get('window').height;
 const SCREENWIDTH = Dimensions.get('window').width;
@@ -16,12 +18,14 @@ const Login = () => {
     const [email, setEmail] = useState<string>('');
     const [password, setPassword] = useState<string>('');
     const navigation = useNavigation();
+    const [isLoading,setIsLoading]=useState(false);
 
     function omit(key, obj) {
         const { [key]: omitted, ...rest } = obj;
         return rest;
     }
     const doLogin=async ()=>{
+        setIsLoading(true);
         try {
             const result = await sendPostData("/user/login", {email: email, password: password});
            // console.log("Login22", result);
@@ -30,8 +34,11 @@ const Login = () => {
            // setUser(resjson.name||resjson.email);
             console.log("Login25", omitedres);
             AsyncStorage.setItem('user', JSON.stringify(omitedres));
+            setIsLoading(false);
+            setUser(omitedres.profile.name);
         } catch (e) {
             console.log("Login25", e);
+            setIsLoading(false);
         }
     }
 
@@ -80,13 +87,24 @@ const Login = () => {
             </View>
 
             <View style={styles.lower}>
+
                 <TouchableOpacity style={styles.button} onPress={() => {
                     doLogin();
                 // setUser("username");
                   //  emiterauth.emit("user","username");
                     /*login(email, password)*/}}>
+                    {/*
                     <Text style={styles.buttonText}> Log in </Text>
+                    */}
+                    {!isLoading ? (
+                        <Text style={[styles.sm_hermes_regular]}>
+                            {'Log in'}
+                        </Text>
+                    ) : (
+                        <ActivityIndicator size={'large'} color={BLUE_GREEN} />
+                    )}
                 </TouchableOpacity>
+
 
                 <View style={{ flexDirection: 'row', alignSelf: 'center' }}>
                     <Text style={styles.loginText}> No account yet? </Text>
@@ -117,6 +135,11 @@ const styles = StyleSheet.create({
       //  height: SCREENHEIGHT - (SCREENHEIGHT / 3.5) - (SCREENHEIGHT / 2.5),
         width: SCREENWIDTH,
         padding: 20,
+    },
+    sm_hermes_regular: {
+        fontFamily: 'Hermes-Regular',
+        fontSize: scale(15),
+        color: BLUE_GREEN,
     },
 
     lower: {
