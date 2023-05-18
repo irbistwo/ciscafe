@@ -29,6 +29,9 @@ let is_blockingondoubletouch=false;
      if(qty===0) return; if(qty<0) return;
      if(!menuItem.qty) menuItem.qty=0;
      menuItem.qty=menuItem.qty+qty;
+     if(isNew) { // @ts-ignore
+         menuItem.d=new Date().getTime().toString();
+     }
 let message:string=`${menuItem.name} + ${menuItem.qty} added to order`;
 if(!isNew) {message=`${menuItem.name} = ${menuItem.qty} updated to order`;
     menuItem.qty=qty;

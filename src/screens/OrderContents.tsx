@@ -9,7 +9,7 @@ import {ListHeader} from "../components/Container/OrderContainer/ListHeader";
 import {ListFooter} from "../components/Container/OrderContainer/ListFooter";
 import Button from "../components/ButtonControl/Button";
 import {useNavigation} from "@react-navigation/native";
-//import structuredClone from '@ungap/structured-clone';
+import structuredClone from '@ungap/structured-clone';
 
 
 
@@ -34,12 +34,15 @@ const [totalPrice,setTotalPrice]=useState(0)
         navigation.navigate('OrderPayment');
     };
     const removeItem=(item)=>{
-        const index = order.indexOf(item);
+       /* const index = order.indexOf(item);
         if (index > -1) {
             order.splice(index, 1);
-           // let neworder=structuredClone(order);
+          //  let neworder=structuredClone(order);
             setOrder([...order]);
-        }
+            //setOrder([...neworder]);
+        }*/
+        const neworder=order.filter(i=>i!==item);
+        setOrder([...neworder]);
     }
     return (
         // @ts-ignore
@@ -51,7 +54,7 @@ const [totalPrice,setTotalPrice]=useState(0)
                     contentContainerStyle={styles.listContentContainerStyle}
                     data={order}
                     renderItem={({item}) => <OrderItem item={item} removeItem={removeItem} />}
-                    keyExtractor={(item, index) =>  item._id+index.toString()}
+                    keyExtractor={(item, index) =>  item.d||index.toString()/*item._id+index.toString()*/}
                     ListFooterComponent={<ListFooter  totalPrice={totalPrice}/>}
                     ListHeaderComponent={<ListHeader />}
                 />

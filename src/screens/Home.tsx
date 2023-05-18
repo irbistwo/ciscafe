@@ -27,6 +27,7 @@ const Home = () => {
     const get_data=async()=>{
         const url:string="v2/menu/category/fetch?restaurant=618d1fdcf8d838050546f221&mode=dinein";
        try {
+           // @ts-ignore
            const result = await sendGetData(url);
 
            //  const result = await response.json();

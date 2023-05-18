@@ -1,11 +1,17 @@
 {
   "expo": {
+    "splash": {
+      "image": "./srs/assets/images/loading.png",
+      "backgroundColor": "#FEF9B0",
+      "resizeMode": "cover"
+    },
     "name": "CisCafe",
     "slug": "CisCafe",
     "version": "1.0.0",
     "assetBundlePatterns": [
       "**/*"
     ]
+
   },
   "name": "CisCafe"
 }

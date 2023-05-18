@@ -23,7 +23,7 @@ export const CafeDataMainProvider = ({children}) => {
 
             } else {
                 const  resuser=JSON.parse(value);
-              // setUser(resuser.profile.name);
+               setUser(resuser.profile.name);
                 setToken(resuser.token);
             }
         })
