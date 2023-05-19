@@ -8,6 +8,8 @@ import OrderPayment from "../screens/OrderPayment";
 import {CafeDataMainProviderContext} from "../ContentsProvider/CafeDataMainProvider";
 import ProfileMain from "../screens/ProfileMain";
 import {AuthStack} from "./AuthStack";
+import MenuListController from "../components/MenuListControl/MenuListControl";
+import WellcomeScreen from "../screens/WelcomeScreen";
 /*
 import Boseman from "../screens/Home/Boseman";
 import Search from '../screens/Home/Search';
@@ -45,16 +47,15 @@ const HomeStack = () => {
 
     return (
         <Stack.Navigator
-            initialRouteName='HomePage'
+            initialRouteName='WellcomeScreen'
             screenOptions={{ headerShown: false }}
         >
              <Stack.Screen name='HomePage' component={HomePr} />
             <Stack.Screen name='MenuDetail' component={MenuDetailAuth} />
               <Stack.Screen name='OrderContents' component={OrderContents} />
-           <Stack.Screen name='OrderPayment' component={OrderPayment} />
-           {/* <Stack.Screen name='Rajasthan' component={Rajasthan} />
-            <Stack.Screen name='TianTan' component={TianTan} />
-            <Stack.Screen name='SierraNevada' component={SierraNevada} />
+              <Stack.Screen name='OrderPayment' component={OrderPayment} />
+            <Stack.Screen name='WellcomeScreen' component={WellcomeScreen} />
+            {/*<Stack.Screen name='SierraNevada' component={SierraNevada} />
             <Stack.Screen name='Osaka' component={Osaka} />
            */}
         </Stack.Navigator>

@@ -5,6 +5,7 @@ import DrawerStack from "./DraverStack";
 import {Image, View,Text} from "react-native";
 import {scale} from '../utils/scale'
 import ProfileStack from "./ProfileStack";
+import WelcomeScreen from "../screens/WelcomeScreen";
 
 
 
@@ -43,12 +44,12 @@ const Tabs=()=>{
                 tabBarStyle: {elevation: 0, borderTopWidth: 0, backgroundColor: '#eae3d2'},
                 tabBarIcon: ({ focused, color}) => {
                     let iconName:string;
-                    if (route.name === 'Home'){
+                    if (route.name === 'Welcome'){
                         color = focused ? '#3a86fe' : 'white'
                         iconName = 'home';
                         const icon=focused?require('../assets/images/bottom-nav/hijem-select.png'):
                             require('../assets/images/bottom-nav/hijem.png');
-                        return tabBottom(icon,"Home");
+                        return tabBottom(icon,"Welcome");
 
                     } else if (route.name === 'Profile'){
                         color = focused ? '#3a86fe' : 'white'
@@ -58,7 +59,8 @@ const Tabs=()=>{
                         return tabBottom(icon,"Profile");
                     } else if (route.name === 'Bookmarks'){
                         color = focused ? '#3a86fe' : 'white'
-                        iconName = 'bookmark'
+                      //  iconName =
+                        iconName = 'book'
                     } else {
                         color = focused ? '#3a86fe' : 'white'
                         iconName = 'user'
@@ -68,7 +70,7 @@ const Tabs=()=>{
                 tabBarShowLabel: false,
             })}
         >
-            <Tab.Screen name='Home' component={DrawerStack} />
+            <Tab.Screen name='Welcome' component={WelcomeScreen} />
             <Tab.Screen name='Profile' component={ProfileStack} />
             <Tab.Screen name='Bookmarks' component={DrawerStack} />
             {/* <Tab.Screen name='Directions' component={HomeMap} />
