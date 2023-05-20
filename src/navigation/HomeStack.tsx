@@ -47,14 +47,14 @@ const HomeStack = () => {
 
     return (
         <Stack.Navigator
-            initialRouteName='WellcomeScreen'
+            initialRouteName='HomePage'
             screenOptions={{ headerShown: false }}
         >
              <Stack.Screen name='HomePage' component={HomePr} />
-            <Stack.Screen name='MenuDetail' component={MenuDetailAuth} />
+              <Stack.Screen name='MenuDetail' component={MenuDetailAuth} />
               <Stack.Screen name='OrderContents' component={OrderContents} />
               <Stack.Screen name='OrderPayment' component={OrderPayment} />
-            <Stack.Screen name='WellcomeScreen' component={WellcomeScreen} />
+            {/*  <Stack.Screen name='WellcomeScreen' component={WellcomeScreen} />
             {/*<Stack.Screen name='SierraNevada' component={SierraNevada} />
             <Stack.Screen name='Osaka' component={Osaka} />
            */}

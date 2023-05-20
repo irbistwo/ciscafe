@@ -5,7 +5,8 @@ import {LIGHT_BROWN} from "../../utils/colorsConstant";
 import Header from "./Header";
 import BackButton from "./BackButton";
 
-type ContainerProps = {
+type ContainerProps ={
+    children:any;
     containerStyle?: StyleProp<ViewStyle>;
     notshowBackButton?: boolean|undefined;
 }

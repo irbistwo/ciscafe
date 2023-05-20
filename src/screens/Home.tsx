@@ -38,7 +38,7 @@ const Home = () => {
            })
            */
            //const datatemp= data0.map((item,index) => ({...item, index}));
-           console.log(data1);
+        //   console.log(data1);
            setData(data1);
            setisLoaded(true);
        }catch(e){

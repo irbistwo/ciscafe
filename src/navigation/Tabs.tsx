@@ -6,6 +6,8 @@ import {Image, View,Text} from "react-native";
 import {scale} from '../utils/scale'
 import ProfileStack from "./ProfileStack";
 import WelcomeScreen from "../screens/WelcomeScreen";
+import HomeStack from "./HomeStack";
+import WelcomeStack from "./WelcomeStack";
 
 
 
@@ -57,7 +59,7 @@ const Tabs=()=>{
                         const icon=focused?require('../assets/images/bottom-nav/profil-select.png'):
                             require('../assets/images/bottom-nav/profil.png');
                         return tabBottom(icon,"Profile");
-                    } else if (route.name === 'Bookmarks'){
+                    } else if (route.name === 'Menu'){
                         color = focused ? '#3a86fe' : 'white'
                       //  iconName =
                         iconName = 'book'
@@ -70,9 +72,10 @@ const Tabs=()=>{
                 tabBarShowLabel: false,
             })}
         >
-            <Tab.Screen name='Welcome' component={WelcomeScreen} />
+            <Tab.Screen name='Welcome' component={WelcomeStack} />
+            <Tab.Screen name='Menu' component={DrawerStack} />
             <Tab.Screen name='Profile' component={ProfileStack} />
-            <Tab.Screen name='Bookmarks' component={DrawerStack} />
+
             {/* <Tab.Screen name='Directions' component={HomeMap} />
             <Tab.Screen name='Bookmarks' component={Bookmarks} />
             <Tab.Screen name='User' component={UserProfile} />*/}
