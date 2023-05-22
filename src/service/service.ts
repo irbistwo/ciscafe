@@ -1,5 +1,5 @@
-const api = 'https://vivaldi-backend.azurewebsites.net/api/';
-//const api = 'http://158.101.204.112/api/';
+//const api = 'https://vivaldi-backend.azurewebsites.net/api/';
+const api = 'http://158.101.204.112/api/';
 export const sendPostData=(postname:string,arraytosend:any)=> {
     const url=api+postname;
     return new Promise<string>((resolve,reject)=> {
@@ -49,7 +49,7 @@ export const sendGetData=(postname:string,token:string|null)=> {
         let headers:any={'Content-Type':'application/json'};
 
         if(token)  headers={'Content-Type':'application/json',
-            'Authorization': `Bearer ${token}`};
+            Authorization: `Bearer ${token}`};
 
 
         console.info("spd get url", url);
