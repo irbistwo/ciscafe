@@ -8,6 +8,7 @@ import CartButton from "../Container/CartButton";
 import TabMenuControl from "../MenuListControl/TabMenuControl";
 import RestoranHeaderControl from "./RestoranHeaderControl";
 import RestoranItemContentsControl from "./RestoranItemContentsControl";
+import {scale} from "../../utils/scale";
 interface IProps {
     // data:any[],
     data: SectionListData<any>[];
@@ -69,7 +70,7 @@ const RestoranListControl:React.FC<IProps>=({data}:IProps)=>{
     const renderMenu=({item}) => {
         //  console.log("item menulist 27 ",item)
         return (
-            <RestoranItemContentsControl menuItem={item}/>
+            <RestoranItemContentsControl restoranItem={item}/>
         )
     }
 
@@ -78,6 +79,7 @@ const RestoranListControl:React.FC<IProps>=({data}:IProps)=>{
             <Header /*logoStyle={logoStyle}   style={headerStyle} */  />
 
             {/*  <TabMenuControl data={data} currentIndex={currentIndex} onTabPress={onTabPress} /> */}
+          <View style={styles.list} >
             <SectionList
                 horizontal={true}
                 ref={sectionlistRef}
@@ -116,19 +118,23 @@ const RestoranListControl:React.FC<IProps>=({data}:IProps)=>{
                     if(currentIndex0 !==currentIndex) setCurrentIndex(currentIndex0);
                 }}
             />
+          </View>
         </SafeAreaView>
     )
 }
 
 const styles = StyleSheet.create({
+    list:{
+       height:scale(250)
+    },
     container: {
         flex: 1,
-        paddingTop: StatusBar.currentHeight,
-        marginHorizontal: 16,
+      //  paddingTop: StatusBar.currentHeight,
+       // marginHorizontal: 16,
     },
     item: {
         backgroundColor: '#eae3d2',
-        padding: 20,
+        //padding: 20,
         marginVertical: 4,
     },
     header: {

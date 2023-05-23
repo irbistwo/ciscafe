@@ -5,11 +5,12 @@ import {
 } from "react-native";
 import {StatusBar} from 'react-native';
 import {scale} from "../../utils/scale";
-import {BLUE_GREEN, BROWN, ORANGE, WHITE, YELLOW} from "../../utils/colorsConstant";
+import {BLUE_GREEN, BROWN, LIGHT_BROWN, ORANGE, WHITE, YELLOW} from "../../utils/colorsConstant";
 import {is_between} from "../../utils/utilsdate";
 import {ToastContext} from "../Toast/Toast";
 import {useNavigation} from "@react-navigation/native";
 import {CafeDataMainProviderContext} from "../../ContentsProvider/CafeDataMainProvider";
+import {constants} from "zlib";
 
 interface IRestoranContentsItem {
     _id:string,
@@ -22,11 +23,11 @@ interface IRestoranContentsItem {
 }
 interface IProps {
     // data:any[],
-    menuItem: IRestoranContentsItem;
+    restoranItem: IRestoranContentsItem;
 
 }
 
-const RestoranItemContentsControl:React.FC<IProps>=({menuItem}:IProps)=>{
+const RestoranItemContentsControl:React.FC<IProps>=({restoranItem}:IProps)=>{
     const navigation = useNavigation();
     //  const[orderQty]=useState(0);
     //const is_aval=is_between(menuItem.start,menuItem.end);
@@ -34,20 +35,22 @@ const RestoranItemContentsControl:React.FC<IProps>=({menuItem}:IProps)=>{
     const {setToastMessage,setToastErrorMessage}=useContext<any>(ToastContext);
     const { order } = useContext(CafeDataMainProviderContext);
     //const orderQty=menuItem.qty||0;
+    /*
     const orderQty=useMemo(()=>{
-        const beedmenu=order.filter((item)=>item._id===menuItem._id,[]);
+        const beedmenu=order.filter((item)=>item._id===restoranItem._id,[]);
 
         if(beedmenu.length===0) return 0;
         const result:number=beedmenu.reduce((total,item)=>total+item.qty,0);
         //  console.log("MenuItemContemts43",result,beedmenu.length);
         return result;
     },[order])
+    */
     /* containerBackground: StyleProp<ViewStyle> = React.useMemo(
         () => ({backgroundColor: orderQty > 0 ? ORANGE : BROWN}),
         [orderQty],
     );
     */
-    const containerBackground: StyleProp<ViewStyle>={backgroundColor: orderQty > 0 ? YELLOW : BROWN};
+    const containerBackground: StyleProp<ViewStyle>={backgroundColor:  BROWN};
     const onOrderAddedCallback=(message:string)=>{
         setToastMessage(message);
     }
@@ -56,41 +59,26 @@ const RestoranItemContentsControl:React.FC<IProps>=({menuItem}:IProps)=>{
         const tonavigate='MenuDetail0';
         // @ts-ignore
         navigation.navigate(tonavigate, {
-            menuItem,
+            restoranItem: restoranItem,
             isNew: true,
             onOrderCallBack: onOrderAddedCallback,
         });
     }
-    const quaantityViewItem=
-        (
-            <ImageBackground
-                style={styles.icon}
-                source={require('../../assets/images/unselect.png')}
-            >
-
-                <Text style={[styles.sm_hermes_regular,{textAlign:"center"}]}>{`${orderQty} `}</Text>
-
-            </ImageBackground>
-
-        )
-
-
-
-    return (
-        <TouchableOpacity onPress={onPress} style={[styles.menuContainer,containerBackground]}>
+       return (
+        <TouchableOpacity onPress={onPress} style={[styles.Container,/*containerBackground*/]}>
             <View style={styles.item}>
                 <View style={styles.row}>
-                    {orderQty > 0 && (quaantityViewItem) }
-                    <Text style={styles.md_hermes_regular}>{menuItem.Name}</Text>
+
+                    <Text style={styles.md_hermes_regular}>{restoranItem.Name}</Text>
 
 
                 </View>
                 <View style={[styles.row, {marginTop: 2}]}>
-                    {/* DESCRIPTION */}
+                    {/* Adress */}
                     <Text
                         numberOfLines={2}
                         style={[styles.sm_hermes_regular, {flex: 10}]}>
-                        {menuItem.Address}
+                        {restoranItem.Address}
                     </Text>
 
                 </View>
@@ -112,24 +100,34 @@ const styles = StyleSheet.create({
     item: {
         backgroundColor: '#eae3d2',
         padding: 20,
-        marginVertical: 4,
+        justifyContent: 'center',
+        //marginTop: 40,
+        width:220,
+        alignItems:"center",
+        transform: [{ rotate: '55deg'}],
+        //width:200
+    },
+    item1:{
+       // transform: [{ rotate: '90deg'}],
+        backgroundColor: '#eae3d2',
     },
     row: {
         flexDirection: 'row',
-        alignItems: 'center',
-        paddingRight: scale(5)
+       // alignItems: 'center',
+        //paddingLeft: scale(15),
+        marginLeft:40
     },
     sm_hermes_regular: {
         fontFamily: 'Hermes-Regular',
         fontSize: scale(13),
         color: BLUE_GREEN,
-        marginRight: scale(3),
+        //marginRight: scale(3),
     },
     md_hermes_regular: {
         fontFamily: 'Hermes-Regular',
-        fontSize: scale(22),
+        fontSize: scale(20),
         color: BLUE_GREEN,
-
+        //width:240
 
 
     },
@@ -149,19 +147,18 @@ const styles = StyleSheet.create({
         padding: 3,
     },
 
-    menuContainer: {
+    Container: {
         backgroundColor: BROWN,
-        padding: 10,
-        marginBottom: 10,
+        //padding: 10,
+        marginRight: 10,
         borderRadius: 10,
         shadowColor: '#000',
-        shadowOffset: {
-            width: 0,
-            height: 1,
-        },
+        justifyContent: 'center',
+        verticalAlign:'center',
         shadowOpacity: 0.2,
         shadowRadius: 1.41,
-
+        width:180
+        //width:140
 
     },
 })

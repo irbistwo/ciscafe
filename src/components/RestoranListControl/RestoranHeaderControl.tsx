@@ -21,13 +21,17 @@ const RestoranHeaderControl:React.FC<IProps>=({sectionItem}:IProps)=>{
     const [isAvailable,setIsavailable]=useState(sectionItem.isAvailable);
     const menuheaderstyle=  {...styles.lg_bornready_regular,
 
-        opacity: isAvailable ? 1 : 0.5
+        opacity: isAvailable ? 1 : 0.5,
+       // transform: [{ rotate: '90deg'}]
+      //  overflow:true
+//flex:100
+width:240
     }
     return(
         <View style={[styles.container,styles.row]}>
             <Line/>
             {
-                <Text style={menuheaderstyle}>{sectionItem.Name}</Text>
+                <Text  numberOfLines={1} style={menuheaderstyle}>{sectionItem.Name}</Text>
             }
             <Line/>
         </View>
@@ -51,18 +55,24 @@ const Line = () => {
 const styles = StyleSheet.create({
 
     imageLine:{
-        flex: 1,
+       // flex: 1,
         resizeMode: 'contain',
         //width: undefined,
         // height: undefined,
         tintColor: '#a7b3b5',
+      //  transform: [{ rotate: '90deg'}]
+        width:40
     },
 
 
     container: {
-        flex:1,
+      //  position:"absolute",
+        flex:2,
         paddingVertical: 20,
-        paddingHorizontal: 15,
+        //paddingHorizontal: 15,
+        transform: [{ rotate: '90deg'}],
+        width:100,
+       // height:100
     },
     row: {
         flexDirection: 'row',
