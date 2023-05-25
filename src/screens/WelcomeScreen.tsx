@@ -40,7 +40,7 @@ const WellcomeScreen:React.FC = () => {
 
             //  const result = await response.json();
             const data0 = JSON.parse(result);
-            const data1 = data0.data.map((item, index) => ({...item, data: item.Restaurants, index}));
+            const data1 = data0.data.map((item, index) => ({...item, data: item.Restaurants,name:item.Name, index}));
             /*data1.forEach((item,index)=>{
                 item.data=item.data.map((item2,index2)=>({...item2,index:index2}));
             })

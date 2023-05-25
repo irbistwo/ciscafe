@@ -33,7 +33,7 @@ const TabMenuCategotyItem:React.FC<IProps>=({tabItem,isSelected,onPress}:IProps)
                 ]}>
                 {tabItem.name}
             </Text>
-            {!tabItem.isPromo && (
+            {tabItem.isPromo && (
                 <Text
                     style={[
                         styles.promo,
@@ -45,12 +45,12 @@ const TabMenuCategotyItem:React.FC<IProps>=({tabItem,isSelected,onPress}:IProps)
                 </Text>
             )}
 
-            {!tabItem.isAvailable && (
+            {/* !tabItem.isAvailable && (
                 <Text style={[styles.unavailable, styles.xxs_sm_hermes_bold]}>
-                    {/*locale.t('unavailable') */}
+
                     unavailable
                 </Text>
-            )}
+            ) */}
         </TouchableOpacity>
     );
 

@@ -53,7 +53,7 @@ const RestoranListControl:React.FC<IProps>=({data}:IProps)=>{
             viewOffset: -20,
             viewPosition:1
         };
-        console.log("MenuListControl68 scroll index failed",currentIndex,e.index,e.highestMeasuredFrameIndex);
+        console.log("ResyorabListControl56 scroll index failed",currentIndex,e.index,e.highestMeasuredFrameIndex);
         // setIsScrolling(true);
         sectionlistRef.current.scrollToLocation(params);
 
@@ -78,7 +78,7 @@ const RestoranListControl:React.FC<IProps>=({data}:IProps)=>{
         <SafeAreaView style={styles.container}>
             <Header /*logoStyle={logoStyle}   style={headerStyle} */  />
 
-            {/*  <TabMenuControl data={data} currentIndex={currentIndex} onTabPress={onTabPress} /> */}
+              <TabMenuControl data={data} currentIndex={currentIndex} onTabPress={onTabPress} />
           <View style={styles.list} >
             <SectionList
                 horizontal={true}
