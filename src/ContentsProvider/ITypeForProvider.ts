@@ -1,3 +1,12 @@
+export type beedType = 'Dine' | 'TakeOff';
+export interface IGlobalRestoranItem {
+    _id:string,
+    id:number,
+    name:string
+    beedtype?:beedType
+}
+
+/*
 export interface IRestoran{
     _id:string;
     name:string;
@@ -38,3 +47,4 @@ interface IModificatorArray{
     modificatorItemArray:IModificatorItem[]
 
 }
+*/

@@ -11,21 +11,26 @@ import Toast, {ToastContext, ToastProvider} from "../components/Toast/Toast";
 const SCREENHEIGHT = Dimensions.get('window').height;
 const SCREENWIDTH  = Dimensions.get('window').width;
 
+
 const Home = () => {
     const navigation = useNavigation();
-    const { user } = useContext(CafeDataMainProviderContext);
+    const { user,restoranGlobalContext,setRestoranGlobalContext  } = useContext(CafeDataMainProviderContext);
     const [data,setData]=useState([]);
+
     const [is_Loaded,setisLoaded]=useState(false);
     const {setToastMessage,setToastErrorMessage}=useContext<any>(ToastContext);
 
     useEffect(()=>{
-        if(is_Loaded) return;
+       // if()
+       // if(is_Loaded) return;
+        setisLoaded(false);
             get_data();
        //setisLoaded(true);
-    },[is_Loaded])
+    },[restoranGlobalContext])
 
     const get_data=async()=>{
-        const url:string="v2/menu/category/fetch?restaurant=618d1fdcf8d838050546f221&mode=dinein";
+       //const url:string="v2/menu/category/fetch?restaurant=618d1fdcf8d838050546f221&mode=dinein";
+        const url:string=`v2/menu/category/fetch?restaurant=${restoranGlobalContext._id}&mode=dinein`;
        try {
            // @ts-ignore
            const result = await sendGetData(url);
@@ -38,7 +43,7 @@ const Home = () => {
            })
            */
            //const datatemp= data0.map((item,index) => ({...item, index}));
-        //   console.log(data1);
+           console.log(data1);
            setData(data1);
            setisLoaded(true);
        }catch(e){

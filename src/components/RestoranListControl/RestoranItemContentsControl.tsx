@@ -11,12 +11,13 @@ import {ToastContext} from "../Toast/Toast";
 import {useNavigation} from "@react-navigation/native";
 import {CafeDataMainProviderContext} from "../../ContentsProvider/CafeDataMainProvider";
 import {constants} from "zlib";
+import {IGlobalRestoranItem} from "../../ContentsProvider/ITypeForProvider";
 
 interface IRestoranContentsItem {
     _id:string,
     Name:string;
     isAvailable:boolean;
-
+id:number,
     start:string;
     Address:string;
 
@@ -33,36 +34,25 @@ const RestoranItemContentsControl:React.FC<IProps>=({restoranItem}:IProps)=>{
     //const is_aval=is_between(menuItem.start,menuItem.end);
     //const[is_available]=useState(is_aval);
     const {setToastMessage,setToastErrorMessage}=useContext<any>(ToastContext);
-    const { order } = useContext(CafeDataMainProviderContext);
-    //const orderQty=menuItem.qty||0;
-    /*
-    const orderQty=useMemo(()=>{
-        const beedmenu=order.filter((item)=>item._id===restoranItem._id,[]);
+    const {  restoranGlobalContext,setRestoranGlobalContext } = useContext(CafeDataMainProviderContext);
 
-        if(beedmenu.length===0) return 0;
-        const result:number=beedmenu.reduce((total,item)=>total+item.qty,0);
-        //  console.log("MenuItemContemts43",result,beedmenu.length);
-        return result;
-    },[order])
-    */
-    /* containerBackground: StyleProp<ViewStyle> = React.useMemo(
-        () => ({backgroundColor: orderQty > 0 ? ORANGE : BROWN}),
-        [orderQty],
-    );
-    */
     const containerBackground: StyleProp<ViewStyle>={backgroundColor:  BROWN};
     const onOrderAddedCallback=(message:string)=>{
         setToastMessage(message);
     }
     const onPress=()=>{
-
-        const tonavigate='MenuDetail0';
+const restorancontext:IGlobalRestoranItem={_id:restoranItem._id,id:restoranItem.id,name:restoranItem.Name};
+setRestoranGlobalContext(restorancontext)
+       // const tonavigate='MenuDetail0';
         // @ts-ignore
+        navigation.navigate('Menu',{ screen: 'HomePage',params:{is_load:true}});
+        /*
         navigation.navigate(tonavigate, {
             restoranItem: restoranItem,
             isNew: true,
             onOrderCallBack: onOrderAddedCallback,
         });
+        */
     }
        return (
         <TouchableOpacity onPress={onPress} style={[styles.Container,/*containerBackground*/]}>

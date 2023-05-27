@@ -35,7 +35,7 @@ const MenuListController:React.FC<IProps>=({data,renderTab}:IProps)=>{
     }
 
     const onTabPress=(index:number)=>{
-       // console.log("menulistcontrol30",index);
+        //console.log("menulistcontrol30",index);
        // blockUpdateIndex=true;
         setCurrentIndex(index);
         setIsScrolling(true);
@@ -70,7 +70,7 @@ const MenuListController:React.FC<IProps>=({data,renderTab}:IProps)=>{
                 itemIndex: 1,
                 sectionIndex: currentIndex,
                 viewOffset: -20,
-                viewPosition:0
+                viewPosition:1
             });
         }, 50);
     }
@@ -88,20 +88,23 @@ const MenuListController:React.FC<IProps>=({data,renderTab}:IProps)=>{
         <TabMenuControl data={data} currentIndex={currentIndex} onTabPress={onTabPress} />
     <SectionList
         ref={sectionlistRef}
-        onMomentumScrollEnd={() => (blockUpdateIndex = false)}
+        onMomentumScrollEnd={()=>(blockUpdateIndex = false)}
         onScrollEndDrag={()=>{if (isScrolling) setIsScrolling(false);}}
         viewabilityConfig={{
             minimumViewTime: 10,
-            itemVisiblePercentThreshold: 10
+            itemVisiblePercentThreshold: 10,
+            waitForInteraction:true
         }}
-       // onMomentumScrollBegin={() => (blockUpdateIndex = true)}
+
+
+        //onMomentumScrollBegin={() => (blockUpdateIndex = true)}
 onScrollToIndexFailed={ScrollFailed}
-        stickySectionHeadersEnabled={true}
+        stickySectionHeadersEnabled={false}
         sections={data}
         keyExtractor={(item, index) => {
             //console.log(item,index);
-            return /*item.*/index.toString();
-           //return item._id+index;
+           // return /*item.*/index.toString();
+           return item._id+index;
         }}
 
         renderItem={renderMenu}
@@ -113,14 +116,21 @@ onScrollToIndexFailed={ScrollFailed}
           return (  <Text style={styles.header}>{name}</Text>)
         }}
         */
-        onViewableItemsChanged={({ viewableItems }) => {
-          //  return;
+        onViewableItemsChanged={({ viewableItems,changed }) => {
+           // return;
             if(!(viewableItems[0])) return;
             if(blockUpdateIndex) return;
             if (isScrolling) return;
-            //console.log("menulist onview",viewableItems[0].section.index);
+
             const currentIndex0 = viewableItems[0].section.index;
-            if(currentIndex0 !==currentIndex) setCurrentIndex(currentIndex0);
+           //if (viewableItems[0].index<=1) return;
+            if(currentIndex0 !==currentIndex) {
+                // if(Math.abs(currentIndex0-currentIndex)>1)
+                console.log("menulist onview",viewableItems[0].section.index,currentIndex);
+              setCurrentIndex(currentIndex0);
+            }
+
+
         }}
     />
 </SafeAreaView>
