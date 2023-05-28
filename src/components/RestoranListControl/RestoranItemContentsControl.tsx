@@ -92,9 +92,9 @@ const styles = StyleSheet.create({
         padding: 20,
         justifyContent: 'center',
         //marginTop: 40,
-        width:220,
+        width:200,
         alignItems:"center",
-        transform: [{ rotate: '55deg'}],
+        transform: [{ rotate: '60deg'}],
         //width:200
     },
     item1:{
@@ -147,7 +147,7 @@ const styles = StyleSheet.create({
         verticalAlign:'center',
         shadowOpacity: 0.2,
         shadowRadius: 1.41,
-        width:180
+        width:160
         //width:140
 
     },

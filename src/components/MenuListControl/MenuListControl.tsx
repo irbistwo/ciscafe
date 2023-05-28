@@ -53,7 +53,7 @@ const MenuListController:React.FC<IProps>=({data,renderTab}:IProps)=>{
             itemIndex: e.highestMeasuredFrameIndex,
             sectionIndex: 0,
            // viewOffset: -20,
-           // viewPosition:1
+          //  viewPosition:1
         };
         console.log("MenuListControl68 scroll index failed",currentIndex,e.index,e.highestMeasuredFrameIndex);
        // setIsScrolling(true);
@@ -62,10 +62,10 @@ const MenuListController:React.FC<IProps>=({data,renderTab}:IProps)=>{
         // wait 50 ms before scrolling again to the correct section
         setTimeout(() => {
             sectionlistRef.current.scrollToLocation({
-                itemIndex: 0,
+                itemIndex: 1,
                 sectionIndex: currentIndex,
-                viewOffset: -20,
-               // viewPosition:0
+                viewOffset: 70,
+              //  viewPosition:0
             });
         }, 50);
     }

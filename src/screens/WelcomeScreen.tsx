@@ -9,6 +9,8 @@ import TabMenuCategotyItem from "../components/MenuListControl/TabMenuCategotyIt
 import {BLUE_GREEN, BROWN, LIGHT_BROWN, SUPER_LIGHT_BROWN} from "../utils/colorsConstant";
 import {scale} from "../utils/scale";
 import RestoranListControl from "../components/RestoranListControl/RestoranListControl";
+import {TakeAwayHeader} from "../components/RestoranListControl/TakeAway";
+import RadioButtonControl from "../components/RadioButtonControl/RadioButtonControl";
 
 const WellcomeScreen:React.FC = () => {
     const[currentIndex,setCurrentIndex]=useState(0);
@@ -60,9 +62,12 @@ const WellcomeScreen:React.FC = () => {
         }
     }
 
-
+const typearray=[{id:"1",name:"Dine"},{id:"2",name:"TakeOff"}];
     return (
+        <>
        <RestoranListControl data={data} onPress={(index)=>{}}/>
+<RadioButtonControl RadioButtons={typearray} selecgtedID={"2"} onSelectedButton={(item)=>{console.log("WelcomeScren68",item)}} />
+        </>
     )
 
 

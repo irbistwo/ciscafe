@@ -14,7 +14,7 @@ interface IProps {
     currentIndex: number;
     onTabPress: (index: number) => void;
 }
-const height = Dimensions.get('screen').height * 0.08;
+const height = Dimensions.get('screen').height * 0.06;
 
 
 

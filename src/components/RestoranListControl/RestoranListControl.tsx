@@ -9,6 +9,7 @@ import TabMenuControl from "../MenuListControl/TabMenuControl";
 import RestoranHeaderControl from "./RestoranHeaderControl";
 import RestoranItemContentsControl from "./RestoranItemContentsControl";
 import {scale} from "../../utils/scale";
+import {TakeAwayHeader} from "./TakeAway";
 interface IProps {
     // data:any[],
     data: SectionListData<any>[];
@@ -77,7 +78,7 @@ const RestoranListControl:React.FC<IProps>=({data}:IProps)=>{
     return (
         <SafeAreaView style={styles.container}>
             <Header /*logoStyle={logoStyle}   style={headerStyle} */  />
-
+            { /*<TakeAwayHeader/> */}
               <TabMenuControl data={data} currentIndex={currentIndex} onTabPress={onTabPress} />
           <View style={styles.list} >
             <SectionList
@@ -125,7 +126,7 @@ const RestoranListControl:React.FC<IProps>=({data}:IProps)=>{
 
 const styles = StyleSheet.create({
     list:{
-       height:scale(250)
+       height:scale(200)
     },
     container: {
         flex: 1,
