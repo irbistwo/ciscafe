@@ -29,8 +29,6 @@ const MenuListController:React.FC<IProps>=({data,renderTab}:IProps)=>{
     const [isScrolling, setIsScrolling] = useState(false);
     let blockUpdateIndex=false;
     const renderSection=({section}) => {
-        //console.log("sect",section);
-       //return(<Text style={styles.header}>{section.name} {section.start}</Text>
         return (<MenuHeaderControl sectionItem={section} />);
     }
 
@@ -40,16 +38,13 @@ const MenuListController:React.FC<IProps>=({data,renderTab}:IProps)=>{
         setCurrentIndex(index);
         setIsScrolling(true);
         setTimeout(()=>{
-        sectionlistRef.current.scrollToLocation({viewOffset: -20,animated:true,itemIndex: 1, sectionIndex:index});
+        sectionlistRef.current.scrollToLocation({viewOffset: 70,animated:true,itemIndex: 1, sectionIndex:index});
            // setCurrentIndex(index);
         blockUpdateIndex=false;
         },50
     );
 
-        //sectionlistRef.current.scrollToLocation({viewOffset: 0,animated:true,itemIndex: -1, sectionIndex:index});
-       // blockUpdateIndex=false;
 
-  //sectionlistRef.current.scrollToLocation({animated: true, itemIndex: 0, sectionIndex: index})
 
 
     }
@@ -57,8 +52,8 @@ const MenuListController:React.FC<IProps>=({data,renderTab}:IProps)=>{
         const params: SectionListScrollParams = {
             itemIndex: e.highestMeasuredFrameIndex,
             sectionIndex: 0,
-            viewOffset: -20,
-            viewPosition:1
+           // viewOffset: -20,
+           // viewPosition:1
         };
         console.log("MenuListControl68 scroll index failed",currentIndex,e.index,e.highestMeasuredFrameIndex);
        // setIsScrolling(true);
@@ -67,10 +62,10 @@ const MenuListController:React.FC<IProps>=({data,renderTab}:IProps)=>{
         // wait 50 ms before scrolling again to the correct section
         setTimeout(() => {
             sectionlistRef.current.scrollToLocation({
-                itemIndex: 1,
+                itemIndex: 0,
                 sectionIndex: currentIndex,
                 viewOffset: -20,
-                viewPosition:1
+               // viewPosition:0
             });
         }, 50);
     }
@@ -83,17 +78,19 @@ const MenuListController:React.FC<IProps>=({data,renderTab}:IProps)=>{
 
     return (
     <SafeAreaView style={styles.container}>
-        <Header /*logoStyle={logoStyle}   style={headerStyle} */  />
+        <Header/*logoStyle={logoStyle}   style={headerStyle} */  />
         <CartButton  />
         <TabMenuControl data={data} currentIndex={currentIndex} onTabPress={onTabPress} />
     <SectionList
         ref={sectionlistRef}
+        showsVerticalScrollIndicator={false}
         onMomentumScrollEnd={()=>(blockUpdateIndex = false)}
         onScrollEndDrag={()=>{if (isScrolling) setIsScrolling(false);}}
         viewabilityConfig={{
             minimumViewTime: 10,
             itemVisiblePercentThreshold: 10,
-            waitForInteraction:true
+            waitForInteraction:true,
+           // viewAreaCoveragePercentThreshold:50
         }}
 
 
@@ -126,7 +123,7 @@ onScrollToIndexFailed={ScrollFailed}
            //if (viewableItems[0].index<=1) return;
             if(currentIndex0 !==currentIndex) {
                 // if(Math.abs(currentIndex0-currentIndex)>1)
-                console.log("menulist onview",viewableItems[0].section.index,currentIndex);
+              //  console.log("menulist onview",viewableItems[0].section.index,currentIndex);
               setCurrentIndex(currentIndex0);
             }
 

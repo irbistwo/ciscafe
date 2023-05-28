@@ -9,6 +9,7 @@ type ContainerProps ={
     children:any;
     containerStyle?: StyleProp<ViewStyle>;
     notshowBackButton?: boolean|undefined;
+    //restoranName:string
 }
 // @ts-ignore
 const Container:React.FC<ContainerProps>=({children,notshowBackButton,containerStyle})=>{
