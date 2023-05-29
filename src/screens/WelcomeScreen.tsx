@@ -11,13 +11,15 @@ import {scale} from "../utils/scale";
 import RestoranListControl from "../components/RestoranListControl/RestoranListControl";
 import {TakeAwayHeader} from "../components/RestoranListControl/TakeAway";
 import RadioButtonControl from "../components/RadioButtonControl/RadioButtonControl";
+import Header from "../components/Container/Header";
 
 const WellcomeScreen:React.FC = () => {
     const[currentIndex,setCurrentIndex]=useState(0);
     const navigation = useNavigation();
     const [is_Loaded,setisLoaded]=useState(false);
     const [data,setData]=useState([]);
-    const { token } = useContext(CafeDataMainProviderContext);
+    const { beedtype,setBeedType } = useContext(CafeDataMainProviderContext);
+    const typearray=[{id:"Dine",name:"Dine"},{id:"TakeOut",name:"TakeAway"}];
     const navigateToTab=()=> {
         // @ts-ignore
         navigation.navigate('Menu',{ screen: 'HomePage' });
@@ -62,12 +64,17 @@ const WellcomeScreen:React.FC = () => {
         }
     }
 
-const typearray=[{id:"1",name:"Dine"},{id:"2",name:"TakeOff"}];
+    const setDineType=(item)=>{
+     beedtype.beedtype=item.id;
+        setBeedType(beedtype);
+    }
     return (
-        <>
+        <SafeAreaView style={styles.container}>
+            <Header /*logoStyle={logoStyle}   style={headerStyle} */  />
+            <RadioButtonControl RadioButtons={typearray} selecgtedID={"Dine"}
+                                onSelectedButton={setDineType} />
        <RestoranListControl data={data} onPress={(index)=>{}}/>
-<RadioButtonControl RadioButtons={typearray} selecgtedID={"2"} onSelectedButton={(item)=>{console.log("WelcomeScren68",item)}} />
-        </>
+        </SafeAreaView>
     )
 
 
@@ -117,6 +124,11 @@ const typearray=[{id:"1",name:"Dine"},{id:"2",name:"TakeOff"}];
 }
 
 const styles = StyleSheet.create({
+    container: {
+        flex: 1,
+        //  paddingTop: StatusBar.currentHeight,
+        // marginHorizontal: 16,
+    },
     welcomeview1: {
 
         //flexDirection: 'row',

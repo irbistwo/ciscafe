@@ -1,11 +1,15 @@
-export type beedType = 'Dine' | 'TakeOff';
+export type beedType = 'Dine' | 'TakeOut';
 export interface IGlobalRestoranItem {
     _id:string,
     id:number,
     name:string
     beedtype?:beedType
 }
-
+export interface IBeedType {
+    beedtype:beedType,
+    datetime?:string,
+    time?:string
+}
 /*
 export interface IRestoran{
     _id:string;

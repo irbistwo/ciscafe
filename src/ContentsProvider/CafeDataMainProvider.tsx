@@ -4,7 +4,7 @@ import React, {createContext, useEffect, useState} from 'react';
 
 import eventEmitAuth from "./EventEmitAuth";
 import AsyncStorage from "@react-native-async-storage/async-storage";
-import {IGlobalRestoranItem} from "./ITypeForProvider";
+import {IBeedType, IGlobalRestoranItem} from "./ITypeForProvider";
 /* in This contenxt saved main items-values such as
 * choosen restoran ,order, auth user paycontents and speading this values on all app
 *  */
@@ -15,7 +15,7 @@ export const CafeDataMainProvider = ({children}) => {
     const [order, setOrder] = useState<any>([]);
     const [token, setToken] = useState<string>(null);
 const [restoranGlobalContext,setRestoranGlobalContext]=useState<IGlobalRestoranItem>(null)
-
+const[beedtype,setBeedType]=useState<IBeedType>({beedtype:"Dine"});
     useEffect(()=>{
         if(user) return;
         const profile= AsyncStorage.getItem("user");
@@ -30,7 +30,7 @@ const [restoranGlobalContext,setRestoranGlobalContext]=useState<IGlobalRestoranI
         })
     },[user])
     return (
-        <CafeDataMainProviderContext.Provider value={{user,setUser,order,setOrder,token,
+        <CafeDataMainProviderContext.Provider value={{user,setUser,order,setOrder,token,beedtype,setBeedType,
             restoranGlobalContext,setRestoranGlobalContext,
             googleLogin: async () => {
                 try {

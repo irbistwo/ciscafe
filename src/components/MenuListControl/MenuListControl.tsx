@@ -11,6 +11,7 @@ import {scale} from "../../utils/scale";
 import Header from "../Container/Header";
 import CartButton from "../Container/CartButton";
 import {CafeDataMainProviderContext} from "../../ContentsProvider/CafeDataMainProvider";
+import BeedTypeButton from "../Container/BeedTypeButton";
 
 
 interface IProps {
@@ -80,6 +81,7 @@ const MenuListController:React.FC<IProps>=({data,renderTab}:IProps)=>{
     <SafeAreaView style={styles.container}>
         <Header/*logoStyle={logoStyle}   style={headerStyle} */  />
         <CartButton  />
+        <BeedTypeButton/>
         <TabMenuControl data={data} currentIndex={currentIndex} onTabPress={onTabPress} />
     <SectionList
         ref={sectionlistRef}

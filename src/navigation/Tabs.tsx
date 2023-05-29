@@ -53,13 +53,21 @@ const Tabs=()=>{
                             require('../assets/images/bottom-nav/hijem.png');
                         return tabBottom(icon,"Welcome");
 
-                    } else if (route.name === 'Profile'){
+                    }
+                    if (route.name === 'Menu'){
+                        color = focused ? '#3a86fe' : 'white'
+                        //  iconName = 'compass'
+                        const icon=focused?require('../assets/images/bottom-nav/bestil-select.png'):
+                            require('../assets/images/bottom-nav/bestil.png');
+                        return tabBottom(icon,"Menu");
+                    }
+                    else if (route.name === 'Profile'){
                         color = focused ? '#3a86fe' : 'white'
                       //  iconName = 'compass'
                         const icon=focused?require('../assets/images/bottom-nav/profil-select.png'):
                             require('../assets/images/bottom-nav/profil.png');
                         return tabBottom(icon,"Profile");
-                    } else if (route.name === 'Menu'){
+                    } else if (route.name === 'Menu0'){
                         color = focused ? '#3a86fe' : 'white'
                       //  iconName =
                         iconName = 'book'

@@ -10,6 +10,7 @@ import RestoranHeaderControl from "./RestoranHeaderControl";
 import RestoranItemContentsControl from "./RestoranItemContentsControl";
 import {scale} from "../../utils/scale";
 import {TakeAwayHeader} from "./TakeAway";
+import RadioButtonControl from "../RadioButtonControl/RadioButtonControl";
 interface IProps {
     // data:any[],
     data: SectionListData<any>[];
@@ -22,6 +23,7 @@ const RestoranListControl:React.FC<IProps>=({data}:IProps)=>{
     const sectionlistRef = useRef<SectionList>();
     const [isScrolling, setIsScrolling] = useState(false);
     let blockUpdateIndex=false;
+
     const renderSection=({section}) => {
         //console.log("sect",section);
         //return(<Text style={styles.header}>{section.name} {section.start}</Text>
@@ -75,9 +77,11 @@ const RestoranListControl:React.FC<IProps>=({data}:IProps)=>{
         )
     }
 
+
     return (
-        <SafeAreaView style={styles.container}>
-            <Header /*logoStyle={logoStyle}   style={headerStyle} */  />
+       <View>
+
+
             { /*<TakeAwayHeader/> */}
               <TabMenuControl data={data} currentIndex={currentIndex} onTabPress={onTabPress} />
           <View style={styles.list} >
@@ -120,7 +124,7 @@ const RestoranListControl:React.FC<IProps>=({data}:IProps)=>{
                 }}
             />
           </View>
-        </SafeAreaView>
+       </View>
     )
 }
 
