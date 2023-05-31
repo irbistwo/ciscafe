@@ -8,8 +8,9 @@ import OrderPayment from "../screens/OrderPayment";
 import {CafeDataMainProviderContext} from "../ContentsProvider/CafeDataMainProvider";
 import ProfileMain from "../screens/ProfileMain";
 import {AuthStack} from "./AuthStack";
-import MenuListController from "../components/MenuListControl/MenuListControl";
-import WellcomeScreen from "../screens/WelcomeScreen";
+import ChooseRestoran from "../components/RestoranListControl/ChooseRestoran";
+//import MenuListController from "../components/MenuListControl/MenuListControl";
+//import WellcomeScreen from "../screens/WelcomeScreen";
 /*
 import Boseman from "../screens/Home/Boseman";
 import Search from '../screens/Home/Search';
@@ -24,8 +25,9 @@ import Osaka from '../screens/Home/Osaka';
 
 const Stack = createStackNavigator();
 const HomePr=()=>{
+    const { restoranGlobalContext } = useContext(CafeDataMainProviderContext);
     return (
-        <ToastProvider><Home/></ToastProvider>
+        restoranGlobalContext===null?<ChooseRestoran/>:  <ToastProvider><Home/></ToastProvider>
 
     )
 }

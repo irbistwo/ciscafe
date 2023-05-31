@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useContext, useEffect, useState} from 'react';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import Icon from 'react-native-vector-icons/Feather';
 import DrawerStack from "./DraverStack";
@@ -8,6 +8,7 @@ import ProfileStack from "./ProfileStack";
 import WelcomeScreen from "../screens/WelcomeScreen";
 import HomeStack from "./HomeStack";
 import WelcomeStack from "./WelcomeStack";
+import {CafeDataMainProviderContext} from "../ContentsProvider/CafeDataMainProvider";
 
 
 
@@ -37,7 +38,6 @@ const tabBottom=(icon:any,text:string)=>(
 ))
 
 const Tabs=()=>{
-    //const Tab = createBottomTabNavigator();
     return (
         <Tab.Navigator
             initialRouteName='Home'

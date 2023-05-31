@@ -12,14 +12,15 @@ import RestoranListControl from "../components/RestoranListControl/RestoranListC
 import {TakeAwayHeader} from "../components/RestoranListControl/TakeAway";
 import RadioButtonControl from "../components/RadioButtonControl/RadioButtonControl";
 import Header from "../components/Container/Header";
+import {typearray} from "../ContentsProvider/ITypeForProvider";
 
 const WellcomeScreen:React.FC = () => {
     const[currentIndex,setCurrentIndex]=useState(0);
     const navigation = useNavigation();
     const [is_Loaded,setisLoaded]=useState(false);
     const [data,setData]=useState([]);
-    const { beedtype,setBeedType } = useContext(CafeDataMainProviderContext);
-    const typearray=[{id:"Dine",name:"Dine"},{id:"TakeOut",name:"TakeAway"}];
+    const { beedtype,setBeedType,setRestoranList } = useContext(CafeDataMainProviderContext);
+
     const navigateToTab=()=> {
         // @ts-ignore
         navigation.navigate('Menu',{ screen: 'HomePage' });
@@ -50,8 +51,9 @@ const WellcomeScreen:React.FC = () => {
             })
             */
             //const datatemp= data0.map((item,index) => ({...item, index}));
-               console.log(data1);
+              // console.log(data1);
             setData(data1);
+            setRestoranList(data1);//SaveGlobal For component ChoseRestoran
             setisLoaded(true);
         }catch(e){
             console.log("Hone39 catch");
@@ -90,37 +92,7 @@ const WellcomeScreen:React.FC = () => {
             }, 50
         );
     }
-    /*
-    return (
-        <Container notshowBackButton={true}
-                   containerStyle={ {backgroundColor: SUPER_LIGHT_BROWN}}>
 
-        <FlatList
-           // ref={flatlistRef}
-           // horizontal={true}
-            keyExtractor={(item, index) => index.toString()}
-            showsHorizontalScrollIndicator={false}
-            showsVerticalScrollIndicator={false}
-            style={styles.tabsContainer}
-            contentContainerStyle={{paddingRight: 10}}
-            data={data}
-            renderItem={({item}:any) => {
-                //  console.log("TabMenuControl39 ",item.name,item.index,selectedCategory)
-                return (
-                    <TabMenuCategotyItem
-                        // onSelectCatrgory={onSelectCategory}
-                        tabItem={item}
-                        isSelected={item.index === currentIndex}
-                        onPress={onTabPress}
-
-                    />)
-            }}
-
-        />
-
-        </Container>
-    )
-    */
 }
 
 const styles = StyleSheet.create({

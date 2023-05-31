@@ -10,6 +10,7 @@ export interface IBeedType {
     datetime?:string,
     time?:string
 }
+export const typearray=[{id:"Dine",name:"Dine"},{id:"TakeOut",name:"TakeAway"}];
 /*
 export interface IRestoran{
     _id:string;

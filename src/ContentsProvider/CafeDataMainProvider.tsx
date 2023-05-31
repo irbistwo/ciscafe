@@ -13,6 +13,7 @@ export const CafeDataMainProviderContext:React.Context<any> = createContext({});
 export const CafeDataMainProvider = ({children}) => {
     const [user, setUser] = useState<string>(null);
     const [order, setOrder] = useState<any>([]);
+    const [restoranList, setRestoranList] = useState<any>([]);
     const [token, setToken] = useState<string>(null);
 const [restoranGlobalContext,setRestoranGlobalContext]=useState<IGlobalRestoranItem>(null)
 const[beedtype,setBeedType]=useState<IBeedType>({beedtype:"Dine"});
@@ -31,7 +32,7 @@ const[beedtype,setBeedType]=useState<IBeedType>({beedtype:"Dine"});
     },[user])
     return (
         <CafeDataMainProviderContext.Provider value={{user,setUser,order,setOrder,token,beedtype,setBeedType,
-            restoranGlobalContext,setRestoranGlobalContext,
+            restoranGlobalContext,setRestoranGlobalContext,restoranList,setRestoranList,
             googleLogin: async () => {
                 try {
                    // const { idToken } = await GoogleSignin.signIn();
