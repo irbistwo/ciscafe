@@ -75,7 +75,7 @@ const WellcomeScreen:React.FC = () => {
             <Header /*logoStyle={logoStyle}   style={headerStyle} */  />
             <RadioButtonControl RadioButtons={typearray} selecgtedID={"Dine"}
                                 onSelectedButton={setDineType} />
-       <RestoranListControl data={data} onPress={(index)=>{}}/>
+       <RestoranListControl data={data} is_horisontal={true} onPress={(index)=>{}}/>
         </SafeAreaView>
     )
 

@@ -14,10 +14,10 @@ const ChooseRestoran=()=>{
     }
     return (
         <SafeAreaView style={styles.container}>
-          
+
             <RadioButtonControl RadioButtons={typearray} selecgtedID={"Dine"}
                                 onSelectedButton={setDineType} />
-            <RestoranListControl data={restoranList} onPress={(index)=>{}}/>
+            <RestoranListControl data={restoranList} onPress={(index)=>{}} is_horisontal={false}/>
         </SafeAreaView>
     )
 }

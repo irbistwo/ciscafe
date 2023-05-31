@@ -45,4 +45,5 @@ alignItems:'center',
  //width: scale(120)
     }
 });
-export default Header;
+const HeaderMemo=React.memo(Header);
+export default HeaderMemo;

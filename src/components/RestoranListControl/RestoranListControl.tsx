@@ -15,9 +15,10 @@ interface IProps {
     // data:any[],
     data: SectionListData<any>[];
     onPress: (index: number) => void;
+    is_horisontal:boolean;
 }
 
-const RestoranListControl:React.FC<IProps>=({data}:IProps)=>{
+const RestoranListControl:React.FC<IProps>=({data,is_horisontal}:IProps)=>{
     const[currentIndex,setCurrentIndex]=useState(0);
     const[currentIndexonTab,setCurrentIndexOnTab]=useState(0);
     const sectionlistRef = useRef<SectionList>();
@@ -77,16 +78,16 @@ const RestoranListControl:React.FC<IProps>=({data}:IProps)=>{
         )
     }
 
-
+const liststyle={height:is_horisontal?scale(200):"90%"};
     return (
        <View>
 
 
             { /*<TakeAwayHeader/> */}
               <TabMenuControl data={data} currentIndex={currentIndex} onTabPress={onTabPress} />
-          <View style={styles.list} >
+          <View style={liststyle} >
             <SectionList
-                horizontal={true}
+                horizontal={is_horisontal}
                 ref={sectionlistRef}
                 onMomentumScrollEnd={() => (blockUpdateIndex = false)}
                 onScrollEndDrag={()=>{if (isScrolling) setIsScrolling(false);}}
