@@ -74,11 +74,11 @@ const RestoranListControl:React.FC<IProps>=({data,is_horisontal}:IProps)=>{
     const renderMenu=({item}) => {
         //  console.log("item menulist 27 ",item)
         return (
-            <RestoranItemContentsControl restoranItem={item}/>
+            <RestoranItemContentsControl is_horisontal={is_horisontal} restoranItem={item}/>
         )
     }
 
-const liststyle={height:is_horisontal?scale(200):"90%"};
+const liststyle={height:is_horisontal?scale(200):"80%"};
     return (
        <View>
 

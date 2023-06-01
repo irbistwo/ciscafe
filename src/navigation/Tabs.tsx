@@ -43,7 +43,7 @@ const Tabs=()=>{
             initialRouteName='Home'
             screenOptions={({ route }) => ({
                 headerShown: false,
-                tabBarStyle: {elevation: 0, borderTopWidth: 0, backgroundColor: '#eae3d2'},
+                tabBarStyle: {elevation: 0, borderTopWidth: 0, backgroundColor: '#eae3d2',unmountOnBlur:true},
                 tabBarIcon: ({ focused, color}) => {
                     let iconName:string;
                     if (route.name === 'Welcome'){
