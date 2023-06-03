@@ -53,8 +53,8 @@ const ProfileStack = () => {
             screenOptions={{ headerShown: false }}
         >
             <Stack.Screen name='ProfilePage' component={ProfileMainAuth} />
-            <Stack.Screen name='ProfilePagea' component={ProfileMain} />
-            {/*  <Stack.Screen name='MenuDetail' component={MenuDetail} />
+            {/*   <Stack.Screen name='ProfilePagea' component={ProfileMain} />
+           <Stack.Screen name='MenuDetail' component={MenuDetail} />
             <Stack.Screen name='OrderContents' component={OrderContents} />
             <Stack.Screen name='OrderPayment' component={OrderPayment} />
             {/* <Stack.Screen name='Rajasthan' component={Rajasthan} />
