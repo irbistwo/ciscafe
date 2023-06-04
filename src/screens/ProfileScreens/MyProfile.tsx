@@ -5,7 +5,8 @@ import {useNavigation} from '@react-navigation/core';
 import Container from '../../components/Container/Container';
 import {scale} from "../../utils/scale";
 import SignupInfo from "../AuthScreens/SignupInfo";
-import {BLUE_GREEN, LINE_COLOR} from "../../utils/colorsConstant";
+import {BLUE_GREEN, BROWN, LIGHT_BROWN, LINE_COLOR} from "../../utils/colorsConstant";
+import Button from "../../components/ButtonControl/Button";
 
 interface FavCafe {
     name: string;
@@ -108,6 +109,9 @@ const MyProfile = () => {
         updateForm['favCafe'] = {name: favCafe.name, restaurantId: favCafe.id,id:favCafe.id};
         setInputForm(updateForm);
     };
+const onSave=()=>{
+
+}
 
     return (
         <Container>
@@ -170,6 +174,14 @@ const MyProfile = () => {
                         onChangeText={(text) => updateInfo('howManyAgeUnder13', text)}
                         autoComplete={undefined}
                     />
+                    {
+                        // @ts-ignore
+                    <Button onPress={onSave} variant="outlined" style={styles.button}>
+                        <Text style={[styles.sm_hermes_regular]}>
+                            {locale.t('save')}
+                        </Text>
+                    </Button>
+                    }
                 </View>
                 <View
                     style={{
@@ -233,6 +245,15 @@ const styles = StyleSheet.create({
         fontFamily: 'Hermes-Regular',
         fontSize: scale(15),
         color: BLUE_GREEN,
+    },
+    button:{
+        width: scale(160),
+        borderRadius: 5,
+      //  marginVertical: 10,
+       // paddingVertical: 5,
+      //  marginLeft: 'auto',
+        backgroundColor: BROWN,
+
     },
 });
 export default MyProfile;

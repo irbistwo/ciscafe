@@ -1,5 +1,6 @@
 import React, {useEffect, useRef, useState} from 'react';
 import {
+    ActivityIndicator,
     Animated, Image,
     SectionList,
     SectionListScrollParams, StyleSheet, View,
@@ -39,6 +40,7 @@ const LoadingWait = () => {
                     source={require('../../assets/images/loading.png')}
                 />
             </View>
+            <ActivityIndicator size="large"  color="#00ff00" />
         </>
     );
 };

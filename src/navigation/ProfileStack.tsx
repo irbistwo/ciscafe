@@ -5,6 +5,7 @@ import {AuthStack} from "./AuthStack";
 import {CafeDataMainProviderContext} from "../ContentsProvider/CafeDataMainProvider";
 import Login from "../screens/AuthScreens/Login";
 import MyProfile from "../screens/ProfileScreens/MyProfile";
+import OrderReestr from "../screens/ProfileScreens/OrderReestr";
 /*
 import Boseman from "../screens/Home/Boseman";
 import Search from '../screens/Home/Search';
@@ -55,8 +56,8 @@ const ProfileStack = () => {
         >
             <Stack.Screen name='ProfilePage' component={ProfileMainAuth} />
          <Stack.Screen name='MyProfile' component={MyProfile} />
-           {/*<Stack.Screen name='MenuDetail' component={MenuDetail} />
-            <Stack.Screen name='OrderContents' component={OrderContents} />
+           <Stack.Screen name='OrderReestr' component={OrderReestr} />
+           {/* <Stack.Screen name='OrderContents' component={OrderContents} />
             <Stack.Screen name='OrderPayment' component={OrderPayment} />
             {/* <Stack.Screen name='Rajasthan' component={Rajasthan} />
             <Stack.Screen name='TianTan' component={TianTan} />

@@ -30,9 +30,9 @@ const ProfileMain=()=>{
                 navigationKey={'MyProfile'}
             />
             <ProfileMenuItem
-                title={('receipts')}
+                title={('orderhistory')}
                 onPressNavigation={navigateToPage}
-                navigationKey={'OrderHistory'}
+                navigationKey={'OrderReestr'}
             />
             <ProfileMenuItem
                 onPressNavigation={navigateToPage}

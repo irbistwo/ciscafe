@@ -115,24 +115,11 @@ const OrderItem: React.FC<OrderItemProps> = ({item,removeItem}) => {
                 useNativeDriver: false,
             }),
         ]).start(() => {
-            // dispatch(removeFromCart({cartId: item.cartId}));
-           // order.remove(item);
-            //console.log("OrderItem113",order);
-          /*  var index = order.indexOf(item);
-            if (index > -1) {
-                order.splice(index, 1);
-                setOrder(order);
-            }
-            */
+
 removeItem(item);
         });
     };
-
-    /*const extras = useMemo(
-        () => item.extras?.filter((x) => !!x.qty) ?? [],
-        [item.extras],
-    )
-    */
+    
 
 const extras=  useCallback(() => (item.extras?.filter((x) => !!x.qty) ?? []),[item.extras]);
 
