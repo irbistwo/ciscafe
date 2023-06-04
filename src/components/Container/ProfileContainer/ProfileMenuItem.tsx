@@ -2,6 +2,7 @@ import React from 'react';
 import {Image, StyleSheet, Text, TouchableOpacity, View, ViewStyle} from 'react-native';
 import {BLUE_GREEN, LINE_COLOR} from "../../../utils/colorsConstant";
 import {scale} from "../../../utils/scale";
+import container from "../Container";
 
 
 interface ProfileMenuItemProps {
@@ -44,20 +45,13 @@ export const ProfileMenuItem = ({
     return (
         <TouchableOpacity
             onPress={onClick}
-            style={[styles.row, extraContainerStyle]}>
-            <Text style={[styles.sm_hermes_regular, {fontSize: 17}]}>
+            style={[styles.row, extraContainerStyle,styles.container]}>
+            <Text style={[styles.sm_hermes_regular]}>
                 {title}
             </Text>
             {pointsView}
             <Image
-                style={{
-                    tintColor: '#918D80',
-                    marginLeft: 'auto',
-                    width: 15,
-                    height: 15,
-                    transform: [{rotate: '270deg'}],
-                    resizeMode: 'contain',
-                }}
+                style={styles.image}
                 source={require('../../../assets/images/down-arrow.png')}
             />
         </TouchableOpacity>
@@ -67,21 +61,30 @@ export const ProfileMenuItem = ({
 const styles = StyleSheet.create({
     sm_hermes_regular: {
         fontFamily: 'Hermes-Regular',
-        fontSize: scale(15),
+        fontSize: scale(20),
         color: BLUE_GREEN,
     },
-
+image:{
+    tintColor: '#918D80',
+    marginLeft: 'auto',
+    width: 15,
+    height: 15,
+    transform: [{rotate: '270deg'}],
+    resizeMode: 'contain',
+},
     container: {
         alignItems: 'center',
     },
     row: {
         flexDirection: 'row',
-        width: '100%',
+        width: '90%',
         borderBottomWidth: 1,
         paddingBottom: 3,
         paddingTop: 17,
         borderBottomColor: LINE_COLOR,
         marginBottom: 15,
+       marginLeft:scale(25),
+        //marginRight:40
     },
 
     editButton: {

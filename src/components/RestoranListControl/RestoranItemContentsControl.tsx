@@ -44,7 +44,7 @@ const RestoranItemContentsControl:React.FC<IProps>=({restoranItem,is_horisontal}
 const restorancontext:IGlobalRestoranItem={_id:restoranItem._id,id:restoranItem.id,name:restoranItem.Name};
 setRestoranGlobalContext(restorancontext)
        // const tonavigate='MenuDetail0';
-        const state = navigation.getState();
+       // const state = navigation.getState();
 
      /*   state.routes.forEach((route, tabIndex) => {
             if (state?.index !== tabIndex && route.state?.index > 0) {
@@ -52,7 +52,7 @@ setRestoranGlobalContext(restorancontext)
             }
         });
 */
-        navigation.dispatch(
+     if(restoranGlobalContext/*not firstuse*/)   navigation.dispatch(
             CommonActions.reset({
               //  index:2,
                 routes:[{name:'HomePage'}]

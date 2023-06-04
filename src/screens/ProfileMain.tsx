@@ -27,7 +27,7 @@ const ProfileMain=()=>{
             <ProfileMenuItem
                 title={('my_information')}
                 onPressNavigation={navigateToPage}
-                navigationKey={'MyInformation'}
+                navigationKey={'MyProfile'}
             />
             <ProfileMenuItem
                 title={('receipts')}
