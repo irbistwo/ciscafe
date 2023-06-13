@@ -1,4 +1,4 @@
-function formatter2(date:Date):string{
+export function formatter2(date:Date):string{
     if (!date){return '';}
     // console.log(date);
     var y = date.getFullYear();
@@ -11,7 +11,7 @@ function formatter2(date:Date):string{
     return sd;
 }
 
-function formatterR(date:Date):string{
+export function formatterR(date:Date):string{
     if (!date){return '';}
     // console.log(date);
     var y = date.getFullYear();

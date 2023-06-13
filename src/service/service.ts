@@ -1,5 +1,6 @@
 //const api = 'https://vivaldi-backend.azurewebsites.net/api/';
-const api = 'http://158.101.204.112/api/';
+//const api = 'http://158.101.204.112/api/';
+const api = 'http://192.168.0.102:3001/api/';
 export const sendPostData=(postname:string,arraytosend:any)=> {
     const url=api+postname;
     return new Promise<string>((resolve,reject)=> {

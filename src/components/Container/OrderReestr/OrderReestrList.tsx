@@ -35,7 +35,7 @@ const OrderReestrList:React.FC<IProps>=({data, currentIndex,onPress}: IProps) =>
         <Container>
             <BoxShadow setting={styles.shadowOpt}>
                 <View>
-
+                 <Text style={styles.textheader}>Orders</Text>
                     <FlatList
                         ref={flatlistRef}
                         horizontal={false}
@@ -66,6 +66,11 @@ const OrderReestrList:React.FC<IProps>=({data, currentIndex,onPress}: IProps) =>
 }
 
 const styles = StyleSheet.create({
+    textheader:{
+        textAlign: 'center',
+        marginBottom:scale(10),
+        fontSize: scale(18),
+    },
     tabscontainer: {
         flexDirection: 'row',
         justifyContent: 'center',

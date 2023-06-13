@@ -6,6 +6,7 @@ import {CafeDataMainProviderContext} from "../ContentsProvider/CafeDataMainProvi
 import Login from "../screens/AuthScreens/Login";
 import MyProfile from "../screens/ProfileScreens/MyProfile";
 import OrderReestr from "../screens/ProfileScreens/OrderReestr";
+import OrderUserContents from "../screens/ProfileScreens/OrderUserContents";
 /*
 import Boseman from "../screens/Home/Boseman";
 import Search from '../screens/Home/Search';
@@ -57,8 +58,8 @@ const ProfileStack = () => {
             <Stack.Screen name='ProfilePage' component={ProfileMainAuth} />
          <Stack.Screen name='MyProfile' component={MyProfile} />
            <Stack.Screen name='OrderReestr' component={OrderReestr} />
-           {/* <Stack.Screen name='OrderContents' component={OrderContents} />
-            <Stack.Screen name='OrderPayment' component={OrderPayment} />
+            <Stack.Screen name='OrderUserContents' component={OrderUserContents} />
+            {/*<Stack.Screen name='OrderPayment' component={OrderPayment} />
             {/* <Stack.Screen name='Rajasthan' component={Rajasthan} />
             <Stack.Screen name='TianTan' component={TianTan} />
             <Stack.Screen name='SierraNevada' component={SierraNevada} />

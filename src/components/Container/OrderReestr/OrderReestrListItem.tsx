@@ -6,16 +6,19 @@ import {
 
 import {useNavigation} from "@react-navigation/native";
 import {scale} from "../../../utils/scale";
-import {BLUE_GREEN, BROWN, ORANGE, WHITE} from "../../../utils/colorsConstant";
+import {ARROW_COLOR, BLUE_GREEN, BROWN, LINE_COLOR, ORANGE, WHITE} from "../../../utils/colorsConstant";
+import {formatterR} from "../../../utils/utilsdate";
 
 
 interface IMenuContentsItem {
-    _id:string,
+    _id:string;
     name:string;
+    restaurant:string,
   databook:string;
     description:string;
-
+    date:string;
     summa?:number;
+    totalAmount:number;
 }
 interface IProps {
     // data:any[],
@@ -26,7 +29,8 @@ interface IProps {
 const OrderReestrLisyItem:React.FC<IProps>=({orderItem}:IProps)=>{
     const navigation = useNavigation();
     //  const[orderQty]=useState(0);
-
+// @ts-ignore
+    const date=new Date(orderItem.date);
 
    // const {setToastMessage,setToastErrorMessage}=useContext<any>(ToastContext);
 
@@ -36,40 +40,39 @@ const OrderReestrLisyItem:React.FC<IProps>=({orderItem}:IProps)=>{
     const onPress=()=>{
 
 
-        const tonavigate='OrderDetail';
+        const tonavigate='OrderUserContents';
         // @ts-ignore
         navigation.navigate(tonavigate, {
-            OrderItem: orderItem,
-            isNew: true,
+            orderItem: orderItem,
+
           //  onOrderCallBack: onOrderAddedCallback,
         });
     }
 
    return (
-        <TouchableOpacity onPress={onPress} style={[styles.menuContainer]}>
-            <View style={styles.item}>
-                <View style={styles.row}>
+       <TouchableOpacity
+           onPress={onPress}
+           style={[styles.row, styles.itemContainer]}>
+           <Text style={[styles.xs_hermes_regular, {flex: 1}]}>
+               {/*format(new Date(orderItem.date), 'MM.dd.yyyy') */}
+               {/*formatterR(orderItem.date)*/}
+               {formatterR(date)}
+           </Text>
 
-                    <Text style={styles.md_hermes_regular}>{orderItem.name}</Text>
-                    <Text style={styles.md_hermes_regular}> {orderItem.databook} </Text>
+           <Text style={[styles.sm_hermes_regular, {flex: 2}]}>
+               {orderItem.restaurant}
+           </Text>
 
-                </View>
-                <View style={[styles.row, {marginTop: 2}]}>
-                    {/* DESCRIPTION */}
-                    <Text
-                        numberOfLines={2}
-                        style={[styles.sm_hermes_regular, {flex: 10}]}>
-                        {orderItem.description}
-                    </Text>
-                    <Text
-                        style={[
-                            styles.sm_hermes_regular,{flex: 3, textAlign: 'right', fontSize: 20},
-                        ]}>
-                        {`${orderItem.summa},-`}
-                    </Text>
-                </View>
-            </View>
-        </TouchableOpacity>
+           <Text style={[styles.xs_hermes_regular, {marginLeft: 'auto'}]}>
+               {/*`${order.pointsEarned ?? 0} ${locale.t('point')}` */}
+               {orderItem.totalAmount}
+           </Text>
+
+           <Image
+               source={require('../../../assets/images/down-arrow.png')}
+               style={styles.rightArrow}
+           />
+       </TouchableOpacity>
     )
 }
 
@@ -88,11 +91,7 @@ const styles = StyleSheet.create({
         padding: 20,
         marginVertical: 4,
     },
-    row: {
-        flexDirection: 'row',
-        alignItems: 'center',
-        paddingRight: scale(5)
-    },
+
     sm_hermes_regular: {
         fontFamily: 'Hermes-Regular',
         fontSize: scale(13),
@@ -107,36 +106,39 @@ const styles = StyleSheet.create({
 
 
     },
+    xs_hermes_regular: {
+        fontFamily: 'Hermes-Regular',
+        fontSize: scale(15),
+        color: BLUE_GREEN,
+    },
     xxs_sm_hermes_bold: {
         fontFamily: 'Hermes-Bold',
         fontSize: scale(8),
         color: WHITE,
     },
-    promoMenu: {
-        backgroundColor: BLUE_GREEN,
-        position: 'absolute',
-        top: 0,
-        right: 0,
-        borderRadius: 5,
-        opacity: 0.6,
-        overflow: 'hidden',
-        padding: 3,
+    content: {
+        display: 'flex',
     },
-
-    menuContainer: {
-        backgroundColor: BROWN,
-        padding: 10,
-        marginBottom: 10,
-        borderRadius: 10,
-        shadowColor: '#000',
-        shadowOffset: {
-            width: 0,
-            height: 1,
-        },
-        shadowOpacity: 0.2,
-        shadowRadius: 1.41,
-
-
+    row: {
+        display: 'flex',
+        flexDirection: 'row',
+    },
+    itemContainer: {
+        paddingVertical: 5,
+        marginBottom: 25,
+        borderBottomColor: LINE_COLOR,
+        borderBottomWidth: 1,
+    },
+    rightArrow: {
+        tintColor: ARROW_COLOR,
+        width: scale(12),
+        height: scale(12),
+        marginLeft: 10,
+        transform: [
+            {
+                rotate: '270deg',
+            },
+        ],
     },
 })
 const OrderReestrLisyItemMemo= React.memo(OrderReestrLisyItem)

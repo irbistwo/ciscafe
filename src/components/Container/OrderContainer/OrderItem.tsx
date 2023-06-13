@@ -52,6 +52,7 @@ interface IMenuContentsItem {
 type OrderItemProps = {
     item: IMenuContentsItem;
     removeItem:(item:IMenuContentsItem)=>void;
+    is_payedorder?:boolean
 };
 
 const calculateAttributeTotal = (
@@ -92,17 +93,19 @@ const calculateAttributeTotal = (
 
     return extrasTotal;
 };
-const OrderItem: React.FC<OrderItemProps> = ({item,removeItem}) => {
+const OrderItem: React.FC<OrderItemProps> = ({item,removeItem,is_payedorder}) => {
    // const {order,setOrder}=useContext<any>(CafeDataMainProviderContext);
     const removeItemAnimation = useRef(new Animated.Value(0)).current;
     const fadeAnim = useRef(new Animated.Value(1)).current;
     const navigation = useNavigation();
     const onEdit = () => {
+        if(is_payedorder) return;
         // @ts-ignore
         navigation.navigate('MenuDetail', {menuItem: item, isNew: false});
     };
 
     const onRemove = () => {
+        if(is_payedorder) return;
         Animated.parallel([
             Animated.timing(removeItemAnimation, {
                 toValue: Dimensions.get('window').width * -1,
@@ -198,23 +201,7 @@ const extras=  useCallback(() => (item.extras?.filter((x) => !!x.qty) ?? []),[it
 
             {/* EXTRAS */}
 
-            {/*extras().length > 0 && (
-                <View
-                    style={[
-                        styles.row,
-                        {alignItems: 'flex-start', marginLeft: 20, marginTop: 20},
-                    ]}>
-                    <Text style={[styles.sm_hermes_regular, {flex: 1}]}>
-                        {'extras'}
-                    </Text>
-                    <View style={{flex: 5}}>
-                        {extras().map((xtra) => (
-                            <ExtraItemForOrder key={xtra._id} extra={xtra}/>
-                        ))}
-                    </View>
-                </View>
-            )
-            */}
+
 
 
             <ExtraOrderContainer extraarray={item.extras} />
