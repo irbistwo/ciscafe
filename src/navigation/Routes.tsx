@@ -1,14 +1,15 @@
 import React, { useContext, useState, useEffect } from 'react';
 import { NavigationContainer } from '@react-navigation/native';
 import {CafeDataMainProviderContext} from "../ContentsProvider/CafeDataMainProvider";
-import {AuthStack} from "./AuthStack";
 //import WelcomeScreen from "../screens/WelcomeScreen'";
 import Tabs from "./Tabs";
+import {CafeAuthProviderContext} from "../ContentsProvider/CafeAuthProvider";
 
 export default function Routes() {
-    const {user, setUser,emiterauth} = useContext<any>(CafeDataMainProviderContext);
+    const {user, setUser,emiterauth} = useContext<any>(CafeAuthProviderContext);
     const [initializing, setInitializing] = useState(true);
     console.log("routers8");
+
     const onAuthStateChanged = (user:string) => {
         console.log("Router22 mewuser",user);
          setUser(user);
@@ -17,10 +18,9 @@ export default function Routes() {
 
     useEffect(() => {
         emiterauth.on("user",(user)=>onAuthStateChanged(user) );
-        /*  const subscriber = ContentsProvider().onAuthStateChanged(onAuthStateChanged);
-          return subscriber;
-          */
+
     }, []);
+
 
     //if (initializing) return null;
 

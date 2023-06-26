@@ -54,4 +54,4 @@ const ProfileMain=()=>{
         </Container>
     )
 }
-export default ProfileMain;
+export default React.memo(ProfileMain);

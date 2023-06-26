@@ -1,6 +1,6 @@
-//const api = 'https://vivaldi-backend.azurewebsites.net/api/';
+const api = 'https://vivaldi-backend.azurewebsites.net/api/';
 //const api = 'http://158.101.204.112/api/';
-const api = 'http://192.168.0.102:3001/api/';
+//const api = 'http://192.168.0.101:3001/api/';
 export const sendPostData=(postname:string,arraytosend:any)=> {
     const url=api+postname;
     return new Promise<string>((resolve,reject)=> {
@@ -64,7 +64,9 @@ export const sendGetData=(postname:string,token:string|null)=> {
             let status=response.status;
             if(status!=200) {
                 is_error=true;//throw (" error status "+status);
-                statusup=status;}
+                statusup=status;
+               // throw (" error status "+status);
+            }
             let header=response.headers.get('Content-Type');
             if(header===null){throw "Network notify error";}
 
@@ -76,11 +78,12 @@ export const sendGetData=(postname:string,token:string|null)=> {
             resolve(result);
 
         }).catch(function(ex:any) {
-            console.log('(service 67)failed', ex);
-           // throw new Error('failed send '+ ex)
+           console.log('service 81 failed', ex);
+
            // throw ('failed send error '+ ex.toString());
             //For classic reactg work throw but for RN only bellow
             reject(new Error('failed send '+ ex));
+
         });
     });
 }

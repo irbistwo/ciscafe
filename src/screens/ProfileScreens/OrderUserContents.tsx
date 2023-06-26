@@ -23,6 +23,7 @@ import Button from "../../components/ButtonControl/Button";
 import {BLUE_GREEN, WHITE} from "../../utils/colorsConstant";
 import {scale} from "../../utils/scale";
 import {inspect} from "util";
+import {CafeAuthProviderContext} from "../../ContentsProvider/CafeAuthProvider";
 //import Toast from "../components/Toast/Toast";
 
 const SCREENHEIGHT = Dimensions.get('window').height;
@@ -34,7 +35,7 @@ interface IProps {
 const OrderUserContents=({route,navigation}) =>{
     const {orderItem}=route.params;
 const id:string=orderItem._id;
-    const { token } = useContext(CafeDataMainProviderContext);
+    const { token } = useContext(CafeAuthProviderContext);
     const [data,setData]=useState([]);
 
     const [is_Loaded,setisLoaded]=useState(false);

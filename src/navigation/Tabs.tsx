@@ -5,13 +5,7 @@ import DrawerStack from "./DraverStack";
 import {Image, View,Text} from "react-native";
 import {scale} from '../utils/scale'
 import ProfileStack from "./ProfileStack";
-import WelcomeScreen from "../screens/WelcomeScreen";
-import HomeStack from "./HomeStack";
 import WelcomeStack from "./WelcomeStack";
-import {CafeDataMainProviderContext} from "../ContentsProvider/CafeDataMainProvider";
-
-
-
 
 
 const Tab = createBottomTabNavigator();

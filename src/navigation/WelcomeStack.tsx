@@ -4,8 +4,11 @@ import Login from "../screens/AuthScreens/Login";
 import WellcomeScreen from "../screens/WelcomeScreen";
 import Home from "../screens/Home";
 const Stack = createStackNavigator();
+
+
 const WelcomeStack=()=>{
     return (
+
     <Stack.Navigator
         initialRouteName="WelcomeScreen"
         screenOptions={{
@@ -19,6 +22,7 @@ const WelcomeStack=()=>{
         <Stack.Screen name="SetPhotoName" component={SetPhotoName} />
         */}
     </Stack.Navigator>
+
     )
 }
 export default WelcomeStack;

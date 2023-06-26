@@ -39,6 +39,7 @@ if(!isNew) {message=`${menuItem.name} = ${menuItem.qty} updated to order`;
     const neworder=[...order];
     setOrder(neworder);
     navigation.goBack();
+   // setTimeout(()=>setOrder(neworder),10);
     onOrderCallBack?.();
 return;
 }
@@ -51,8 +52,9 @@ return;
     // console.log("Menudetail37",pushedmenu,pushedmenu.options)
    //if(pushedmenu.attributes.options)  pushedmenu.attributes.options=[...pushedmenu.attributes.options];
 neworder.push(pushedmenu);
-setOrder(neworder);
      navigation.goBack();
+     setTimeout(()=>setOrder(neworder),10);
+     //setOrder(neworder);
      onOrderCallBack?.(message);
 
  }

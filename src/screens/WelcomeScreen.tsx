@@ -36,6 +36,9 @@ const WellcomeScreen:React.FC = () => {
     const get_data=async()=>{
        // const url:string="/mobile/restaurant/fetch";
         const url:string="/places/fetch";
+        let is_cicly=true;
+        let iteration=0;
+        while (is_cicly)
         try {
             // @ts-ignore
          //   const result = await sendPostData(url,{});
@@ -52,12 +55,18 @@ const WellcomeScreen:React.FC = () => {
             */
             //const datatemp= data0.map((item,index) => ({...item, index}));
               // console.log(data1);
+            is_cicly=false;
             setData(data1);
             setRestoranList(data1);//SaveGlobal For component ChoseRestoran
             setisLoaded(true);
         }catch(e){
-            console.log("Hone39 catch");
-
+            console.log("Welcome59 catch",e.toString());
+            is_cicly=false;
+if(e.toString().includes("Network"))  {console.log("Welcome59 network error catch");
+iteration++;
+    await new Promise(r => setTimeout(r, 500));
+ is_cicly=(iteration<=3);
+}
           //  setToastErrorMessage("error:"+e);
 
             // setisLoaded(true);

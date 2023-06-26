@@ -7,6 +7,7 @@ import Login from "../screens/AuthScreens/Login";
 import MyProfile from "../screens/ProfileScreens/MyProfile";
 import OrderReestr from "../screens/ProfileScreens/OrderReestr";
 import OrderUserContents from "../screens/ProfileScreens/OrderUserContents";
+import {CafeAuthProviderContext} from "../ContentsProvider/CafeAuthProvider";
 /*
 import Boseman from "../screens/Home/Boseman";
 import Search from '../screens/Home/Search';
@@ -23,7 +24,7 @@ const Stack = createStackNavigator();
 //
 //const user="user";
 const ProfileMainAuth:React.FC=()=>{
-    const {user, setUser,emiterauth} = useContext<any>(CafeDataMainProviderContext);
+    const {user, setUser,emiterauth} = useContext<any>(CafeAuthProviderContext);
     //const [userlocal,setUserlocal]=useState(user);
     //const[auth,setAuth]=useState(false);
    // const [crender,setcrender]=useState(0)

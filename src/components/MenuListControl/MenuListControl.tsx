@@ -10,8 +10,8 @@ import TabMenuControl from "./TabMenuControl";
 import {scale} from "../../utils/scale";
 import Header from "../Container/Header";
 import CartButton from "../Container/CartButton";
-import {CafeDataMainProviderContext} from "../../ContentsProvider/CafeDataMainProvider";
 import BeedTypeButton from "../Container/BeedTypeButton";
+import {CafeDataMainProviderContext} from "../../ContentsProvider/CafeDataMainProvider";
 
 
 interface IProps {
@@ -29,6 +29,7 @@ const MenuListController:React.FC<IProps>=({data,renderTab}:IProps)=>{
     const sectionlistRef = useRef<SectionList>();
     const [isScrolling, setIsScrolling] = useState(false);
     let blockUpdateIndex=false;
+    const { order } = useContext(CafeDataMainProviderContext);
     const renderSection=({section}) => {
         return (<MenuHeaderControl sectionItem={section} />);
     }
@@ -72,15 +73,22 @@ const MenuListController:React.FC<IProps>=({data,renderTab}:IProps)=>{
     }
     const renderMenu=({item}) => {
         //  console.log("item menulist 27 ",item)
+        const beedmenu=order.filter((itemiter)=>itemiter._id===item._id,[]);
+       let q:number=0;
+         if(beedmenu.length>=0)
+        q=beedmenu.reduce((total,item)=>total+item.qty,0);
+        //  console.log("MenuItemContemts43",result,beedmenu.length);
+
         return (
-           <MenuItemContentsControl menuItem={item}/>
+           <MenuItemContentsControl menuItem={item} orderQty={q}/>
             )
     }
+
 
     return (
     <SafeAreaView style={styles.container}>
         <Header/*logoStyle={logoStyle}   style={headerStyle} */  />
-        <CartButton  />
+       <CartButton  countOrder={order.length}/>
         <BeedTypeButton/>
         <TabMenuControl data={data} currentIndex={currentIndex} onTabPress={onTabPress} />
     <SectionList
@@ -105,7 +113,6 @@ onScrollToIndexFailed={ScrollFailed}
            // return /*item.*/index.toString();
            return item._id+index;
         }}
-
         renderItem={renderMenu}
 
         renderSectionHeader={renderSection}
@@ -156,4 +163,5 @@ const styles = StyleSheet.create({
     },
 });
 
-export default MenuListController;
+const MenuListControllerMemo=React.memo(MenuListController);
+export default MenuListControllerMemo;

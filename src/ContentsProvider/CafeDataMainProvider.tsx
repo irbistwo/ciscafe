@@ -2,7 +2,6 @@ import React, {createContext, useEffect, useState} from 'react';
 //import { GoogleSignin } from '@react-native-google-signin/google-signin';
 //import ContentsProvider from '@react-native-firebase/ContentsProvider';
 
-import eventEmitAuth from "./EventEmitAuth";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import {IBeedType, IGlobalRestoranItem} from "./ITypeForProvider";
 /* in This contenxt saved main items-values such as
@@ -11,13 +10,13 @@ import {IBeedType, IGlobalRestoranItem} from "./ITypeForProvider";
 
 export const CafeDataMainProviderContext:React.Context<any> = createContext({});
 export const CafeDataMainProvider = ({children}) => {
-    const [user, setUser] = useState<string>(null);
+   // const [user, setUser] = useState<string>(null);
     const [order, setOrder] = useState<any>([]);
     const [restoranList, setRestoranList] = useState<any>([]);
-    const [token, setToken] = useState<string>(null);
+   // const [token, setToken] = useState<string>(null);
 const [restoranGlobalContext,setRestoranGlobalContext]=useState<IGlobalRestoranItem>(null)
 const[beedtype,setBeedType]=useState<IBeedType>({beedtype:"Dine"});
-    useEffect(()=>{
+   /* useEffect(()=>{
         if(user) return;
         const profile= AsyncStorage.getItem("user");
         profile.then((value) => {
@@ -30,8 +29,9 @@ const[beedtype,setBeedType]=useState<IBeedType>({beedtype:"Dine"});
             }
         })
     },[user])
+    */
     return (
-        <CafeDataMainProviderContext.Provider value={{user,setUser,order,setOrder,token,beedtype,setBeedType,
+        <CafeDataMainProviderContext.Provider value={{order,setOrder,beedtype,setBeedType,
             restoranGlobalContext,setRestoranGlobalContext,restoranList,setRestoranList,
             googleLogin: async () => {
                 try {
@@ -45,37 +45,10 @@ const[beedtype,setBeedType]=useState<IBeedType>({beedtype:"Dine"});
                 } catch(e) {
                     alert(e);
                 }
-            },
-            login: async (email, password) => {
-                try {
-                  //  const userbase=    await ContentsProvider().signInWithEmailAndPassword(email, password);
-                    // console.log("userlogin",userbase);
-                    console.log("userlogin",email);
-                    setUser(email) ;
-                    // Оповещаю подписчиков что юзер сменился
-                    eventEmitAuth.emit("user",email);
-                } catch(e) {
-                    alert(e);
-                }
-            },
-            signup: async (email, password) => {
-                try {
-                    //await ContentsProvider().createUserWithEmailAndPassword(email, password);
-                    eventEmitAuth.emit("user",email);
-                } catch (e) {
-                    alert(e);
-                }
+
+
             },
 
-            logout: async () => {
-                try {
-                   // await ContentsProvider().signOut()
-                    eventEmitAuth.emit("user",null);
-                } catch (e) {
-                    console.error(e);
-                }
-            },
-            emiterauth:eventEmitAuth
 
 
         }}>

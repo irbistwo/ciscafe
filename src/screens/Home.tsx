@@ -34,9 +34,7 @@ const Home = () => {
        //const url:string="v2/menu/category/fetch?restaurant=618d1fdcf8d838050546f221&mode=dinein";
         const url:string=`v2/menu/category/fetch?restaurant=${restoranGlobalContext._id}&mode=${mode}`;
        try {
-           // @ts-ignore
-           const result = await sendGetData(url);
-
+           const result = await sendGetData(url,null);
            //  const result = await response.json();
            const data0 = JSON.parse(result);
            const data1 = data0.map((item, index) => ({...item, data: item.menus, index}));
@@ -49,7 +47,7 @@ const Home = () => {
            setData(data1);
            setisLoaded(true);
        }catch(e){
-       console.log("Hone39 catch");
+       console.log("Home51 catch",e);
 
            setToastErrorMessage("error:"+e);
 

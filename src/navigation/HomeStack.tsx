@@ -1,12 +1,12 @@
 import React, {useContext} from 'react';
-import { createStackNavigator } from '@react-navigation/stack';
+//import { createStackNavigator } from '@react-navigation/stack';
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import Home from '../screens/Home';
 import {ToastProvider} from "../components/Toast/Toast";
 import MenuDetail from "../components/MenuListControl/MenuDetail";
 import OrderContents from "../screens/OrderContents";
 import OrderPayment from "../screens/OrderPayment";
-import {CafeDataMainProviderContext} from "../ContentsProvider/CafeDataMainProvider";
-import ProfileMain from "../screens/ProfileMain";
+import { CafeDataMainProviderContext} from "../ContentsProvider/CafeDataMainProvider";
 import {AuthStack} from "./AuthStack";
 import ChooseRestoran from "../components/RestoranListControl/ChooseRestoran";
 //import MenuListController from "../components/MenuListControl/MenuListControl";
@@ -23,11 +23,13 @@ import Osaka from '../screens/Home/Osaka';
 
 */
 
-const Stack = createStackNavigator();
+//const Stack = createStackNavigator();
+const Stack = createNativeStackNavigator();
 const HomePr=()=>{
     const { restoranGlobalContext } = useContext(CafeDataMainProviderContext);
+    console.log("HomeStack29",restoranGlobalContext)
     return (
-        restoranGlobalContext===null?<ChooseRestoran/>:  <ToastProvider><Home/></ToastProvider>
+        restoranGlobalContext===null? <ChooseRestoran/>:<ToastProvider><Home/></ToastProvider>
 
     )
 }

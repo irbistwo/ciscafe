@@ -24,25 +24,26 @@ interface IMenuContentsItem {
 interface IProps {
     // data:any[],
     menuItem: IMenuContentsItem;
-
+    orderQty:number
 }
 
-const MenuItemContentsControl:React.FC<IProps>=({menuItem}:IProps)=>{
+const MenuItemContentsControl:React.FC<IProps>=({menuItem,orderQty}:IProps)=>{
     const navigation = useNavigation();
   //  const[orderQty]=useState(0);
-    const is_aval=is_between(menuItem.start,menuItem.end);
+   const is_aval=is_between(menuItem.start,menuItem.end);
     const[is_available]=useState(is_aval);
+   // const[is_available]=useState(true);
     const {setToastMessage,setToastErrorMessage}=useContext<any>(ToastContext);
-    const { order } = useContext(CafeDataMainProviderContext);
+  //  const { order } = useContext(CafeDataMainProviderContext);
     //const orderQty=menuItem.qty||0;
-    const orderQty=useMemo(()=>{
+   /*const orderQty=useMemo(()=>{
         const beedmenu=order.filter((item)=>item._id===menuItem._id,[]);
-
        if(beedmenu.length===0) return 0;
        const result:number=beedmenu.reduce((total,item)=>total+item.qty,0);
       //  console.log("MenuItemContemts43",result,beedmenu.length);
        return result;
     },[order])
+    */
     /* containerBackground: StyleProp<ViewStyle> = React.useMemo(
         () => ({backgroundColor: orderQty > 0 ? ORANGE : BROWN}),
         [orderQty],
@@ -50,10 +51,11 @@ const MenuItemContentsControl:React.FC<IProps>=({menuItem}:IProps)=>{
     */
     const containerBackground: StyleProp<ViewStyle>={backgroundColor: orderQty > 0 ? YELLOW : BROWN};
     const onOrderAddedCallback=(message:string)=>{
+      // setTimeout(()=> setToastMessage(message),1);
         setToastMessage(message);
     }
     const onPress=()=>{
-        if(!is_aval) {setToastErrorMessage(`sorry ${menuItem.name} not available at this time`);
+        if(!is_available) {setToastErrorMessage(`sorry ${menuItem.name} not available at this time`);
         return;
         }
         const tonavigate='MenuDetail';

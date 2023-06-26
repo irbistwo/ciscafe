@@ -14,15 +14,15 @@ import {CafeDataMainProviderContext} from "../../ContentsProvider/CafeDataMainPr
 
 interface CartButtonProps  {
     style?: StyleProp<ViewStyle>;
-
+countOrder:number
 };
 
-const CartButton: React.FC<CartButtonProps> = ({style}) => {
+const CartButton: React.FC<CartButtonProps> = ({style,countOrder}) => {
     const navigation = useNavigation();
-    const {order,setOrder}=useContext<any>(CafeDataMainProviderContext);
+   // const {order,setOrder}=useContext<any>(CafeDataMainProviderContext);
    // const count=0;
 //console.log("CartButton22",order.length);
-    if (order.length === 0) {
+    if (countOrder === 0) {
         return null;
     }
 
@@ -38,7 +38,7 @@ const CartButton: React.FC<CartButtonProps> = ({style}) => {
                 source={require('../../assets/images/button-cart.png')}
             />
             <View style={styles.lblContainer}>
-                <Text style={styles.lbl}>{order.length}</Text>
+                <Text style={styles.lbl}>{countOrder}</Text>
             </View>
         </TouchableOpacity>
     );

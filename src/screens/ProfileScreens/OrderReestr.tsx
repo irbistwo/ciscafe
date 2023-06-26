@@ -6,6 +6,7 @@ import LoadingWait from "../../components/Loading/LoadinngWait";
 import OrderReestrList from "../../components/Container/OrderReestr/OrderReestrList";
 import {sendGetData} from "../../service/service";
 import {CafeDataMainProviderContext} from "../../ContentsProvider/CafeDataMainProvider";
+import {CafeAuthProviderContext} from "../../ContentsProvider/CafeAuthProvider";
 //import Toast from "../components/Toast/Toast";
 
 const SCREENHEIGHT = Dimensions.get('window').height;
@@ -14,7 +15,7 @@ const SCREENWIDTH  = Dimensions.get('window').width;
 
 const OrderReestr = () => {
    // const navigation = useNavigation();
-    const { token } = useContext(CafeDataMainProviderContext);
+    const { token } = useContext(CafeAuthProviderContext);
     const [data,setData]=useState([]);
 
     const [is_Loaded,setisLoaded]=useState(false);
@@ -35,6 +36,7 @@ const OrderReestr = () => {
        // const url:string=`v2/menu/category/fetch?restaurant=${restoranGlobalContext._id}&mode=${mode}`;
         try {
             // @ts-ignore
+            console.log("OrderReestr38",token);
             const result = await sendGetData(url,token);
 
             //  const result = await response.json();

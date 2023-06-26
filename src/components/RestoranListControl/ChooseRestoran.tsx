@@ -1,6 +1,6 @@
 import React, {useContext} from 'react';
 import {Image, SafeAreaView, StyleSheet, Text, View} from 'react-native';
-import {CafeDataMainProviderContext} from "../../ContentsProvider/CafeDataMainProvider";
+import { CafeDataMainProviderContext} from "../../ContentsProvider/CafeDataMainProvider";
 import Header from "../Container/Header";
 import RadioButtonControl from "../RadioButtonControl/RadioButtonControl";
 import RestoranListControl from "./RestoranListControl";
@@ -15,12 +15,14 @@ const ChooseRestoran=()=>{
         setBeedType(beedtype);
     }
     return (
+
         <SafeAreaView style={styles.container}>
             <Text style={styles.sm_hermes_regular}>Choose Restoran</Text>
             <RadioButtonControl RadioButtons={typearray} selecgtedID={"Dine"}
                                 onSelectedButton={setDineType} />
             <RestoranListControl data={restoranList} onPress={(index)=>{}} is_horisontal={false}/>
         </SafeAreaView>
+
     )
 }
 export default ChooseRestoran;
